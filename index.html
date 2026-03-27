@@ -186,32 +186,6 @@
     transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease)}
   .divider.in{transform:scaleX(1)}
 
-  /* ===== RESULT PREVIEW ===== */
-  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center}
-  .result-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:32px;position:relative;overflow:hidden;
-    box-shadow:0 1px 3px rgba(0,0,0,0.02);transition:box-shadow 0.5s var(--ease),transform 0.5s var(--ease)}
-  .result-card:hover{box-shadow:0 16px 50px rgba(0,0,0,0.07);transform:translateY(-4px)}
-  .result-card-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-    transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) 0.3s}
-  .result-card.in .result-card-bar{transform:scaleX(1)}
-  .result-header{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-  .result-badge{width:44px;height:44px;border-radius:12px;background:rgba(var(--accent-rgb),0.08);display:flex;align-items:center;justify-content:center}
-  .result-label{font-size:11px;color:var(--muted);letter-spacing:0.02em}
-  .result-name{font-size:18px;font-weight:700}
-  .result-items{list-style:none;display:flex;flex-direction:column;gap:10px}
-  .result-item{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:14px;padding:14px 16px;transition:all 0.3s var(--ease)}
-  .result-item:hover{background:#efefef;transform:translateX(4px)}
-  .ri-icon{width:30px;height:30px;min-width:30px;border-radius:8px;display:flex;align-items:center;justify-content:center}
-  .ri-icon.a{background:rgba(34,197,94,0.08)}.ri-icon.b{background:rgba(59,130,246,0.08)}.ri-icon.c{background:rgba(168,85,247,0.08)}
-  .ri-title{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:2px}
-  .ri-desc{font-size:12px;color:var(--muted);line-height:1.5}
-  .result-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:#ccc;text-align:center}
-  .result-explain h3{font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.5;margin-bottom:16px;letter-spacing:-0.02em}
-  .result-explain p{font-size:14px;color:#666;line-height:1.9;margin-bottom:28px}
-  .benefits{list-style:none;display:flex;flex-direction:column;gap:12px}
-  .benefit{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--primary);font-weight:500}
-  .benefit-icon{width:22px;height:22px;min-width:22px;background:rgba(var(--accent-rgb),0.08);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
-
   /* ===== HORIZONTAL SCROLL CATEGORIES ===== */
   .cat-scroll-section{padding:clamp(80px,10vw,140px) 0;overflow:hidden}
   .cat-scroll-track{display:flex;gap:16px;padding:0 var(--gutter);cursor:grab;user-select:none;
@@ -234,19 +208,6 @@
     opacity:0;transform:translateX(-8px);transition:all 0.4s var(--ease)}
   .cat-card:hover .cat-arrow{opacity:1;transform:translateX(0)}
 
-  /* ===== STEPS ===== */
-  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .step-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:28px 24px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
-  .step-card::after{content:'';position:absolute;inset:0;border-radius:24px;border:2px solid transparent;transition:border-color 0.5s var(--ease)}
-  .step-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
-  .step-card:hover::after{border-color:rgba(var(--accent-rgb),0.15)}
-  .step-img{width:100%;height:140px;border-radius:14px;overflow:hidden;margin-bottom:20px}
-  .step-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
-  .step-card:hover .step-img img{transform:scale(1.08)}
-  .step-num{width:28px;height:28px;background:var(--primary);color:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:12px;font-family:var(--display)}
-  .step-card h3{font-size:15px;font-weight:700;margin-bottom:6px;letter-spacing:-0.01em}
-  .step-card p{font-size:13px;color:var(--muted);line-height:1.7}
-
   /* ===== STATS ===== */
   .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--primary);border-radius:24px;padding:clamp(28px,3.5vw,48px);gap:16px;position:relative;overflow:hidden}
   .stats-bar::before{content:'';position:absolute;top:-50%;right:-20%;width:60%;height:200%;background:radial-gradient(circle,rgba(var(--accent-rgb),0.08),transparent 60%);animation:statGlow 8s ease-in-out infinite alternate}
@@ -255,27 +216,6 @@
   .stat-num{font-family:var(--display);font-size:clamp(28px,3vw,42px);font-weight:800;background:linear-gradient(135deg,var(--accent),#ffaa70);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
   .stat-label{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;letter-spacing:0.02em}
   .stats-note{text-align:center;font-size:11px;color:#ccc;margin-top:14px}
-
-  /* ===== TIERS ===== */
-  .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .tier-card{border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--surface);transition:all 0.5s var(--ease)}
-  .tier-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
-  .tier-card-img{width:100%;height:150px;overflow:hidden}
-  .tier-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
-  .tier-card:hover .tier-card-img img{transform:scale(1.08)}
-  .tier-body{padding:22px}
-  .tier-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:10px}
-  .tier-card.youth .tier-tag{background:rgba(34,197,94,0.08);color:#16a34a}
-  .tier-card.amateur .tier-tag{background:rgba(59,130,246,0.08);color:#2563eb}
-  .tier-card.pro .tier-tag{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
-  .tier-body h3{font-size:18px;font-weight:700;margin-bottom:4px;letter-spacing:-0.01em}
-  .tier-body .sub{font-size:12px;color:var(--muted);margin-bottom:14px}
-  .tier-list{list-style:none}
-  .tier-list li{font-size:13px;color:#666;padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-  .tier-list li::before{content:'';width:4px;height:4px;border-radius:50%}
-  .tier-card.youth .tier-list li::before{background:#22c55e}
-  .tier-card.amateur .tier-list li::before{background:#3b82f6}
-  .tier-card.pro .tier-list li::before{background:var(--accent)}
 
   /* ===== TESTIMONIALS ===== */
   .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -332,6 +272,69 @@
   .footer-links{display:flex;gap:24px}
   .footer-links a{font-size:12px;color:var(--muted);text-decoration:none}
   .footer-copy{font-size:11px;color:#ccc}
+
+  /* ===== GROWTH PATH ===== */
+  .growth-path{padding:clamp(80px,10vw,140px) 0}
+  .growth-path-inner{max-width:500px;margin:0 auto}
+  .gp-stage{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;border-left:3px solid transparent;transition:all 0.5s var(--ease)}
+  .gp-stage:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+  .gp-stage--youth{border-left-color:#22c55e}
+  .gp-stage--amateur{border-left-color:#3b82f6}
+  .gp-stage--pro{border-left-color:var(--accent)}
+  .gp-stage-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .gp-stage-icon{width:40px;height:40px;min-width:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px}
+  .gp-stage--youth .gp-stage-icon{background:linear-gradient(135deg,#22c55e,#16a34a)}
+  .gp-stage--amateur .gp-stage-icon{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+  .gp-stage--pro .gp-stage-icon{background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
+  .gp-stage-label{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .gp-stage h3{font-size:clamp(16px,1.4vw,19px);font-weight:700;letter-spacing:-0.02em;color:var(--primary)}
+  .gp-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .gp-chip{display:inline-block;font-size:12px;font-weight:500;padding:5px 14px;border-radius:100px;line-height:1.4}
+  .gp-stage--youth .gp-chip{background:rgba(34,197,94,0.08);color:#16a34a}
+  .gp-stage--amateur .gp-chip{background:rgba(59,130,246,0.08);color:#2563eb}
+  .gp-stage--pro .gp-chip{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .gp-connector{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0}
+  .gp-connector-line{width:2px;height:20px;border-radius:1px}
+  .gp-connector--yth-ama .gp-connector-line{background:linear-gradient(to bottom,#22c55e,#3b82f6)}
+  .gp-connector--ama-pro .gp-connector-line{background:linear-gradient(to bottom,#3b82f6,var(--accent))}
+  .gp-connector-label{font-size:11px;color:var(--muted);font-weight:500}
+  .gp-connector-arrow svg{width:18px;height:18px;color:var(--muted)}
+
+  /* ===== CIRCULATION ECOSYSTEM ===== */
+  .circ-section{padding:clamp(80px,10vw,140px) 0}
+  .circ-diagram{max-width:440px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0}
+  .circ-node{display:flex;align-items:center;gap:16px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 22px;border-left:4px solid transparent;transition:all 0.5s var(--ease)}
+  .circ-node:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+  .circ-node--pro{border-left-color:var(--accent)}
+  .circ-node--youth{border-left-color:#22c55e}
+  .circ-node--ama{border-left-color:#3b82f6}
+  .circ-node-icon{width:48px;height:48px;min-width:48px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .circ-node--pro .circ-node-icon{background:linear-gradient(135deg,rgba(var(--accent-rgb),0.12),rgba(var(--accent-rgb),0.04))}
+  .circ-node--youth .circ-node-icon{background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.04))}
+  .circ-node--ama .circ-node-icon{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(59,130,246,0.04))}
+  .circ-node-icon svg{width:22px;height:22px}
+  .circ-node--pro .circ-node-icon svg{color:var(--accent)}
+  .circ-node--youth .circ-node-icon svg{color:#22c55e}
+  .circ-node--ama .circ-node-icon svg{color:#3b82f6}
+  .circ-node-body{flex:1;min-width:0}
+  .circ-node-title{font-size:clamp(15px,1.3vw,18px);font-weight:700;letter-spacing:-0.02em;color:var(--primary);margin-bottom:8px}
+  .circ-node-examples{display:flex;flex-wrap:wrap;gap:6px}
+  .circ-node-examples span{display:inline-block;font-size:11px;font-weight:500;padding:4px 12px;border-radius:100px;line-height:1.4}
+  .circ-node--pro .circ-node-examples span{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .circ-node--youth .circ-node-examples span{background:rgba(34,197,94,0.08);color:#16a34a}
+  .circ-node--ama .circ-node-examples span{background:rgba(59,130,246,0.08);color:#2563eb}
+  .circ-connector{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0}
+  .circ-connector-line{width:2px;height:18px;border-radius:1px}
+  .circ-connector--pro-youth .circ-connector-line{background:linear-gradient(to bottom,var(--accent),#22c55e)}
+  .circ-connector--youth-ama .circ-connector-line{background:linear-gradient(to bottom,#22c55e,#3b82f6)}
+  .circ-connector--ama-loop .circ-connector-line{background:linear-gradient(to bottom,#3b82f6,var(--accent))}
+  .circ-connector-label{font-size:11px;color:var(--muted);font-weight:500}
+  .circ-connector-arrow svg{width:16px;height:16px;color:var(--muted)}
+  .circ-loop{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 20px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;font-size:14px;font-weight:700;letter-spacing:-0.01em;box-shadow:0 6px 24px rgba(var(--accent-rgb),0.25);transition:all 0.5s var(--ease)}
+  .circ-loop:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(var(--accent-rgb),0.35)}
+  .circ-loop svg{width:20px;height:20px;animation:circ-spin 3s linear infinite}
+  @keyframes circ-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .circ-note{font-size:12px;color:var(--muted);text-align:center;margin-top:24px;line-height:1.7}
 
   /* ===== VISUAL WORKFLOW DIAGRAM ===== */
   .site-flow{padding:0 0 clamp(40px,5vw,60px);position:relative}
@@ -398,7 +401,7 @@
     :root{--gutter:16px}
 
     /* Hide br on mobile for natural reflow */
-    .hero-sub br,.cta-content br,.cta-content p br,.result-explain p br{display:none}
+    .hero-sub br,.cta-content br,.cta-content p br{display:none}
 
     /* Nav - glass effect */
     .nav-links{display:none}
@@ -508,42 +511,10 @@
     }
     .section h2.center::after{margin-left:auto;margin-right:auto}
 
-    /* ===== RESULT CARD - GLASS + GLOW ===== */
-    .result-grid{grid-template-columns:1fr;gap:28px}
-    .result-card{
-      padding:24px;border-radius:20px;
-      background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);
-      border:1px solid rgba(var(--accent-rgb),0.08);
-      box-shadow:0 8px 32px rgba(0,0,0,0.06),0 0 0 1px rgba(255,255,255,0.8) inset;
-    }
-    .result-name{font-size:17px}
-    .result-item{border-radius:12px;background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,255,255,0.9))}
-    .result-explain h3{font-size:20px;line-height:1.55}
-    .result-explain p{font-size:13px}
-    .benefits{gap:10px}
-    .benefit{font-size:13px}
-
     /* ===== CAT SCROLL - RICHER ===== */
     .cat-card{min-width:270px;height:320px;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
     .cat-title{font-size:22px}
     .cat-sub{font-size:13px}
-
-    /* ===== STEPS - IMAGE TOP, GRADIENT NUM ===== */
-    .steps-grid{grid-template-columns:1fr;gap:16px}
-    .step-card{
-      padding:0;border-radius:20px;overflow:hidden;
-      box-shadow:0 4px 24px rgba(0,0,0,0.05);
-    }
-    .step-img{height:180px;border-radius:0;margin-bottom:0}
-    .step-card h3,.step-card p,.step-num{margin-left:20px;margin-right:20px}
-    .step-num{
-      width:32px;height:32px;border-radius:10px;font-size:13px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-      margin-top:-16px;position:relative;z-index:1;
-      box-shadow:0 4px 12px rgba(var(--accent-rgb),0.3);
-    }
-    .step-card h3{font-size:16px;margin-top:12px;margin-bottom:6px}
-    .step-card p{font-size:13px;padding-bottom:20px}
 
     /* ===== STATS - INDIVIDUAL GLOW CELLS ===== */
     .stats-bar{grid-template-columns:1fr 1fr;padding:20px;gap:12px;border-radius:20px}
@@ -553,23 +524,6 @@
     }
     .stat-num{font-size:30px}
     .stat-label{font-size:11px;color:rgba(255,255,255,0.5)}
-
-    /* ===== TIERS - HORIZONTAL SCROLL ===== */
-    .tier-grid{
-      grid-template-columns:none;display:flex;gap:14px;
-      overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-      scrollbar-width:none;padding-bottom:4px;
-      margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));
-      padding-left:var(--gutter);padding-right:var(--gutter);
-    }
-    .tier-grid::-webkit-scrollbar{display:none}
-    .tier-card{
-      min-width:280px;flex-shrink:0;scroll-snap-align:start;border-radius:20px;
-      box-shadow:0 4px 24px rgba(0,0,0,0.06);
-    }
-    .tier-card-img{height:160px}
-    .tier-body{padding:20px}
-    .tier-body h3{font-size:18px}
 
     /* ===== TESTIMONIALS - HORIZONTAL SCROLL + QUOTE ===== */
     .test-grid{
@@ -626,6 +580,39 @@
     /* Divider - gradient */
     .divider{margin:0 16px;background-image:linear-gradient(to right,transparent,rgba(var(--accent-rgb),0.15),transparent);background-size:100% 1px}
 
+    /* ===== GROWTH PATH - MOBILE ===== */
+    .growth-path{padding:52px 0}
+    .growth-path .section-label{font-size:10px;letter-spacing:4px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .growth-path h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
+    .growth-path h2::after{
+      content:'';display:block;width:40px;height:3px;margin-top:10px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
+      margin-left:auto;margin-right:auto;
+    }
+    .gp-stage{padding:22px 18px 20px;border-radius:16px}
+    .gp-stage h3{font-size:16px}
+    .gp-chip{font-size:11px;padding:4px 12px}
+
+    /* ===== CIRCULATION ECOSYSTEM - MOBILE ===== */
+    .circ-section{padding:52px 0}
+    .circ-section .section-label{font-size:10px;letter-spacing:4px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .circ-section h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
+    .circ-section h2::after{
+      content:'';display:block;width:40px;height:3px;margin-top:10px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
+      margin-left:auto;margin-right:auto;
+    }
+    .circ-node{padding:20px 16px;border-radius:16px;gap:12px}
+    .circ-node-icon{width:42px;height:42px;min-width:42px}
+    .circ-node-icon svg{width:20px;height:20px}
+    .circ-node-title{font-size:15px;margin-bottom:6px}
+    .circ-node-examples span{font-size:10px;padding:3px 10px}
+    .circ-loop{font-size:13px;padding:14px 18px}
+    .circ-loop svg{width:18px;height:18px}
+    .circ-note{font-size:11px;margin-top:18px}
+
     /* ===== FLOW DIAGRAM - MOBILE ===== */
     .site-flow{padding:0 0 40px}
     .flow-container{padding:24px 18px;border-radius:20px}
@@ -644,8 +631,6 @@
   @media(min-width:769px) and (max-width:1024px){
     .hero{grid-template-columns:1fr 1fr;gap:24px}
     .hero h1{font-size:clamp(26px,3vw,36px)}
-    .steps-grid{grid-template-columns:repeat(3,1fr);gap:12px}
-    .tier-grid{grid-template-columns:repeat(3,1fr);gap:12px}
     .test-grid{grid-template-columns:repeat(3,1fr);gap:12px}
     .stats-bar{grid-template-columns:repeat(4,1fr)}
   }
@@ -682,14 +667,12 @@
       <div class="hero-empathy">
         <span class="empathy-chip">何を始めればいいかわからない</span>
         <span class="empathy-chip">ガクチカがない</span>
-        <span class="empathy-chip">最初の一歩が重い</span>
       </div>
       <h1>
-        <span class="hero-line"><span class="hero-line-inner">何から始めるか迷っている</span></span>
-        <span class="hero-line"><span class="hero-line-inner">学生へ。<span class="accent">3分の無料診断</span>で、</span></span>
-        <span class="hero-line"><span class="hero-line-inner">あなたに合う一歩がわかる。</span></span>
+        <span class="hero-line"><span class="hero-line-inner">迷っている学生へ。</span></span>
+        <span class="hero-line"><span class="hero-line-inner"><span class="accent">3分の診断</span>で、次の一歩がわかる。</span></span>
       </h1>
-      <p class="hero-sub">ガクチカ、留学、資格、サークル活動 ──<br><strong>今のあなたの志向に合った選択肢</strong>と、<br><strong>最初にやるべき具体的な行動</strong>を提案します。</p>
+      <p class="hero-sub">あなたの志向に合った選択肢と行動を無料で提案します。</p>
       <div class="hero-cta-wrap">
         <a href="#" class="btn-hero"><div class="shimmer"></div><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       </div>
@@ -706,7 +689,6 @@
         <div class="hero-img"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces" alt=""></div>
         <div class="hero-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces" alt=""></div>
       </div>
-      <div class="hero-float-card top-right"><div class="float-avatar">K</div><div class="float-text"><strong>診断完了!</strong><span>ガクチカ型 と判定されました</span></div></div>
       <div class="hero-float-card bottom-left"><div class="float-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><div class="float-text"><strong>87%の学生が</strong><span>診断後に行動を開始</span></div></div>
     </div>
   </section>
@@ -724,7 +706,6 @@
           <div class="flow-node-card diag">
             <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
             <div class="flow-node-title">3分で無料診断</div>
-            <div class="flow-node-desc">簡単な質問に答えるだけ</div>
             <div class="flow-node-tag diag">所要時間 3分</div>
           </div>
         </div>
@@ -741,7 +722,6 @@
           <div class="flow-node-card result">
             <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             <div class="flow-node-title">タイプ＆選択肢を提示</div>
-            <div class="flow-node-desc">ガクチカ・留学・資格など方向性がわかる</div>
             <div class="flow-node-examples">
               <span>ガクチカ型</span><span>留学型</span><span>資格型</span><span>サークル型</span>
             </div>
@@ -760,33 +740,9 @@
           <div class="flow-node-card action">
             <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
             <div class="flow-node-title">具体的な一歩が決まる</div>
-            <div class="flow-node-desc">最初にやるべき行動が具体的に提案される</div>
             <div class="flow-node-tag action">すぐに行動開始できる</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" data-reveal>
-    <div class="section-label center">Diagnosis result</div>
-    <h2 class="center">診断すると、こんな結果がわかります。</h2>
-    <p class="section-desc center">あなたのタイプ・合う選択肢・最初の一歩が具体的に提示されます。</p>
-    <div class="result-grid">
-      <div class="result-card" data-reveal="left">
-        <div class="result-card-bar"></div>
-        <div class="result-header"><div class="result-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="result-label">あなたの診断結果</div><div class="result-name">ガクチカ型</div></div></div>
-        <ul class="result-items">
-          <li class="result-item"><div class="ri-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div><div><div class="ri-title">あなたに合う挑戦タイプ</div><div class="ri-desc">経験を作る・発信する・運営する活動が向いています</div></div></li>
-          <li class="result-item"><div class="ri-icon b"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div><div class="ri-title">今のあなたに合う選択肢</div><div class="ri-desc">SNS運用補助 / Web制作 / イベント運営補助</div></div></li>
-          <li class="result-item"><div class="ri-icon c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div><div class="ri-title">最初にやるべき一歩</div><div class="ri-desc">まずはSNS投稿案を1本つくるタスクに参加してみよう</div></div></li>
-        </ul>
-        <div class="result-note">* これは診断結果のサンプルです</div>
-      </div>
-      <div class="result-explain" data-reveal="right">
-        <h3>診断結果では、<br>3つのことがわかります。</h3>
-        <p>「何が向いているか」だけでなく、<br>「具体的に何をすればいいか」まで提案するので、<br>診断後すぐに動き出せます。</p>
-        <ul class="benefits"><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>あなたの挑戦タイプがわかる</li><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>今の自分に合う選択肢が見える</li><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>最初にやるべき行動が具体的にわかる</li></ul>
       </div>
     </div>
   </section>
@@ -796,8 +752,7 @@
   <section class="cat-scroll-section">
     <div class="container" data-reveal>
       <div class="section-label center">What you'll discover</div>
-      <h2 class="center">診断後に見えてくる選択肢</h2>
-      <p class="section-desc center">あなたのタイプに合わせて、こんな一歩を提案します。</p>
+      <h2 class="center">4つのカテゴリ</h2>
     </div>
     <div class="cat-scroll-track" id="catTrack">
       <div style="min-width:clamp(20px,4vw,64px);flex-shrink:0"></div>
@@ -809,12 +764,149 @@
     </div>
   </section>
 
-  <section class="section" data-reveal>
-    <div class="section-label">How it works</div><h2>3ステップで、動き出せる。</h2><p class="section-desc">何から始めればいいかわからなくても大丈夫。診断から具体的な行動まで導きます。</p>
-    <div class="steps-grid" data-stagger>
-      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop" alt=""></div><div class="step-num">1</div><h3>3分で診断する</h3><p>簡単な質問に答えるだけ。あなたの志向やタイプを分析し、合う方向性を見つけます。</p></div>
-      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=500&h=300&fit=crop" alt=""></div><div class="step-num">2</div><h3>タイプと選択肢がわかる</h3><p>診断結果で、あなたの挑戦タイプ・合う活動・最初にやるべきことが具体的に提示されます。</p></div>
-      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=300&fit=crop" alt=""></div><div class="step-num">3</div><h3>次の一歩を決めて動く</h3><p>提案されたタスクに参加し、小さな実績を積み始める。あなたの成長が可視化されます。</p></div>
+  <section class="growth-path section" data-reveal>
+    <div class="container">
+      <div class="section-label center">Growth Path</div>
+      <h2 class="center">3段階で、挑戦が加速する。</h2>
+      <div class="growth-path-inner">
+
+        <div class="gp-stage gp-stage--youth" data-reveal>
+          <div class="gp-stage-header">
+            <div class="gp-stage-icon">1</div>
+            <div>
+              <div class="gp-stage-label">Youth</div>
+              <h3>まず知る・参加する</h3>
+            </div>
+          </div>
+          <div class="gp-chips">
+            <span class="gp-chip">タイプ診断</span>
+            <span class="gp-chip">初回タスク</span>
+            <span class="gp-chip">小さな実績づくり</span>
+            <span class="gp-chip">コミュニティ</span>
+          </div>
+        </div>
+
+        <div class="gp-connector gp-connector--yth-ama" data-reveal>
+          <div class="gp-connector-line"></div>
+          <div class="gp-connector-label">経験を積んで</div>
+          <div class="gp-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+        </div>
+
+        <div class="gp-stage gp-stage--amateur" data-reveal>
+          <div class="gp-stage-header">
+            <div class="gp-stage-icon">2</div>
+            <div>
+              <div class="gp-stage-label">Amateur</div>
+              <h3>やりたいことを形にする</h3>
+            </div>
+          </div>
+          <div class="gp-chips">
+            <span class="gp-chip">制作支援</span>
+            <span class="gp-chip">発信支援</span>
+            <span class="gp-chip">目標設計</span>
+            <span class="gp-chip">継続サポート</span>
+          </div>
+        </div>
+
+        <div class="gp-connector gp-connector--ama-pro" data-reveal>
+          <div class="gp-connector-line"></div>
+          <div class="gp-connector-label">さらに挑戦して</div>
+          <div class="gp-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+        </div>
+
+        <div class="gp-stage gp-stage--pro" data-reveal>
+          <div class="gp-stage-header">
+            <div class="gp-stage-icon">3</div>
+            <div>
+              <div class="gp-stage-label">Pro</div>
+              <h3>挑戦を加速させる</h3>
+            </div>
+          </div>
+          <div class="gp-chips">
+            <span class="gp-chip">伴走型支援</span>
+            <span class="gp-chip">ブランド化</span>
+            <span class="gp-chip">外部発信</span>
+            <span class="gp-chip">事業共創</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="circ-section section" data-reveal>
+    <div class="container">
+      <div class="section-label center">Ecosystem</div>
+      <h2 class="center">プロの案件に、参加できる仕組み。</h2>
+      <div class="circ-diagram">
+
+        <div class="circ-node circ-node--pro" data-reveal>
+          <div class="circ-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="circ-node-body">
+            <div class="circ-node-title">PROの実案件</div>
+            <div class="circ-node-examples">
+              <span>Web制作</span>
+              <span>イベント運営</span>
+              <span>映像制作</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="circ-connector circ-connector--pro-youth" data-reveal>
+          <div class="circ-connector-line"></div>
+          <div class="circ-connector-label">タスクを切り出し</div>
+          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+        </div>
+
+        <div class="circ-node circ-node--youth" data-reveal>
+          <div class="circ-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="circ-node-body">
+            <div class="circ-node-title">YOUTHが実務参加</div>
+            <div class="circ-node-examples">
+              <span>調査</span>
+              <span>制作補助</span>
+              <span>投稿補助</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="circ-connector circ-connector--youth-ama" data-reveal>
+          <div class="circ-connector-line"></div>
+          <div class="circ-connector-label">実績が積める</div>
+          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+        </div>
+
+        <div class="circ-node circ-node--ama" data-reveal>
+          <div class="circ-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="circ-node-body">
+            <div class="circ-node-title">AMAへ成長</div>
+            <div class="circ-node-examples">
+              <span>企画立案</span>
+              <span>発信主導</span>
+              <span>チーム運営</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="circ-connector circ-connector--ama-loop" data-reveal>
+          <div class="circ-connector-line"></div>
+          <div class="circ-connector-label">さらに挑戦</div>
+          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+        </div>
+
+        <div class="circ-loop" data-reveal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          PROへ &#8594; 次の案件に還流
+        </div>
+
+      </div>
+      <p class="circ-note">ユースはプロの実案件に参加し、実績を積みながらステップアップできます。</p>
     </div>
   </section>
 
@@ -831,20 +923,10 @@
   <div class="divider"></div>
 
   <section class="section" data-reveal>
-    <div class="section-label">Programs</div><h2>あなたの現在地に合った支援。</h2><p class="section-desc">診断結果をもとに、今の段階に合ったプログラムを提案します。</p>
-    <div class="tier-grid" data-stagger>
-      <div class="tier-card youth"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=300&fit=crop&crop=faces" alt=""></div><div class="tier-body"><div class="tier-tag">Youth</div><h3>ユース</h3><div class="sub">まずは知る・参加してみる</div><ul class="tier-list"><li>タイプ診断</li><li>初回タスク体験</li><li>小さな実績づくり</li><li>コミュニティ参加</li></ul></div></div>
-      <div class="tier-card amateur"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=300&fit=crop&crop=faces" alt=""></div><div class="tier-body"><div class="tier-tag">Amateur</div><h3>アマチュア</h3><div class="sub">やりたいことを形にする</div><ul class="tier-list"><li>制作支援</li><li>発信支援</li><li>目標設計</li><li>継続サポート</li></ul></div></div>
-      <div class="tier-card pro"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&h=300&fit=crop" alt=""></div><div class="tier-body"><div class="tier-tag">Pro</div><h3>プロ</h3><div class="sub">挑戦を加速させる</div><ul class="tier-list"><li>伴走型支援</li><li>ブランド化</li><li>外部発信</li><li>事業共創</li></ul></div></div>
-    </div>
-  </section>
-
-  <section class="section" data-reveal>
     <h2 class="center" style="margin-bottom:36px">利用した学生の声</h2>
     <div class="test-grid" data-stagger>
-      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">K.T さん</div><div class="test-meta">大学2年・経済学部</div></div></div><div class="test-body">何をすればいいかまったくわからなかったけど、診断で「ガクチカ型」と出て、SNS運用のタスクに参加したのが最初の一歩でした。今は自分で企画も回しています。</div><div class="test-tag">ガクチカ型</div></div>
-      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">M.S さん</div><div class="test-meta">大学3年・国際学部</div></div></div><div class="test-body">留学したいけど何から始めるかわからず止まっていました。診断後に具体的なステップが見えて、今は英語カフェと留学準備を同時に進めています。</div><div class="test-tag">留学型</div></div>
-      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">R.Y さん</div><div class="test-meta">大学1年・工学部</div></div></div><div class="test-body">周りがインターンを始めてる中、自分だけ何もしてなくて焦っていました。診断で方向が見えて、制作補助から始めたのが自信になりました。</div><div class="test-tag">ガクチカ型</div></div>
+      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">K.T さん</div><div class="test-meta">大学2年・経済学部</div></div></div><div class="test-body">診断で「ガクチカ型」と出て、SNS運用タスクに参加。今は自分で企画も回しています。</div><div class="test-tag">ガクチカ型</div></div>
+      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">R.Y さん</div><div class="test-meta">大学1年・工学部</div></div></div><div class="test-body">方向が見えて制作補助から開始。小さな実績が自信になりました。</div><div class="test-tag">ガクチカ型</div></div>
     </div>
   </section>
 
@@ -853,16 +935,15 @@
   <section class="section" data-reveal>
     <h2 class="center" style="font-size:24px;margin-bottom:36px">よくある質問</h2>
     <div class="faq-list">
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>診断は本当に無料ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい、完全無料です。診断後も費用は一切かかりません。</div></div>
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>診断後に勧誘されませんか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">無理な勧誘は一切ありません。結果を見たうえで、興味があれば次のステップに進めます。</div></div>
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>結果はすぐにわかりますか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい。回答後すぐに画面上で結果が表示されます。メール登録も不要です。</div></div>
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>やりたいことが決まっていなくても大丈夫ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">もちろんです。むしろ「何をすればいいかわからない」方のための診断です。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>本当に無料ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい、完全無料です。費用は一切かかりません。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>勧誘されませんか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">無理な勧誘は一切ありません。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>やりたいことが決まっていなくても？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">もちろん。むしろそういう方のための診断です。</div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="cta-box" data-reveal="scale">
-      <div class="cta-content"><h2>3分の無料診断で、<br>あなたに合う一歩がわかる。</h2><p>挑戦タイプ・合う選択肢・最初の行動が<br>具体的に提示されます。</p><a href="#" class="btn-cta"><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><div class="cta-trust"><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div></div></div>
+      <div class="cta-content"><h2>無料診断で、<br>次の一歩を見つけよう。</h2><a href="#" class="btn-cta"><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><div class="cta-trust"><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div></div></div>
       <div class="cta-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces" alt=""></div>
     </div>
   </section>
