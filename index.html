@@ -333,7 +333,7 @@
   .footer-links a{font-size:12px;color:var(--muted);text-decoration:none}
   .footer-copy{font-size:11px;color:#ccc}
 
-  /* ===== WHAT THIS SITE DOES - VISUAL FLOW ===== */
+  /* ===== VISUAL WORKFLOW DIAGRAM ===== */
   .site-flow{padding:0 0 clamp(40px,5vw,60px);position:relative}
   .flow-container{
     background:linear-gradient(135deg,#fafafa 0%,#fff 100%);
@@ -345,21 +345,50 @@
     background:radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent 60%);
     border-radius:50%;pointer-events:none;
   }
-  .flow-title{font-size:clamp(13px,1.2vw,15px);font-weight:700;color:var(--primary);text-align:center;margin-bottom:8px}
-  .flow-subtitle{font-size:clamp(11px,1vw,13px);color:var(--muted);text-align:center;margin-bottom:clamp(24px,3vw,36px)}
-  .flow-steps{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative;z-index:1}
-  .flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;max-width:200px}
-  .flow-icon{
-    width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-    margin-bottom:12px;position:relative;
+  .flow-title{font-size:clamp(15px,1.4vw,18px);font-weight:800;color:var(--primary);text-align:center;margin-bottom:6px}
+  .flow-subtitle{font-size:clamp(12px,1vw,14px);color:var(--muted);text-align:center;margin-bottom:clamp(24px,3vw,36px)}
+
+  /* Diagram layout */
+  .flow-diagram{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1}
+
+  /* Node */
+  .flow-node{display:flex;align-items:center;gap:14px;width:100%;max-width:400px}
+  .flow-node-num{
+    width:32px;height:32px;min-width:32px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    color:#fff;font-family:var(--display);font-size:14px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px rgba(var(--accent-rgb),0.3);
   }
-  .flow-icon.diag{background:linear-gradient(135deg,rgba(var(--accent-rgb),0.1),rgba(var(--accent-rgb),0.05))}
-  .flow-icon.result{background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(59,130,246,0.05))}
-  .flow-icon.action{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.05))}
-  .flow-step-title{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:4px}
-  .flow-step-desc{font-size:12px;color:var(--muted);line-height:1.6}
-  .flow-arrow{display:flex;align-items:center;padding-top:16px;color:#ddd;flex-shrink:0}
-  .flow-arrow svg{width:24px;height:24px}
+  .flow-node-card{
+    flex:1;background:#fff;border-radius:16px;padding:18px 20px;
+    border:1px solid var(--border);
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    transition:all 0.4s var(--ease);
+  }
+  .flow-node-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.07)}
+  .flow-node-card.diag{border-left:3px solid var(--accent)}
+  .flow-node-card.result{border-left:3px solid #3b82f6}
+  .flow-node-card.action{border-left:3px solid #22c55e}
+  .flow-node-icon{margin-bottom:8px}
+  .flow-node-title{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:4px}
+  .flow-node-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+  .flow-node-tag{
+    display:inline-block;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;
+    letter-spacing:0.02em;
+  }
+  .flow-node-tag.diag{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .flow-node-tag.action{background:rgba(34,197,94,0.08);color:#16a34a}
+  .flow-node-examples{display:flex;flex-wrap:wrap;gap:4px}
+  .flow-node-examples span{
+    font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px;
+    background:rgba(59,130,246,0.06);color:#2563eb;
+  }
+
+  /* Connector */
+  .flow-connector{display:flex;flex-direction:column;align-items:center;height:36px;position:relative;margin-left:16px}
+  .flow-connector-line{width:2px;flex:1;background:linear-gradient(to bottom,rgba(var(--accent-rgb),0.3),rgba(var(--accent-rgb),0.1))}
+  .flow-connector-arrow{display:flex;align-items:center;justify-content:center}
 
   /* ===== MOBILE FLOATING CTA ===== */
   .mobile-fixed-cta{display:none}
@@ -597,21 +626,18 @@
     /* Divider - gradient */
     .divider{margin:0 16px;background-image:linear-gradient(to right,transparent,rgba(var(--accent-rgb),0.15),transparent);background-size:100% 1px}
 
-    /* ===== FLOW DIAGRAM - VERTICAL ON MOBILE ===== */
+    /* ===== FLOW DIAGRAM - MOBILE ===== */
     .site-flow{padding:0 0 40px}
-    .flow-container{padding:24px 20px;border-radius:20px}
-    .flow-title{font-size:15px;margin-bottom:4px}
+    .flow-container{padding:24px 18px;border-radius:20px}
+    .flow-title{font-size:16px;margin-bottom:4px}
     .flow-subtitle{font-size:12px;margin-bottom:20px}
-    .flow-steps{flex-direction:column;gap:0;align-items:stretch}
-    .flow-step{
-      flex-direction:row;text-align:left;max-width:100%;gap:14px;
-      padding:14px 0;
-    }
-    .flow-icon{min-width:48px;width:48px;height:48px;border-radius:14px;margin-bottom:0}
-    .flow-step-title{font-size:14px}
-    .flow-step-desc{font-size:12px}
-    .flow-arrow{padding:0;justify-content:center;transform:rotate(90deg);margin:-4px 0 -4px 20px}
-    .flow-arrow svg{width:20px;height:20px}
+    .flow-node{gap:12px}
+    .flow-node-num{width:28px;height:28px;min-width:28px;font-size:12px}
+    .flow-node-card{padding:16px;border-radius:14px}
+    .flow-node-title{font-size:14px}
+    .flow-node-desc{font-size:12px}
+    .flow-connector{height:28px;margin-left:14px}
+    .flow-connector-arrow svg{width:16px;height:16px}
   }
 
   /* Tablet */
@@ -686,24 +712,57 @@
   </section>
 
   <!-- What this site does - Visual Flow -->
-  <section class="site-flow" data-reveal>
+  <!-- Visual Workflow Diagram -->
+  <section class="site-flow">
     <div class="flow-container">
       <div class="flow-title">KAIWAIでできること</div>
       <div class="flow-subtitle">たった3分で「次にやるべきこと」がわかる無料診断サービス</div>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-icon diag"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-          <div><div class="flow-step-title">3分で無料診断</div><div class="flow-step-desc">簡単な質問に回答するだけで<br>あなたのタイプを分析</div></div>
+      <div class="flow-diagram">
+        <!-- Step 1 -->
+        <div class="flow-node">
+          <div class="flow-node-num">1</div>
+          <div class="flow-node-card diag">
+            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div class="flow-node-title">3分で無料診断</div>
+            <div class="flow-node-desc">簡単な質問に答えるだけ</div>
+            <div class="flow-node-tag diag">所要時間 3分</div>
+          </div>
         </div>
-        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="flow-step">
-          <div class="flow-icon result"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-          <div><div class="flow-step-title">タイプ＆選択肢を提示</div><div class="flow-step-desc">ガクチカ・留学・資格など<br>あなたに合う方向性がわかる</div></div>
+        <!-- Connector -->
+        <div class="flow-connector">
+          <div class="flow-connector-line"></div>
+          <div class="flow-connector-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
         </div>
-        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="flow-step">
-          <div class="flow-icon action"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
-          <div><div class="flow-step-title">具体的な一歩が決まる</div><div class="flow-step-desc">最初にやるべき行動が<br>具体的に提案される</div></div>
+        <!-- Step 2 -->
+        <div class="flow-node">
+          <div class="flow-node-num">2</div>
+          <div class="flow-node-card result">
+            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="flow-node-title">タイプ＆選択肢を提示</div>
+            <div class="flow-node-desc">ガクチカ・留学・資格など方向性がわかる</div>
+            <div class="flow-node-examples">
+              <span>ガクチカ型</span><span>留学型</span><span>資格型</span><span>サークル型</span>
+            </div>
+          </div>
+        </div>
+        <!-- Connector -->
+        <div class="flow-connector">
+          <div class="flow-connector-line"></div>
+          <div class="flow-connector-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="flow-node">
+          <div class="flow-node-num">3</div>
+          <div class="flow-node-card action">
+            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+            <div class="flow-node-title">具体的な一歩が決まる</div>
+            <div class="flow-node-desc">最初にやるべき行動が具体的に提案される</div>
+            <div class="flow-node-tag action">すぐに行動開始できる</div>
+          </div>
         </div>
       </div>
     </div>
