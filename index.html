@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAIWAI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --primary: #0a0a0a;
+    --surface: #fff;
+    --bg: #f8f8f8;
+    --muted: #999;
+    --border: rgba(0,0,0,0.06);
+    --accent: #ff6b35;
+    --accent-dark: #e84430;
+    --accent-rgb: 255,107,53;
+    --font: 'Noto Sans JP','Inter',-apple-system,sans-serif;
+    --display: 'Inter','Noto Sans JP',sans-serif;
+    --inner: 1180px;
+    --gutter: clamp(20px,4vw,64px);
+    --ease: cubic-bezier(0.16,1,0.3,1);
+    --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{
+    font-family:var(--font);background:var(--bg);color:var(--primary);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+
+  .cursor,.cursor-dot,.cursor-ring{display:none}
+
+  /* Scroll progress */
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));z-index:9998;transform-origin:left;transform:scaleX(0);will-change:transform}
+
+  /* Grain overlay */
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:0.03;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container{width:min(100% - var(--gutter)*2,var(--inner));margin:0 auto}
+
+  /* ===== NAV ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 var(--gutter);
+    background:rgba(248,248,248,0.6);backdrop-filter:blur(40px) saturate(180%);
+    border-bottom:1px solid var(--border);transition:all 0.5s var(--ease)}
+  nav.scrolled{background:rgba(248,248,248,0.95);box-shadow:0 1px 20px rgba(0,0,0,0.04)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;
+    width:min(100%,var(--inner));margin:0 auto}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-logo-icon{display:flex;gap:2px}
+  .nav-logo-icon .l{width:16px;height:16px;background:linear-gradient(135deg,#999,#d0d0d0);border-radius:50% 0 50% 50%;transition:transform 0.5s var(--ease-spring)}
+  .nav-logo-icon .r{width:16px;height:16px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50% 50% 0 50%;transition:transform 0.5s var(--ease-spring)}
+  .nav-logo:hover .l{transform:rotate(-12deg) scale(1.15)}
+  .nav-logo:hover .r{transform:rotate(12deg) scale(1.15)}
+  .nav-logo-text{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:3px;color:var(--primary)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:13px;font-weight:500;color:#666;text-decoration:none;position:relative;transition:color 0.3s}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--primary);transition:width 0.4s var(--ease)}
+  .nav-links a:hover{color:var(--primary)}
+  .nav-links a:hover::after{width:100%}
+
+  /* Magnetic CTA */
+  .mag-btn{
+    font-size:13px;font-weight:600;color:var(--surface);
+    background:var(--primary);padding:10px 24px;border-radius:10px;
+    text-decoration:none;display:inline-block;
+    transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease);
+    will-change:transform;
+  }
+  .mag-btn:hover{box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+
+  /* ===== HERO ===== */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(32px,4vw,64px);padding-top:100px;padding-bottom:60px;position:relative}
+
+  /* Floating shapes background */
+  .hero-shapes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .hero-shapes .shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:0;animation:shapeFloat 20s ease-in-out infinite}
+  .hero-shapes .shape:nth-child(1){width:500px;height:500px;background:rgba(var(--accent-rgb),0.06);top:-100px;right:-100px;animation-delay:0s}
+  .hero-shapes .shape:nth-child(2){width:400px;height:400px;background:rgba(150,150,150,0.04);bottom:-100px;left:-100px;animation-delay:-7s}
+  .hero-shapes .shape:nth-child(3){width:300px;height:300px;background:rgba(var(--accent-rgb),0.03);top:40%;left:30%;animation-delay:-14s}
+  @keyframes shapeFloat{0%,100%{transform:translate(0,0) scale(1);opacity:0.6}25%{transform:translate(30px,-20px) scale(1.1);opacity:1}50%{transform:translate(-20px,30px) scale(0.9);opacity:0.7}75%{transform:translate(10px,10px) scale(1.05);opacity:0.9}}
+
+  .hero-content{position:relative;z-index:1}
+
+  /* Empathy chips */
+  .hero-empathy{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:clamp(20px,3vw,28px)}
+  .empathy-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);padding:5px 14px;border-radius:100px;font-size:11px;color:var(--muted);
+    opacity:0;transform:translateY(12px) scale(0.95);transition:all 0.3s var(--ease)}
+  .empathy-chip::before{content:'';width:5px;height:5px;background:#ddd;border-radius:50%;transition:background 0.3s}
+  .empathy-chip:hover{border-color:rgba(var(--accent-rgb),0.3);color:#666}
+  .empathy-chip:hover::before{background:var(--accent)}
+  .empathy-chip.in{opacity:1;transform:translateY(0) scale(1)}
+
+  /* Hero heading - lines reveal */
+  .hero h1{font-size:clamp(32px,3.5vw,44px);font-weight:800;line-height:1.45;letter-spacing:-0.03em;margin-bottom:clamp(14px,2vw,20px);overflow:hidden}
+  .hero-line{display:block;overflow:hidden}
+  .hero-line-inner{display:block;transform:translateY(110%);transition:transform 0.9s var(--ease)}
+  .hero-line-inner.in{transform:translateY(0)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+  .hero-sub{font-size:clamp(13px,1.2vw,15px);color:#666;line-height:1.9;margin-bottom:clamp(24px,3vw,36px);max-width:440px;
+    opacity:0;transform:translateY(20px);transition:all 0.8s var(--ease) 0.6s}
+  .hero-sub.in{opacity:1;transform:translateY(0)}
+  .hero-sub strong{color:var(--primary);font-weight:600}
+
+  /* Hero CTA */
+  .hero-cta-wrap{opacity:0;transform:translateY(20px);transition:all 0.8s var(--ease) 0.8s}
+  .hero-cta-wrap.in{opacity:1;transform:translateY(0)}
+
+  .btn-hero{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--primary);color:var(--surface);
+    padding:18px 40px;border-radius:14px;
+    font-size:16px;font-weight:600;text-decoration:none;
+    position:relative;overflow:hidden;
+    transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease);
+  }
+  .btn-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--accent-dark));opacity:0;transition:opacity 0.5s var(--ease)}
+  .btn-hero:hover::before{opacity:1}
+  .btn-hero:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(var(--accent-rgb),0.3)}
+  .btn-hero span,.btn-hero svg{position:relative;z-index:1}
+  .btn-hero svg{width:18px;height:18px;transition:transform 0.4s var(--ease)}
+  .btn-hero:hover svg{transform:translateX(4px)}
+  /* Shimmer */
+  .btn-hero .shimmer{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);z-index:1;animation:shimmer 4s ease-in-out infinite 2s}
+  @keyframes shimmer{0%,100%{left:-100%}50%{left:150%}}
+
+  .trust-signals{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;
+    opacity:0;transition:opacity 0.8s var(--ease) 1s}
+  .trust-signals.in{opacity:1}
+  .trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+  .trust-item svg{width:13px;height:13px;opacity:0.5}
+
+  /* Hero Visual */
+  .hero-visual{position:relative;z-index:1}
+  .hero-img-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:10px}
+  .hero-img{border-radius:20px;overflow:hidden;position:relative;
+    clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
+    transition:clip-path 1s var(--ease)}
+  .hero-img.in{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease),filter 0.6s var(--ease);will-change:transform}
+  .hero-img:hover img{transform:scale(1.06);filter:brightness(0.88)}
+  .hero-img:nth-child(1){grid-row:1/3}
+  .hero-img-overlay{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,0.45));border-radius:0 0 20px 20px}
+  .hero-img-tag{display:inline-block;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);color:#fff;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px}
+
+  .hero-float-card{position:absolute;background:var(--surface);border-radius:14px;padding:12px 16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);display:flex;align-items:center;gap:10px;z-index:2;
+    opacity:0;transform:translateY(24px) scale(0.85);transition:all 0.7s var(--ease-spring)}
+  .hero-float-card.in{opacity:1;transform:translateY(0) scale(1)}
+  .hero-float-card.top-right{top:-4px;right:-12px}
+  .hero-float-card.bottom-left{bottom:8px;left:-12px}
+  .float-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;font-family:var(--display)}
+  .float-icon{width:32px;height:32px;border-radius:50%;background:rgba(var(--accent-rgb),0.08);display:flex;align-items:center;justify-content:center}
+  .float-text{font-size:11px;line-height:1.4}
+  .float-text strong{display:block;font-size:12px;color:var(--primary);font-weight:600}
+  .float-text span{color:var(--muted)}
+
+  /* ===== SCROLL SECTIONS ===== */
+  .section{padding:clamp(80px,10vw,140px) 0}
+  .section-label{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .section-label.center{text-align:center}
+  .section h2{font-size:clamp(26px,2.8vw,36px);font-weight:800;letter-spacing:-0.03em;line-height:1.35;margin-bottom:10px}
+  .section h2.center{text-align:center}
+  .section-desc{font-size:clamp(13px,1.1vw,15px);color:#666;line-height:1.8;max-width:500px;margin-bottom:clamp(36px,4vw,52px)}
+  .section-desc.center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* Reveal system */
+  [data-reveal]{opacity:0;transform:translateY(50px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease)}
+  [data-reveal="left"]{transform:translateX(-50px)}
+  [data-reveal="right"]{transform:translateX(50px)}
+  [data-reveal="scale"]{transform:scale(0.9)}
+  [data-reveal].in{opacity:1;transform:none}
+  [data-stagger] > *{opacity:0;transform:translateY(35px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+  [data-stagger].in > *{opacity:1;transform:none}
+  [data-stagger].in > *:nth-child(1){transition-delay:0s}
+  [data-stagger].in > *:nth-child(2){transition-delay:0.12s}
+  [data-stagger].in > *:nth-child(3){transition-delay:0.24s}
+  [data-stagger].in > *:nth-child(4){transition-delay:0.36s}
+
+  /* Divider */
+  .divider{height:1px;background-image:linear-gradient(to right,rgba(0,0,0,0.06) 0 40%,transparent 40%);background-size:8px 1px;
+    transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease)}
+  .divider.in{transform:scaleX(1)}
+
+  /* ===== RESULT PREVIEW ===== */
+  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center}
+  .result-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:32px;position:relative;overflow:hidden;
+    box-shadow:0 1px 3px rgba(0,0,0,0.02);transition:box-shadow 0.5s var(--ease),transform 0.5s var(--ease)}
+  .result-card:hover{box-shadow:0 16px 50px rgba(0,0,0,0.07);transform:translateY(-4px)}
+  .result-card-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+    transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) 0.3s}
+  .result-card.in .result-card-bar{transform:scaleX(1)}
+  .result-header{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .result-badge{width:44px;height:44px;border-radius:12px;background:rgba(var(--accent-rgb),0.08);display:flex;align-items:center;justify-content:center}
+  .result-label{font-size:11px;color:var(--muted);letter-spacing:0.02em}
+  .result-name{font-size:18px;font-weight:700}
+  .result-items{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .result-item{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:14px;padding:14px 16px;transition:all 0.3s var(--ease)}
+  .result-item:hover{background:#efefef;transform:translateX(4px)}
+  .ri-icon{width:30px;height:30px;min-width:30px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .ri-icon.a{background:rgba(34,197,94,0.08)}.ri-icon.b{background:rgba(59,130,246,0.08)}.ri-icon.c{background:rgba(168,85,247,0.08)}
+  .ri-title{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:2px}
+  .ri-desc{font-size:12px;color:var(--muted);line-height:1.5}
+  .result-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:#ccc;text-align:center}
+  .result-explain h3{font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.5;margin-bottom:16px;letter-spacing:-0.02em}
+  .result-explain p{font-size:14px;color:#666;line-height:1.9;margin-bottom:28px}
+  .benefits{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .benefit{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--primary);font-weight:500}
+  .benefit-icon{width:22px;height:22px;min-width:22px;background:rgba(var(--accent-rgb),0.08);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+
+  /* ===== HORIZONTAL SCROLL CATEGORIES ===== */
+  .cat-scroll-section{padding:clamp(80px,10vw,140px) 0;overflow:hidden}
+  .cat-scroll-track{display:flex;gap:16px;padding:0 var(--gutter);cursor:grab;user-select:none;
+    transition:transform 0.1s linear}
+  .cat-scroll-track:active{cursor:grabbing}
+  .cat-card{min-width:280px;height:340px;border-radius:24px;overflow:hidden;position:relative;flex-shrink:0;
+    transition:transform 0.5s var(--ease)}
+  .cat-card:hover{transform:scale(1.03)}
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease),filter 0.6s var(--ease)}
+  .cat-card:hover img{transform:scale(1.1);filter:brightness(0.8)}
+  .cat-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.65));display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:background 0.5s}
+  .cat-card:hover .cat-overlay{background:linear-gradient(transparent 15%,rgba(0,0,0,0.75))}
+  .cat-badge{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);margin-bottom:10px;transition:transform 0.4s var(--ease-spring)}
+  .cat-card:hover .cat-badge{transform:scale(1.15) rotate(5deg)}
+  .cat-badge.g{background:rgba(255,107,53,0.3)}.cat-badge.r{background:rgba(59,130,246,0.3)}.cat-badge.s{background:rgba(168,85,247,0.3)}.cat-badge.c{background:rgba(34,197,94,0.3)}
+  .cat-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.01em}
+  .cat-sub{font-size:12px;color:rgba(255,255,255,0.65)}
+  .cat-arrow{position:absolute;bottom:28px;right:28px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;transform:translateX(-8px);transition:all 0.4s var(--ease)}
+  .cat-card:hover .cat-arrow{opacity:1;transform:translateX(0)}
+
+  /* ===== STEPS ===== */
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:28px 24px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
+  .step-card::after{content:'';position:absolute;inset:0;border-radius:24px;border:2px solid transparent;transition:border-color 0.5s var(--ease)}
+  .step-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+  .step-card:hover::after{border-color:rgba(var(--accent-rgb),0.15)}
+  .step-img{width:100%;height:140px;border-radius:14px;overflow:hidden;margin-bottom:20px}
+  .step-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
+  .step-card:hover .step-img img{transform:scale(1.08)}
+  .step-num{width:28px;height:28px;background:var(--primary);color:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:12px;font-family:var(--display)}
+  .step-card h3{font-size:15px;font-weight:700;margin-bottom:6px;letter-spacing:-0.01em}
+  .step-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+  /* ===== STATS ===== */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--primary);border-radius:24px;padding:clamp(28px,3.5vw,48px);gap:16px;position:relative;overflow:hidden}
+  .stats-bar::before{content:'';position:absolute;top:-50%;right:-20%;width:60%;height:200%;background:radial-gradient(circle,rgba(var(--accent-rgb),0.08),transparent 60%);animation:statGlow 8s ease-in-out infinite alternate}
+  @keyframes statGlow{0%{transform:translate(0,0)}100%{transform:translate(-20%,10%)}}
+  .stat{text-align:center;position:relative;z-index:1}
+  .stat-num{font-family:var(--display);font-size:clamp(28px,3vw,42px);font-weight:800;background:linear-gradient(135deg,var(--accent),#ffaa70);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+  .stat-label{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;letter-spacing:0.02em}
+  .stats-note{text-align:center;font-size:11px;color:#ccc;margin-top:14px}
+
+  /* ===== TIERS ===== */
+  .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .tier-card{border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--surface);transition:all 0.5s var(--ease)}
+  .tier-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+  .tier-card-img{width:100%;height:150px;overflow:hidden}
+  .tier-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
+  .tier-card:hover .tier-card-img img{transform:scale(1.08)}
+  .tier-body{padding:22px}
+  .tier-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:10px}
+  .tier-card.youth .tier-tag{background:rgba(34,197,94,0.08);color:#16a34a}
+  .tier-card.amateur .tier-tag{background:rgba(59,130,246,0.08);color:#2563eb}
+  .tier-card.pro .tier-tag{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .tier-body h3{font-size:18px;font-weight:700;margin-bottom:4px;letter-spacing:-0.01em}
+  .tier-body .sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .tier-list{list-style:none}
+  .tier-list li{font-size:13px;color:#666;padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .tier-list li::before{content:'';width:4px;height:4px;border-radius:50%}
+  .tier-card.youth .tier-list li::before{background:#22c55e}
+  .tier-card.amateur .tier-list li::before{background:#3b82f6}
+  .tier-card.pro .tier-list li::before{background:var(--accent)}
+
+  /* ===== TESTIMONIALS ===== */
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .test-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;transition:all 0.5s var(--ease)}
+  .test-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+  .test-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .test-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden}
+  .test-avatar img{width:100%;height:100%;object-fit:cover}
+  .test-name{font-size:13px;font-weight:600}
+  .test-meta{font-size:11px;color:var(--muted)}
+  .test-body{font-size:13px;color:#666;line-height:1.75}
+  .test-tag{display:inline-block;margin-top:12px;font-size:10px;font-weight:600;color:var(--accent);background:rgba(var(--accent-rgb),0.06);padding:3px 10px;border-radius:4px}
+
+  /* ===== FAQ ===== */
+  .faq-list{max-width:680px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--border);padding:20px 0;cursor:pointer}
+  .faq-q{font-size:14px;font-weight:600;display:flex;gap:10px;align-items:center;justify-content:space-between}
+  .faq-q-left{display:flex;gap:10px}
+  .faq-q-mark{font-family:var(--display);font-weight:700;color:var(--accent);min-width:20px}
+  .faq-arrow{width:20px;height:20px;transition:transform 0.4s var(--ease);color:var(--muted)}
+  .faq-item.open .faq-arrow{transform:rotate(180deg)}
+  .faq-a{font-size:13px;color:var(--muted);line-height:1.8;padding-left:30px;max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease),opacity 0.4s,padding 0.4s;opacity:0;padding-top:0}
+  .faq-item.open .faq-a{max-height:200px;opacity:1;padding-top:12px}
+
+  /* ===== LAST CTA ===== */
+  .cta-box{background:var(--primary);border-radius:28px;padding:clamp(40px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;overflow:hidden;position:relative}
+  .cta-box::after{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.12),transparent 70%);border-radius:50%;animation:ctaGlow 6s ease-in-out infinite alternate}
+  @keyframes ctaGlow{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(-20px,20px)}}
+  .cta-content{position:relative;z-index:1}
+  .cta-content h2{font-size:clamp(22px,2.2vw,28px);font-weight:800;color:#fff;margin-bottom:12px;line-height:1.5;letter-spacing:-0.02em}
+  .cta-content p{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:24px;line-height:1.8}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;padding:16px 36px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
+  .btn-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#ff8855,var(--accent));opacity:0;transition:opacity 0.4s}
+  .btn-cta:hover::before{opacity:1}
+  .btn-cta:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(var(--accent-rgb),0.35)}
+  .btn-cta span,.btn-cta svg{position:relative;z-index:1}
+  .btn-cta svg{width:16px;height:16px;transition:transform 0.4s var(--ease)}
+  .btn-cta:hover svg{transform:translateX(4px)}
+  .cta-trust{display:flex;gap:16px;margin-top:14px}
+  .cta-trust-item{font-size:11px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px}
+  .cta-trust-item svg{width:12px;height:12px}
+  .cta-img{position:relative;z-index:1;border-radius:20px;overflow:hidden;height:260px}
+  .cta-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease)}
+  .cta-box:hover .cta-img img{transform:scale(1.05)}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{display:flex;align-items:center;gap:8px}
+  .footer-logo-icon{display:flex;gap:2px}
+  .footer-logo-icon .l{width:12px;height:12px;background:linear-gradient(135deg,#bbb,#ddd);border-radius:50% 0 50% 50%}
+  .footer-logo-icon .r{width:12px;height:12px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50% 50% 0 50%}
+  .footer-logo span{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:2px;color:#bbb}
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{font-size:12px;color:var(--muted);text-decoration:none}
+  .footer-copy{font-size:11px;color:#ccc}
+
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}[data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important}.hero-img{clip-path:none!important}.cursor,.cursor-dot,.cursor-ring,.grain,.scroll-progress{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="cursor"><div class="cursor-dot"></div></div>
+<div class="cursor"><div class="cursor-ring"></div></div>
+<div class="scroll-progress"></div>
+<div class="grain"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><div class="nav-logo-icon"><div class="l"></div><div class="r"></div></div><div class="nav-logo-text">KAIWAI</div></a>
+    <div class="nav-links">
+      <a href="#">サービス</a><a href="#">診断について</a><a href="#">活動事例</a>
+      <a href="#" class="mag-btn">無料で診断する</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="hero-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
+    <div class="hero-content">
+      <div class="hero-empathy">
+        <span class="empathy-chip">何を始めればいいかわからない</span>
+        <span class="empathy-chip">ガクチカがない</span>
+        <span class="empathy-chip">最初の一歩が重い</span>
+      </div>
+      <h1>
+        <span class="hero-line"><span class="hero-line-inner">何から始めるか迷っている</span></span>
+        <span class="hero-line"><span class="hero-line-inner">学生へ。<span class="accent">3分の無料診断</span>で、</span></span>
+        <span class="hero-line"><span class="hero-line-inner">あなたに合う一歩がわかる。</span></span>
+      </h1>
+      <p class="hero-sub">ガクチカ、留学、資格、サークル活動 ──<br><strong>今のあなたの志向に合った選択肢</strong>と、<br><strong>最初にやるべき具体的な行動</strong>を提案します。</p>
+      <div class="hero-cta-wrap">
+        <a href="#" class="btn-hero"><div class="shimmer"></div><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="trust-signals">
+        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div>
+        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div>
+        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div>
+        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M10 6l-4 4M6 6l4 4"/></svg>無理な勧誘なし</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-grid">
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=800&fit=crop&crop=faces" alt=""><div class="hero-img-overlay"><span class="hero-img-tag">実務参加で成長</span></div></div>
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces" alt=""></div>
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces" alt=""></div>
+      </div>
+      <div class="hero-float-card top-right"><div class="float-avatar">K</div><div class="float-text"><strong>診断完了!</strong><span>ガクチカ型 と判定されました</span></div></div>
+      <div class="hero-float-card bottom-left"><div class="float-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><div class="float-text"><strong>87%の学生が</strong><span>診断後に行動を開始</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="section-label center">Diagnosis result</div>
+    <h2 class="center">診断すると、こんな結果がわかります。</h2>
+    <p class="section-desc center">あなたのタイプ・合う選択肢・最初の一歩が具体的に提示されます。</p>
+    <div class="result-grid">
+      <div class="result-card" data-reveal="left">
+        <div class="result-card-bar"></div>
+        <div class="result-header"><div class="result-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="result-label">あなたの診断結果</div><div class="result-name">ガクチカ型</div></div></div>
+        <ul class="result-items">
+          <li class="result-item"><div class="ri-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div><div><div class="ri-title">あなたに合う挑戦タイプ</div><div class="ri-desc">経験を作る・発信する・運営する活動が向いています</div></div></li>
+          <li class="result-item"><div class="ri-icon b"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div><div class="ri-title">今のあなたに合う選択肢</div><div class="ri-desc">SNS運用補助 / Web制作 / イベント運営補助</div></div></li>
+          <li class="result-item"><div class="ri-icon c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div><div class="ri-title">最初にやるべき一歩</div><div class="ri-desc">まずはSNS投稿案を1本つくるタスクに参加してみよう</div></div></li>
+        </ul>
+        <div class="result-note">* これは診断結果のサンプルです</div>
+      </div>
+      <div class="result-explain" data-reveal="right">
+        <h3>診断結果では、<br>3つのことがわかります。</h3>
+        <p>「何が向いているか」だけでなく、<br>「具体的に何をすればいいか」まで提案するので、<br>診断後すぐに動き出せます。</p>
+        <ul class="benefits"><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>あなたの挑戦タイプがわかる</li><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>今の自分に合う選択肢が見える</li><li class="benefit"><div class="benefit-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>最初にやるべき行動が具体的にわかる</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cat-scroll-section">
+    <div class="container" data-reveal>
+      <div class="section-label center">What you'll discover</div>
+      <h2 class="center">診断後に見えてくる選択肢</h2>
+      <p class="section-desc center">あなたのタイプに合わせて、こんな一歩を提案します。</p>
+    </div>
+    <div class="cat-scroll-track" id="catTrack">
+      <div style="min-width:clamp(20px,4vw,64px);flex-shrink:0"></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="cat-title">ガクチカ</div><div class="cat-sub">経験を作る・発信する・運営する</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge r"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div class="cat-title">留学</div><div class="cat-sub">世界を広げる・語学を磨く</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div class="cat-title">資格</div><div class="cat-sub">武器を手に入れる</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=500&fit=crop&crop=faces" alt=""><div class="cat-overlay"><div class="cat-badge c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="cat-title">サークル</div><div class="cat-sub">仲間と動く・居場所を見つける</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      <div style="min-width:clamp(20px,4vw,64px);flex-shrink:0"></div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="section-label">How it works</div><h2>3ステップで、動き出せる。</h2><p class="section-desc">何から始めればいいかわからなくても大丈夫。診断から具体的な行動まで導きます。</p>
+    <div class="steps-grid" data-stagger>
+      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop" alt=""></div><div class="step-num">1</div><h3>3分で診断する</h3><p>簡単な質問に答えるだけ。あなたの志向やタイプを分析し、合う方向性を見つけます。</p></div>
+      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=500&h=300&fit=crop" alt=""></div><div class="step-num">2</div><h3>タイプと選択肢がわかる</h3><p>診断結果で、あなたの挑戦タイプ・合う活動・最初にやるべきことが具体的に提示されます。</p></div>
+      <div class="step-card"><div class="step-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=300&fit=crop" alt=""></div><div class="step-num">3</div><h3>次の一歩を決めて動く</h3><p>提案されたタスクに参加し、小さな実績を積み始める。あなたの成長が可視化されます。</p></div>
+    </div>
+  </section>
+
+  <section style="padding:40px 0" data-reveal>
+    <div class="stats-bar" id="statsBar">
+      <div class="stat"><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">累計診断ユーザー数</div></div>
+      <div class="stat"><div class="stat-num" data-count="12" data-suffix="">0</div><div class="stat-label">参加できる<br>成長カテゴリ</div></div>
+      <div class="stat"><div class="stat-num" data-count="87" data-suffix="%">0</div><div class="stat-label">診断後に<br>行動を始めた学生</div></div>
+      <div class="stat"><div class="stat-num" data-count="3" data-suffix=" min">0</div><div class="stat-label">診断にかかる時間</div></div>
+    </div>
+    <p class="stats-note">* 2026年3月時点。行動開始には応募・相談・情報収集を含みます。</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" data-reveal>
+    <div class="section-label">Programs</div><h2>あなたの現在地に合った支援。</h2><p class="section-desc">診断結果をもとに、今の段階に合ったプログラムを提案します。</p>
+    <div class="tier-grid" data-stagger>
+      <div class="tier-card youth"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=300&fit=crop&crop=faces" alt=""></div><div class="tier-body"><div class="tier-tag">Youth</div><h3>ユース</h3><div class="sub">まずは知る・参加してみる</div><ul class="tier-list"><li>タイプ診断</li><li>初回タスク体験</li><li>小さな実績づくり</li><li>コミュニティ参加</li></ul></div></div>
+      <div class="tier-card amateur"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=300&fit=crop&crop=faces" alt=""></div><div class="tier-body"><div class="tier-tag">Amateur</div><h3>アマチュア</h3><div class="sub">やりたいことを形にする</div><ul class="tier-list"><li>制作支援</li><li>発信支援</li><li>目標設計</li><li>継続サポート</li></ul></div></div>
+      <div class="tier-card pro"><div class="tier-card-img"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&h=300&fit=crop" alt=""></div><div class="tier-body"><div class="tier-tag">Pro</div><h3>プロ</h3><div class="sub">挑戦を加速させる</div><ul class="tier-list"><li>伴走型支援</li><li>ブランド化</li><li>外部発信</li><li>事業共創</li></ul></div></div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2 class="center" style="margin-bottom:36px">利用した学生の声</h2>
+    <div class="test-grid" data-stagger>
+      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">K.T さん</div><div class="test-meta">大学2年・経済学部</div></div></div><div class="test-body">何をすればいいかまったくわからなかったけど、診断で「ガクチカ型」と出て、SNS運用のタスクに参加したのが最初の一歩でした。今は自分で企画も回しています。</div><div class="test-tag">ガクチカ型</div></div>
+      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">M.S さん</div><div class="test-meta">大学3年・国際学部</div></div></div><div class="test-body">留学したいけど何から始めるかわからず止まっていました。診断後に具体的なステップが見えて、今は英語カフェと留学準備を同時に進めています。</div><div class="test-tag">留学型</div></div>
+      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">R.Y さん</div><div class="test-meta">大学1年・工学部</div></div></div><div class="test-body">周りがインターンを始めてる中、自分だけ何もしてなくて焦っていました。診断で方向が見えて、制作補助から始めたのが自信になりました。</div><div class="test-tag">ガクチカ型</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" data-reveal>
+    <h2 class="center" style="font-size:24px;margin-bottom:36px">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>診断は本当に無料ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい、完全無料です。診断後も費用は一切かかりません。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>診断後に勧誘されませんか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">無理な勧誘は一切ありません。結果を見たうえで、興味があれば次のステップに進めます。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>結果はすぐにわかりますか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい。回答後すぐに画面上で結果が表示されます。メール登録も不要です。</div></div>
+      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>やりたいことが決まっていなくても大丈夫ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">もちろんです。むしろ「何をすればいいかわからない」方のための診断です。</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-box" data-reveal="scale">
+      <div class="cta-content"><h2>3分の無料診断で、<br>あなたに合う一歩がわかる。</h2><p>挑戦タイプ・合う選択肢・最初の行動が<br>具体的に提示されます。</p><a href="#" class="btn-cta"><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><div class="cta-trust"><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div></div></div>
+      <div class="cta-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces" alt=""></div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="container"><div class="footer-inner"><div class="footer-logo"><div class="footer-logo-icon"><div class="l"></div><div class="r"></div></div><span>KAIWAI</span></div><div class="footer-links"><a href="#">利用規約</a><a href="#">プライバシー</a><a href="#">お問い合わせ</a></div><div class="footer-copy">&copy; 2026 KAIWAI</div></div></div></footer>
+
+<script>
+// ===== Custom Cursor =====
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+document.addEventListener('mousedown', () => ring.classList.add('clicking'));
+document.addEventListener('mouseup', () => ring.classList.remove('clicking'));
+
+const hoverEls = 'a, button, .cat-card, .step-card, .tier-card, .test-card, .faq-item, .btn-hero, .btn-cta, .mag-btn';
+document.querySelectorAll(hoverEls).forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+});
+
+function cursorLoop() {
+  dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+  requestAnimationFrame(cursorLoop);
+}
+cursorLoop();
+
+// Touch device: hide cursor
+if ('ontouchstart' in window) {
+  document.querySelectorAll('.cursor').forEach(c => c.style.display = 'none');
+  document.body.style.cursor = 'auto';
+}
+
+// ===== Scroll Progress =====
+const progressBar = document.querySelector('.scroll-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.transform = `scaleX(${window.scrollY / h})`;
+}, { passive: true });
+
+// ===== Nav scroll state =====
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ===== Hero Sequence =====
+function heroSequence() {
+  const chips = document.querySelectorAll('.empathy-chip');
+  const lines = document.querySelectorAll('.hero-line-inner');
+  const sub = document.querySelector('.hero-sub');
+  const cta = document.querySelector('.hero-cta-wrap');
+  const trust = document.querySelector('.trust-signals');
+  const imgs = document.querySelectorAll('.hero-img');
+  const floats = document.querySelectorAll('.hero-float-card');
+
+  let d = 100;
+  chips.forEach((c, i) => setTimeout(() => c.classList.add('in'), d + i * 120));
+  d += chips.length * 120 + 100;
+  lines.forEach((l, i) => setTimeout(() => l.classList.add('in'), d + i * 180));
+  d += lines.length * 180 + 100;
+  setTimeout(() => sub.classList.add('in'), d);
+  setTimeout(() => cta.classList.add('in'), d + 200);
+  setTimeout(() => trust.classList.add('in'), d + 400);
+  imgs.forEach((img, i) => setTimeout(() => img.classList.add('in'), 400 + i * 200));
+  floats.forEach((f, i) => setTimeout(() => f.classList.add('in'), 1200 + i * 300));
+}
+heroSequence();
+
+// ===== Scroll Reveal =====
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('[data-reveal], [data-stagger], .divider, .result-card').forEach(el => revealObs.observe(el));
+
+// ===== Counter =====
+function countUp(el) {
+  const target = +el.dataset.count;
+  const suffix = el.dataset.suffix || '';
+  const dur = 2000;
+  const start = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 4);
+  (function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(ease(p) * target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  })(start);
+}
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); countObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+// ===== Magnetic Button =====
+document.querySelectorAll('.mag-btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// ===== Horizontal Drag Scroll =====
+const track = document.getElementById('catTrack');
+let isDown = false, startX, scrollLeft;
+track.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; track.style.cursor = 'grabbing'; });
+track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+track.style.overflowX = 'auto'; track.style.scrollbarWidth = 'none';
+
+// ===== FAQ Accordion =====
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
