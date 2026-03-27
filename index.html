@@ -300,41 +300,33 @@
   .gp-connector-label{font-size:11px;color:var(--muted);font-weight:500}
   .gp-connector-arrow svg{width:18px;height:18px;color:var(--muted)}
 
-  /* ===== CIRCULATION ECOSYSTEM ===== */
-  .circ-section{padding:clamp(80px,10vw,140px) 0}
-  .circ-diagram{max-width:440px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0}
-  .circ-node{display:flex;align-items:center;gap:16px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 22px;border-left:4px solid transparent;transition:all 0.5s var(--ease)}
-  .circ-node:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
-  .circ-node--pro{border-left-color:var(--accent)}
-  .circ-node--youth{border-left-color:#22c55e}
-  .circ-node--ama{border-left-color:#3b82f6}
-  .circ-node-icon{width:48px;height:48px;min-width:48px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-  .circ-node--pro .circ-node-icon{background:linear-gradient(135deg,rgba(var(--accent-rgb),0.12),rgba(var(--accent-rgb),0.04))}
-  .circ-node--youth .circ-node-icon{background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.04))}
-  .circ-node--ama .circ-node-icon{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(59,130,246,0.04))}
-  .circ-node-icon svg{width:22px;height:22px}
-  .circ-node--pro .circ-node-icon svg{color:var(--accent)}
-  .circ-node--youth .circ-node-icon svg{color:#22c55e}
-  .circ-node--ama .circ-node-icon svg{color:#3b82f6}
-  .circ-node-body{flex:1;min-width:0}
-  .circ-node-title{font-size:clamp(15px,1.3vw,18px);font-weight:700;letter-spacing:-0.02em;color:var(--primary);margin-bottom:8px}
-  .circ-node-examples{display:flex;flex-wrap:wrap;gap:6px}
-  .circ-node-examples span{display:inline-block;font-size:11px;font-weight:500;padding:4px 12px;border-radius:100px;line-height:1.4}
-  .circ-node--pro .circ-node-examples span{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
-  .circ-node--youth .circ-node-examples span{background:rgba(34,197,94,0.08);color:#16a34a}
-  .circ-node--ama .circ-node-examples span{background:rgba(59,130,246,0.08);color:#2563eb}
-  .circ-connector{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0}
-  .circ-connector-line{width:2px;height:18px;border-radius:1px}
-  .circ-connector--pro-youth .circ-connector-line{background:linear-gradient(to bottom,var(--accent),#22c55e)}
-  .circ-connector--youth-ama .circ-connector-line{background:linear-gradient(to bottom,#22c55e,#3b82f6)}
-  .circ-connector--ama-loop .circ-connector-line{background:linear-gradient(to bottom,#3b82f6,var(--accent))}
-  .circ-connector-label{font-size:11px;color:var(--muted);font-weight:500}
-  .circ-connector-arrow svg{width:16px;height:16px;color:var(--muted)}
-  .circ-loop{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 20px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;font-size:14px;font-weight:700;letter-spacing:-0.01em;box-shadow:0 6px 24px rgba(var(--accent-rgb),0.25);transition:all 0.5s var(--ease)}
-  .circ-loop:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(var(--accent-rgb),0.35)}
-  .circ-loop svg{width:20px;height:20px;animation:circ-spin 3s linear infinite}
-  @keyframes circ-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-  .circ-note{font-size:12px;color:var(--muted);text-align:center;margin-top:24px;line-height:1.7}
+  /* ===== ECOSYSTEM CIRCLE DIAGRAM ===== */
+  .ecosystem-section{padding:clamp(80px,10vw,140px) 0}
+  .eco-diagram{max-width:380px;margin:0 auto;position:relative}
+  .eco-diagram svg{width:100%;height:auto;display:block}
+  .eco-label{position:absolute;text-align:center;pointer-events:none}
+  .eco-label--pro{top:-10px;left:50%;transform:translateX(-50%)}
+  .eco-label--youth{bottom:-10px;left:0;transform:translateX(-15%)}
+  .eco-label--ama{bottom:-10px;right:0;transform:translateX(15%)}
+  .eco-label-title{font-size:14px;font-weight:700;letter-spacing:-0.02em;color:var(--primary);margin-bottom:6px}
+  .eco-label-chips{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+  .eco-label-chips span{font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;line-height:1.4;white-space:nowrap}
+  .eco-label--pro .eco-label-chips span{background:rgba(var(--accent-rgb),0.10);color:var(--accent-dark)}
+  .eco-label--youth .eco-label-chips span{background:rgba(34,197,94,0.10);color:#16a34a}
+  .eco-label--ama .eco-label-chips span{background:rgba(59,130,246,0.10);color:#2563eb}
+  .eco-edge-label{position:absolute;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;pointer-events:none}
+  .eco-edge-label--left{top:48%;left:-8px;transform:translateY(-50%);background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .eco-edge-label--bottom{bottom:22%;left:50%;transform:translateX(-50%);background:rgba(34,197,94,0.08);color:#16a34a}
+  .eco-edge-label--right{top:48%;right:-8px;transform:translateY(-50%);background:rgba(59,130,246,0.08);color:#2563eb}
+  .eco-badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:32px auto 0;padding:12px 28px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;font-size:14px;font-weight:700;letter-spacing:-0.01em;box-shadow:0 6px 24px rgba(var(--accent-rgb),0.25);width:fit-content}
+  .eco-badge svg{width:18px;height:18px;animation:eco-spin 3s linear infinite}
+  @keyframes eco-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .eco-note{font-size:12px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.7}
+  @keyframes eco-draw{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}
+  .eco-arc{stroke-dasharray:200;stroke-dashoffset:200;animation:eco-draw 1.5s ease forwards}
+  .eco-arc--1{animation-delay:0.3s}
+  .eco-arc--2{animation-delay:0.7s}
+  .eco-arc--3{animation-delay:1.1s}
 
   /* ===== VISUAL WORKFLOW DIAGRAM ===== */
   .site-flow{padding:0 0 clamp(40px,5vw,60px);position:relative}
@@ -594,24 +586,20 @@
     .gp-stage h3{font-size:16px}
     .gp-chip{font-size:11px;padding:4px 12px}
 
-    /* ===== CIRCULATION ECOSYSTEM - MOBILE ===== */
-    .circ-section{padding:52px 0}
-    .circ-section .section-label{font-size:10px;letter-spacing:4px;
+    /* ===== ECOSYSTEM CIRCLE DIAGRAM - MOBILE ===== */
+    .ecosystem-section{padding:52px 0}
+    .ecosystem-section .section-label{font-size:10px;letter-spacing:4px;
       background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .circ-section h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
-    .circ-section h2::after{
+    .ecosystem-section h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
+    .ecosystem-section h2::after{
       content:'';display:block;width:40px;height:3px;margin-top:10px;
       background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
       margin-left:auto;margin-right:auto;
     }
-    .circ-node{padding:20px 16px;border-radius:16px;gap:12px}
-    .circ-node-icon{width:42px;height:42px;min-width:42px}
-    .circ-node-icon svg{width:20px;height:20px}
-    .circ-node-title{font-size:15px;margin-bottom:6px}
-    .circ-node-examples span{font-size:10px;padding:3px 10px}
-    .circ-loop{font-size:13px;padding:14px 18px}
-    .circ-loop svg{width:18px;height:18px}
-    .circ-note{font-size:11px;margin-top:18px}
+    .eco-label-title{font-size:13px}
+    .eco-label-chips span{font-size:9px;padding:2px 8px}
+    .eco-badge{font-size:13px;padding:10px 22px;margin-top:24px}
+    .eco-note{font-size:11px;margin-top:14px}
 
     /* ===== FLOW DIAGRAM - MOBILE ===== */
     .site-flow{padding:0 0 40px}
@@ -633,6 +621,9 @@
     .hero h1{font-size:clamp(26px,3vw,36px)}
     .test-grid{grid-template-columns:repeat(3,1fr);gap:12px}
     .stats-bar{grid-template-columns:repeat(4,1fr)}
+  }
+  @media(min-width:769px){
+    .eco-diagram{max-width:440px}
   }
 
   /* Hide menu button on desktop */
@@ -834,79 +825,91 @@
     </div>
   </section>
 
-  <section class="circ-section section" data-reveal>
+  <section class="ecosystem-section section" data-reveal>
     <div class="container">
       <div class="section-label center">Ecosystem</div>
       <h2 class="center">プロの案件に、参加できる仕組み。</h2>
-      <div class="circ-diagram">
 
-        <div class="circ-node circ-node--pro" data-reveal>
-          <div class="circ-node-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="eco-diagram" data-reveal>
+        <svg viewBox="0 0 380 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b35"/>
+            </marker>
+            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e"/>
+            </marker>
+            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+            </marker>
+          </defs>
+
+          <!-- Arc: PRO -> YOUTH (orange) -->
+          <path class="eco-arc eco-arc--1" d="M 170,98 A 110,110 0 0,1 110,218" stroke="#ff6b35" stroke-width="2.5" fill="none" marker-end="url(#arrow-orange)"/>
+          <!-- Arc: YOUTH -> AMA (green) -->
+          <path class="eco-arc eco-arc--2" d="M 118,262 A 110,110 0 0,1 265,262" stroke="#22c55e" stroke-width="2.5" fill="none" marker-end="url(#arrow-green)"/>
+          <!-- Arc: AMA -> PRO (blue) -->
+          <path class="eco-arc eco-arc--3" d="M 268,218 A 110,110 0 0,1 210,98" stroke="#3b82f6" stroke-width="2.5" fill="none" marker-end="url(#arrow-blue)"/>
+
+          <!-- Center logo circle -->
+          <circle cx="190" cy="185" r="28" fill="#fff" stroke="var(--border)" stroke-width="1.5"/>
+          <text x="190" y="183" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="0.5" fill="var(--primary)" font-family="system-ui,sans-serif">KAIWAI</text>
+          <text x="190" y="196" text-anchor="middle" font-size="6.5" fill="var(--muted)" font-family="system-ui,sans-serif">ecosystem</text>
+
+          <!-- Node: PRO (top) -->
+          <circle cx="190" cy="75" r="26" fill="#ff6b35" stroke="#fff" stroke-width="3"/>
+          <g transform="translate(190,75)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="-8" y="-6" width="16" height="11" rx="1.5"/>
+            <path d="M-4,-6 L-4,-9 L4,-9 L4,-6"/>
+          </g>
+
+          <!-- Node: YOUTH (bottom-left) -->
+          <circle cx="95" cy="240" r="26" fill="#22c55e" stroke="#fff" stroke-width="3"/>
+          <g transform="translate(95,240)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="0" cy="-4" r="5"/>
+            <path d="M-8,8 a8,8 0 0,1 16,0"/>
+          </g>
+
+          <!-- Node: AMA (bottom-right) -->
+          <circle cx="285" cy="240" r="26" fill="#3b82f6" stroke="#fff" stroke-width="3"/>
+          <g transform="translate(285,240)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="0,-8 2.5,-3 8,-3 3.5,1 5,7 0,3.5 -5,7 -3.5,1 -8,-3 -2.5,-3"/>
+          </g>
+        </svg>
+
+        <!-- Text labels (HTML overlays) -->
+        <div class="eco-label eco-label--pro">
+          <div class="eco-label-title">PRO 実案件</div>
+          <div class="eco-label-chips">
+            <span>Web制作</span><span>イベント運営</span>
           </div>
-          <div class="circ-node-body">
-            <div class="circ-node-title">PROの実案件</div>
-            <div class="circ-node-examples">
-              <span>Web制作</span>
-              <span>イベント運営</span>
-              <span>映像制作</span>
-            </div>
+        </div>
+        <div class="eco-label eco-label--youth">
+          <div class="eco-label-title">YOUTH 参加</div>
+          <div class="eco-label-chips">
+            <span>調査</span><span>制作補助</span>
+          </div>
+        </div>
+        <div class="eco-label eco-label--ama">
+          <div class="eco-label-title">AMA 成長</div>
+          <div class="eco-label-chips">
+            <span>企画立案</span><span>発信主導</span>
           </div>
         </div>
 
-        <div class="circ-connector circ-connector--pro-youth" data-reveal>
-          <div class="circ-connector-line"></div>
-          <div class="circ-connector-label">タスクを切り出し</div>
-          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-        </div>
-
-        <div class="circ-node circ-node--youth" data-reveal>
-          <div class="circ-node-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div class="circ-node-body">
-            <div class="circ-node-title">YOUTHが実務参加</div>
-            <div class="circ-node-examples">
-              <span>調査</span>
-              <span>制作補助</span>
-              <span>投稿補助</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="circ-connector circ-connector--youth-ama" data-reveal>
-          <div class="circ-connector-line"></div>
-          <div class="circ-connector-label">実績が積める</div>
-          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-        </div>
-
-        <div class="circ-node circ-node--ama" data-reveal>
-          <div class="circ-node-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          </div>
-          <div class="circ-node-body">
-            <div class="circ-node-title">AMAへ成長</div>
-            <div class="circ-node-examples">
-              <span>企画立案</span>
-              <span>発信主導</span>
-              <span>チーム運営</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="circ-connector circ-connector--ama-loop" data-reveal>
-          <div class="circ-connector-line"></div>
-          <div class="circ-connector-label">さらに挑戦</div>
-          <div class="circ-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-        </div>
-
-        <div class="circ-loop" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          PROへ &#8594; 次の案件に還流
-        </div>
-
+        <!-- Edge labels -->
+        <div class="eco-edge-label eco-edge-label--left">タスクを切り出し</div>
+        <div class="eco-edge-label eco-edge-label--bottom">実績が積める</div>
+        <div class="eco-edge-label eco-edge-label--right">さらに挑戦</div>
       </div>
-      <p class="circ-note">ユースはプロの実案件に参加し、実績を積みながらステップアップできます。</p>
+
+      <div style="text-align:center">
+        <div class="eco-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          この循環が成長を生む
+        </div>
+      </div>
+      <p class="eco-note">ユースはプロの実案件に参加し、実績を積みながらステップアップできます。</p>
     </div>
   </section>
 
