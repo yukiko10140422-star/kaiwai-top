@@ -2,59 +2,59 @@ interface Stage {
   letter: string;
   label: string;
   title: string;
-  colorClass: string;
+  who: string;
+  description: string;
   iconBg: string;
-  chipBg: string;
-  chipText: string;
-  borderColor: string;
   borderColorValue: string;
   chips: string[];
-  reward: string;
+  rewards: string[];
   rewardColor: string;
+  chipBg: string;
+  chipText: string;
 }
 
 const stages: Stage[] = [
   {
     letter: "Y",
-    label: "Youth",
+    label: "入口",
     title: "まず知る・参加する",
-    colorClass: "gp-stage--youth",
+    who: "何をしたいかまだ明確でない人、最初の行動がわからない人",
+    description: "診断であなたのタイプを知り、小さなタスクから実績を積み始めるフェーズ。",
     iconBg: "bg-gradient-to-br from-[#22c55e] to-[#16a34a]",
-    chipBg: "bg-[rgba(34,197,94,0.08)]",
-    chipText: "text-[#16a34a]",
-    borderColor: "border-l-[#22c55e]",
     borderColorValue: "#22c55e",
-    chips: ["タイプ診断", "初回タスク", "小さな実績づくり", "コミュニティ"],
-    reward: "チームへの参加感、ガクチカのタネ",
-    rewardColor: "rgba(34,197,94,0.5)",
+    chips: ["タイプ診断", "初回タスク", "小さな実績づくり", "コミュニティ参加"],
+    rewards: ["チームへの参加感", "ガクチカのタネ", "小さな成功体験"],
+    rewardColor: "#16a34a",
+    chipBg: "rgba(34,197,94,0.08)",
+    chipText: "#16a34a",
   },
   {
     letter: "A",
-    label: "Amateur",
+    label: "実行",
     title: "やりたいことを形にする",
-    colorClass: "gp-stage--amateur",
+    who: "方向性が決まり、動き始めている人",
+    description: "制作・発信・目標設計のサポートを受けて、「やりたい」を具体的な成果にするフェーズ。",
     iconBg: "bg-gradient-to-br from-[#3b82f6] to-[#2563eb]",
-    chipBg: "bg-[rgba(59,130,246,0.08)]",
-    chipText: "text-[#2563eb]",
-    borderColor: "border-l-[#3b82f6]",
     borderColorValue: "#3b82f6",
     chips: ["制作支援", "発信支援", "目標設計", "継続サポート"],
-    reward: "ポートフォリオ、実績、就活で話せる経験",
-    rewardColor: "rgba(59,130,246,0.5)",
+    rewards: ["ポートフォリオ", "実績", "就活で話せる経験"],
+    rewardColor: "#2563eb",
+    chipBg: "rgba(59,130,246,0.08)",
+    chipText: "#2563eb",
   },
   {
     letter: "P",
-    label: "Pro",
-    title: "挑戦を加速させる",
-    colorClass: "gp-stage--pro",
+    label: "挑戦",
+    title: "実案件で加速する",
+    who: "実力がついてきた人、外部に挑戦したい人",
+    description: "実際の案件に参加し、企業との接点を持ちながら成長を加速させるフェーズ。",
     iconBg: "bg-gradient-to-br from-accent to-accent-dark",
-    chipBg: "bg-[rgba(var(--accent-rgb),0.08)]",
-    chipText: "text-accent-dark",
-    borderColor: "border-l-accent",
     borderColorValue: "#ff6b35",
     chips: ["伴走型支援", "実案件参加", "外部発信", "事業共創"],
-    reward: "実務経験、企業との接点、起業の種",
-    rewardColor: "rgba(255,107,53,0.5)",
+    rewards: ["実務経験", "企業との接点", "起業の種"],
+    rewardColor: "#e84430",
+    chipBg: "rgba(var(--accent-rgb),0.08)",
+    chipText: "#e84430",
   },
 ];
 
@@ -67,91 +67,143 @@ interface ConnectorProps {
 function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
   return (
     <div
-      className="flex flex-col items-center gap-1.5 py-3"
+      className="flex flex-col items-center gap-1.5"
+      style={{ padding: '16px 0' }}
     >
       <div
-        className="w-0.5 h-5 rounded-sm"
+        className="rounded-sm"
         style={{
+          width: 2,
+          height: 20,
           background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
         }}
       />
       <div className="text-muted font-medium" style={{ fontSize: 13 }}>{label}</div>
-      <div>
-        <span className="material-symbols-outlined text-lg text-muted">
-          south
-        </span>
-      </div>
+      <span className="material-symbols-outlined text-lg text-muted">south</span>
     </div>
   );
 }
 
 export default function GrowthPath() {
   return (
-    <section
-      className="section-spacing bg-bg-alt"
-    >
+    <section className="section-spacing bg-bg-alt">
       <div className="container-inner">
         <div className="section-label">成長ストーリー</div>
-        <h2 className="section-heading">診断の先にある、成長ストーリー</h2>
+        <h2 className="section-heading">診断の先にある、3つのステージ</h2>
+        <p className="text-center" style={{ fontSize: 15, color: '#666', lineHeight: 1.8, maxWidth: 520, margin: '-16px auto 40px' }}>
+          KAIWAIでは診断して終わりではありません。あなたの段階に合わせた支援で、着実にステップアップできます。
+        </p>
 
-        <div style={{ maxWidth: 600, margin: '0 auto' }}>
+        <div style={{ maxWidth: 640, margin: '0 auto' }}>
           {stages.map((stage, index) => (
             <div key={stage.letter}>
               <div
-                className="relative bg-surface border border-border rounded-2xl border-l-[3px] transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]"
-                style={{ borderLeftColor: stage.borderColorValue, padding: '28px 24px 24px' }}
+                className="card-base"
+                style={{
+                  borderLeftWidth: 4,
+                  borderLeftStyle: 'solid',
+                  borderLeftColor: stage.borderColorValue,
+                  padding: '28px 24px',
+                }}
               >
-                <div className="flex items-center gap-3.5 mb-3.5">
+                {/* ヘッダー: アイコン + ラベル + タイトル */}
+                <div className="flex items-center" style={{ gap: 14, marginBottom: 12 }}>
                   <div
-                    className={`w-10 h-10 min-w-10 rounded-full flex items-center justify-center font-display text-[13px] font-extrabold text-white tracking-[1px] ${stage.iconBg}`}
+                    className={`rounded-full flex items-center justify-center font-display font-extrabold text-white ${stage.iconBg}`}
+                    style={{ width: 44, height: 44, minWidth: 44, fontSize: 15, letterSpacing: 1 }}
                   >
                     {stage.letter}
                   </div>
                   <div>
-                    <div className="font-display font-bold tracking-[2px] uppercase text-muted" style={{ fontSize: 12 }}>
+                    <div className="font-display font-bold uppercase text-muted" style={{ fontSize: 12, letterSpacing: 2 }}>
                       {stage.label}
                     </div>
-                    <h3 className="text-[clamp(16px,1.4vw,19px)] max-md:text-base font-bold tracking-[-0.02em] text-primary">
+                    <h3 className="font-bold text-primary" style={{ fontSize: 18, letterSpacing: '-0.02em' }}>
                       {stage.title}
                     </h3>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
+
+                {/* 対象者 */}
+                <div style={{ fontSize: 13, color: '#888', marginBottom: 8 }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: 14, verticalAlign: '-2px', marginRight: 4 }}>person</span>
+                  {stage.who}
+                </div>
+
+                {/* 説明 */}
+                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.75, marginBottom: 16 }}>
+                  {stage.description}
+                </p>
+
+                {/* やること チップ */}
+                <div className="flex flex-wrap" style={{ gap: 8, marginBottom: 16 }}>
                   {stage.chips.map((chip) => (
                     <span
                       key={chip}
-                      className={`inline-block text-xs font-medium py-[5px] max-md:py-1.5 px-3.5 max-md:px-3 rounded-full leading-[1.4] ${stage.chipBg} ${stage.chipText}`}
-                      style={{ fontSize: 13 }}
+                      className="inline-block font-medium rounded-full"
+                      style={{ fontSize: 13, padding: '5px 14px', background: stage.chipBg, color: stage.chipText }}
                     >
                       {chip}
                     </span>
                   ))}
                 </div>
-                <div style={{ fontSize: 13, fontStyle: 'italic', color: stage.rewardColor, marginTop: 12 }}>
-                  ✨ 得られるもの: {stage.reward}
+
+                {/* 得られるもの */}
+                <div
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: 12,
+                    background: `${stage.borderColorValue}08`,
+                    borderLeft: `3px solid ${stage.borderColorValue}30`,
+                  }}
+                >
+                  <div style={{ fontSize: 12, fontWeight: 600, color: stage.rewardColor, marginBottom: 6 }}>
+                    得られるもの
+                  </div>
+                  <div className="flex flex-wrap" style={{ gap: 8 }}>
+                    {stage.rewards.map((r) => (
+                      <span key={r} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 13, color: '#555' }}>
+                        <span className="material-symbols-outlined" style={{ fontSize: 14, color: stage.rewardColor, fontVariationSettings: "'FILL' 1" }}>check</span>
+                        {r}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {index === 0 && (
-                <Connector
-                  label="経験を積んで"
-                  gradientFrom="#22c55e"
-                  gradientTo="#3b82f6"
-                />
+                <Connector label="経験を積んで" gradientFrom="#22c55e" gradientTo="#3b82f6" />
               )}
               {index === 1 && (
-                <Connector
-                  label="さらに挑戦して"
-                  gradientFrom="#3b82f6"
-                  gradientTo="var(--color-accent)"
-                />
+                <Connector label="さらに挑戦して" gradientFrom="#3b82f6" gradientTo="var(--color-accent)" />
               )}
             </div>
           ))}
 
-          <p className="text-center mt-7 text-[#666]" style={{ fontSize: 14, lineHeight: 2, maxWidth: 440, margin: '28px auto 0' }}>
-            💡 挑戦フェーズの実案件は、入口フェーズの学生にもタスクとして開放。全員が「実務」を通じて成長できる循環構造です。
-          </p>
+          {/* 循環構造の説明 */}
+          <div
+            className="card-base"
+            style={{
+              marginTop: 32,
+              padding: '20px 24px',
+              background: 'rgba(var(--accent-rgb), 0.03)',
+              borderColor: 'rgba(var(--accent-rgb), 0.1)',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 8 }}>
+              <span className="material-symbols-outlined text-accent" style={{ fontSize: 20, fontVariationSettings: "'FILL' 1" }}>
+                sync
+              </span>
+              <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-primary)' }}>
+                循環する成長の仕組み
+              </span>
+            </div>
+            <p style={{ fontSize: 14, color: '#666', lineHeight: 1.8 }}>
+              挑戦フェーズの実案件から生まれたタスクは、入口フェーズの学生にも開放されます。
+              支援を受ける側が、やがて支援する側にもなれる — これがKAIWAIの循環構造です。
+            </p>
+          </div>
         </div>
       </div>
     </section>
