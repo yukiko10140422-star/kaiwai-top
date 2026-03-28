@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .bg-accent-gradient { background: linear-gradient(135deg, #ff6b35 0%, #e84430 100%); }
+        .text-accent-gradient { background: linear-gradient(135deg, #ff6b35 0%, #e84430 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#1a1c1d",
+                        "on-secondary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9fa",
+                        "surface-variant": "#e2e2e3",
+                        "surface-dim": "#dadadb",
+                        "on-secondary-fixed": "#410100",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-tertiary-fixed": "#001f28",
+                        "primary": "#ab3500",
+                        "outline": "#8d7168",
+                        "on-secondary-fixed-variant": "#920400",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "secondary-container": "#d83826",
+                        "surface": "#f9f9fa",
+                        "inverse-primary": "#ffb59d",
+                        "primary-fixed": "#ffdbd0",
+                        "on-tertiary-container": "#003744",
+                        "surface-container-high": "#e8e8e9",
+                        "secondary": "#b41d0f",
+                        "surface-container": "#eeeeef",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00677e",
+                        "tertiary-container": "#00a7cb",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "background": "#f9f9fa",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#390c00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffdad4",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1a1c1d",
+                        "secondary-fixed-dim": "#ffb4a7",
+                        "surface-container-highest": "#e2e2e3",
+                        "on-surface-variant": "#594139",
+                        "on-primary-fixed-variant": "#832600",
+                        "outline-variant": "#e1bfb5",
+                        "primary-fixed-dim": "#ffb59d",
+                        "primary-container": "#ff6b35",
+                        "on-primary-container": "#5f1900",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#ab3500",
+                        "inverse-surface": "#2f3132"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "Noto Sans JP"],
+                        "body": ["Inter", "Noto Sans JP"],
+                        "label": ["Inter", "Noto Sans JP"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="flex items-center">
+<div class="w-6 h-8 bg-slate-300 rounded-full blur-[1px] -mr-1"></div>
+<div class="w-6 h-8 bg-accent-gradient rounded-full"></div>
+</div>
+<span class="text-xl font-bold tracking-[3px] text-slate-900">KAIWAI</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-orange-600 font-bold border-b-2 border-orange-600 transition-colors duration-300" href="#">サービス</a>
+<a class="text-slate-700 font-medium hover:text-orange-500 transition-colors duration-300" href="#">診断について</a>
+<a class="text-slate-700 font-medium hover:text-orange-500 transition-colors duration-300" href="#">活動事例</a>
+</div>
+<button class="bg-accent-gradient text-white px-6 py-2.5 rounded-full font-bold shadow-lg scale-95 active:scale-90 transition-transform">
+                無料で診断する
+            </button>
+</nav>
+</header>
+<main class="pt-24 overflow-x-hidden">
+<!-- SECTION 2: HERO -->
+<section class="bg-surface-container-lowest min-h-screen flex items-center px-6 lg:px-12">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="flex flex-wrap gap-3">
+<span class="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full text-sm font-bold">
+<span class="w-2 h-2 bg-primary rounded-full"></span> 何を始めればいいかわからない
+                        </span>
+<span class="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full text-sm font-bold">
+<span class="w-2 h-2 bg-primary rounded-full"></span> ガクチカがない
+                        </span>
+<span class="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full text-sm font-bold">
+<span class="w-2 h-2 bg-primary rounded-full"></span> 就活が不安
+                        </span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight">
+                        迷っている学生へ。<br/>
+<span class="text-accent-gradient">3分の診断で、</span><br/>
+                        次の一歩がわかる。
+                    </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-xl">
+                        あなたの志向・興味・現在地から、4つのタイプに分類。ガクチカ・留学・資格・サークル、それぞれに合った具体的なアクションを無料で提案します。
+                    </p>
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<button class="bg-accent-gradient text-white text-lg px-10 py-5 rounded-full font-bold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 flex items-center gap-2">
+                            無料で診断してみる <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span> 3分で完了
+                        </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span> 完全無料
+                        </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span> 結果はすぐ表示
+                        </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">do_not_disturb_on</span> 無理な勧誘なし
+                        </div>
+</div>
+</div>
+<div class="relative">
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2">
+<img alt="" class="w-full h-80 object-cover rounded-xl shadow-lg" data-alt="a cheerful Japanese university student studying in a bright, modern library setting with books and a laptop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-c3WOacHSWvMwwvlnmW0WuQa11mdhJ6_Bm9sOwz6zHxlxpCGYBP5LmjjVja5zqVuBOlz7tNr2NJ1vqCBJM1orUHHzTSR4FPY6-JhxeIqkJ7cZbIS2e93GuCAcel8bm93ZNBSX8C_4ydrqFeisyFZekqYDt5NcwvQa3Sq0tbjpBK7KJ6a2pERQXGFicYldP9jkq7m_t1JLIz0rbZClOeXduF3N5cLVySACXNB5vG-075zmKQcF3cR93-x4pWsDKcq30_awXMGpBg"/>
+</div>
+<div>
+<img alt="" class="w-full h-64 object-cover rounded-xl shadow-lg" data-alt="two Japanese students laughing and discussing project work outdoors on a sunlit university campus plaza" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_va7_d5H0ed5A4D547UzdILpJ-MVju0el1Qfvh6qftJNcBGnzQ-LNhoGE3EPQSsoz-iXkr5xRqpQD6d0xIKDlaMWe4TRyLKjfg1YuLAtl745FhexF33QN7wcWuPbh8phnmytCbWD0ASdEmvNIXSZEn6kD8odMqiM7vu-2CcYDI7OADIdx1M95umXBlg37IBm8nv3AlNkZfWlRs372OyNXS5zC2ZIwIx5svqqZkhvr50kjDIsaaAIEGqhKsFi8jb5yt2n8y0jn6w"/>
+</div>
+<div>
+<img alt="" class="w-full h-64 object-cover rounded-xl shadow-lg" data-alt="a Japanese female student focusing on her laptop screen while working in a cozy campus cafe environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIq4am_0tzCV3Q1HuVlB280ywesnlPT0deG86Ht4zbLu_tJbBfWDVwJ6Z0AVP_i_hRkSmRPf03CAR8Z5Vu3vp32SuF4KmNkRjMpd7bhCk-Icyq4hthWe2MSx2-IHrWz5JWiZoJ2c_73Y6DkWZzFqfUeS70nA2PUSejLMsl0hGpHBMD9q2okSqa0kolDTPn79jMBv4kuwiLlt-gIJKRW-WSu8tiJil1T8lwNVrpBIi0Fepl8HtRwuoaO_ml-b14cd7AtEU2e67YZeM"/>
+</div>
+</div>
+<div class="absolute -bottom-6 -left-6 glass-panel p-6 rounded-lg shadow-2xl border border-white/50 animate-bounce-slow">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-on-surface font-black text-xl">87%</p>
+<p class="text-on-surface-variant text-xs font-bold whitespace-nowrap">の学生が診断後に行動を開始</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: FLOW -->
+<section class="py-24 bg-surface px-6">
+<div class="max-w-3xl mx-auto">
+<div class="bg-surface-container-lowest p-12 rounded-xl shadow-sm space-y-12">
+<h2 class="text-3xl font-black text-center mb-16">KAIWAIでできること</h2>
+<div class="relative space-y-16">
+<!-- Step 1 -->
+<div class="flex gap-8 relative z-10">
+<div class="flex-shrink-0 w-16 h-16 bg-accent-gradient rounded-full flex items-center justify-center text-white text-2xl font-black shadow-lg">1</div>
+<div class="flex-grow bg-surface-container-low p-8 rounded-lg border-l-8 border-orange-500">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<h3 class="text-xl font-black">3分で無料診断</h3>
+</div>
+<p class="text-on-surface-variant mb-4">5つの質問に答えるだけ</p>
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded">所要時間 3分</span>
+</div>
+</div>
+<!-- Connector -->
+<div class="absolute left-8 top-16 bottom-0 w-1 bg-surface-container-highest -translate-x-1/2 -z-0"></div>
+<div class="absolute left-8 top-1/3 -translate-x-1/2 text-surface-container-highest">
+<span class="material-symbols-outlined text-4xl">south</span>
+</div>
+<!-- Step 2 -->
+<div class="flex gap-8 relative z-10">
+<div class="flex-shrink-0 w-16 h-16 bg-accent-gradient rounded-full flex items-center justify-center text-white text-2xl font-black shadow-lg">2</div>
+<div class="flex-grow bg-surface-container-low p-8 rounded-lg border-l-8 border-blue-500">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<h3 class="text-xl font-black">あなたのタイプを提示</h3>
+</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="px-3 py-1 bg-white text-on-surface text-sm font-bold rounded-full border border-outline-variant">ガクチカ型</span>
+<span class="px-3 py-1 bg-white text-on-surface text-sm font-bold rounded-full border border-outline-variant">留学型</span>
+<span class="px-3 py-1 bg-white text-on-surface text-sm font-bold rounded-full border border-outline-variant">資格型</span>
+<span class="px-3 py-1 bg-white text-on-surface text-sm font-bold rounded-full border border-outline-variant">サークル型</span>
+</div>
+</div>
+</div>
+<div class="absolute left-8 top-2/3 -translate-x-1/2 text-surface-container-highest">
+<span class="material-symbols-outlined text-4xl">south</span>
+</div>
+<!-- Step 3 -->
+<div class="flex gap-8 relative z-10">
+<div class="flex-shrink-0 w-16 h-16 bg-accent-gradient rounded-full flex items-center justify-center text-white text-2xl font-black shadow-lg">3</div>
+<div class="flex-grow bg-surface-container-low p-8 rounded-lg border-l-8 border-green-500">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+<h3 class="text-xl font-black">具体的なアクションを提案</h3>
+</div>
+<p class="text-on-surface-variant mb-4">タイプに合った最初の一歩を提示</p>
+<span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">すぐに行動開始できる</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: CATEGORIES -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-12">
+<p class="text-accent-gradient font-bold tracking-[2px] text-sm mb-2">YOUR TYPE</p>
+<h2 class="text-4xl font-black">あなたはどのタイプ？</h2>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-8 no-scrollbar -mx-6 px-6 snap-x">
+<!-- Type Cards -->
+<div class="flex-shrink-0 w-[280px] h-[340px] relative rounded-xl overflow-hidden snap-start shadow-xl">
+<img alt="" class="absolute inset-0 w-full h-full object-cover" data-alt="Japanese university student leading a group discussion with focused peers around a table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS7lwkACe1LcVS_frl1coq0Z-FHr6hlHVq8N4c4Z26P_AUc4wnLYfiu4vHuYzINM3icq0SB5jZNQfOYHyWyWrt1k9CEOBUjpqx42RIrB_h_O_GVJdkuOtvivI-n74-sLp_uscIelJR2XlEIvTj_KiQnNHGa02wEDy3IP13P3K0L6nS3ocX7XD5cCpZtijtp20_-4ycCMusTkAc5r_Sb_hCEF02ikzNniq93H1e1Pq3XHUHg1V-hMeHc-FemXK4Tak1iIyYpkc___Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="material-symbols-outlined text-primary mb-2">stars</span>
+<h3 class="text-white text-2xl font-black mb-1">ガクチカ</h3>
+<p class="text-white/80 text-sm">経験を作る・発信する・運営する</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-[280px] h-[340px] relative rounded-xl overflow-hidden snap-start shadow-xl">
+<img alt="" class="absolute inset-0 w-full h-full object-cover" data-alt="a Japanese student traveler in a foreign airport or global setting looking confidently at the horizon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKB_mTn-xqt-euFbOSlupXXFj9tEYDfb2R93CfD9A3dPc2j40oooMPlgatfvK1eoetGlgGuu3sAOIdWSvPMZ97yMh-Sv2hLxlFoTNwFg0qLZAKfhwLNW8xQN8ZH8puSrmVsomJif1insDfzfBOuekiztblH4bC-SPBYQGiB0eye_mJ8S24VJ5x7zGZv_7oMsTxLePXRwfr2tIFZ_QW-eixUmeMTcQhJqKynwdC9BfVzUZuW-I41Tp1k0_QZyyV-J2koehnwev9yLs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="material-symbols-outlined text-blue-400 mb-2">public</span>
+<h3 class="text-white text-2xl font-black mb-1">留学</h3>
+<p class="text-white/80 text-sm">世界を広げる・語学を磨く</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-[280px] h-[340px] relative rounded-xl overflow-hidden snap-start shadow-xl">
+<img alt="" class="absolute inset-0 w-full h-full object-cover" data-alt="close up of a Japanese student's hands taking detailed notes during a rigorous professional certification course" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3GNPTiYoIRQy7qPvp3Wipzl5ICH_izTyvr_q2BMiMNMpkpfd1iJqQpETuCQdRmAx1YbNBPLi9K2jISh5brDB7TkH8rr3s-dmS6lw-gQJ1Qq8cKn-0S0OcOSoca5dpMhmIEuv6GygUGsiSbz7pfhp2kzu1NJIHsQH98NVQvFYy1YQtgX_DF1ndw_jsKaMGmMMG-9c3zFdJNI8YmA-bOGQRXXeiXyxgjfyGOxg6vjP6Qe-0FgAgz5Pb2_347CeSR3Qd-JH2aqVKtlA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="material-symbols-outlined text-purple-400 mb-2">history_edu</span>
+<h3 class="text-white text-2xl font-black mb-1">資格</h3>
+<p class="text-white/80 text-sm">武器を手に入れる</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-[280px] h-[340px] relative rounded-xl overflow-hidden snap-start shadow-xl">
+<img alt="" class="absolute inset-0 w-full h-full object-cover" data-alt="a diverse group of Japanese students enjoying a collaborative team activity outdoors on campus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNXj4Hqh8ddrmhszKiwc3zl5NQrCSb5A90LNjoqIat1c9jwxwTUDi-f0uQxFn_guTALJJ_VqLKUl754UUzAe0dig83Mk1oKMCVt_2oMgxaEeS7E2boBO-J4Vb_w_xXexaWf4YO5mrtzT27Y0Rkq17z_11OGR64MJWGZDMa8QPAONZtDOhlyCxDrnWTWsupLGq2gld8rqyseTxL8oSPjqSqmv30yC-4KAw2GEqEutSSooc-3-7d1xGcrbt9vMyWOphRhC1_Gmq74Cs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="material-symbols-outlined text-green-400 mb-2">groups</span>
+<h3 class="text-white text-2xl font-black mb-1">サークル</h3>
+<p class="text-white/80 text-sm">仲間と動く・居場所を見つける</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: GROWTH PATH -->
+<section class="py-24 bg-slate-50 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<p class="text-accent-gradient font-bold tracking-[2px] text-sm mb-2">GROWTH STORY</p>
+<h2 class="text-4xl font-black">診断の先にある、成長ストーリー</h2>
+</div>
+<div class="space-y-6 max-w-[500px] mx-auto">
+<!-- Stage 1 -->
+<div class="bg-white p-8 rounded-lg border-l-8 border-green-500 shadow-sm transition-transform hover:-translate-y-1">
+<p class="text-green-600 font-black text-xs tracking-widest mb-2">YOUTH</p>
+<h3 class="text-2xl font-black mb-4">まず知る・参加する</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">タイプ診断</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">初回タスク</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">小さな実績づくり</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">コミュニティ</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="bg-white p-8 rounded-lg border-l-8 border-blue-500 shadow-sm transition-transform hover:-translate-y-1">
+<p class="text-blue-600 font-black text-xs tracking-widest mb-2">AMATEUR</p>
+<h3 class="text-2xl font-black mb-4">やりたいことを形にする</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">制作支援</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">発信支援</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">目標設計</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">継続サポート</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="bg-white p-8 rounded-lg border-l-8 border-orange-500 shadow-sm transition-transform hover:-translate-y-1">
+<p class="text-orange-600 font-black text-xs tracking-widest mb-2">PRO</p>
+<h3 class="text-2xl font-black mb-4">挑戦を加速させる</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">伴走型支援</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">実案件参加</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">外部発信</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">事業共創</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: FEATURES -->
+<section class="py-24 bg-surface px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white p-8 rounded-xl shadow-sm border border-surface-variant/20 text-center space-y-4">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-3xl">schedule</span>
+</div>
+<h3 class="text-xl font-black">3分で完了</h3>
+<p class="text-on-surface-variant text-sm">通学中や休憩時間のスキマ時間で、すぐに自分のタイプを知ることができます。</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-surface-variant/20 text-center space-y-4">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-black">完全無料</h3>
+<p class="text-on-surface-variant text-sm">診断からアクションの提案まで、全ての機能を無料で利用いただけます。</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-surface-variant/20 text-center space-y-4">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-black">結果はすぐ</h3>
+<p class="text-on-surface-variant text-sm">質問回答後、待つことなくその場であなたのタイプと推奨アクションを表示。</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-surface-variant/20 text-center space-y-4">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-3xl">group_add</span>
+</div>
+<h3 class="text-xl font-black">実務に参加</h3>
+<p class="text-on-surface-variant text-sm">ただの診断で終わらず、実際にスキルを活かせる実案件への参加もサポート。</p>
+</div>
+</div>
+</section>
+<!-- SECTION 7: TESTIMONIALS -->
+<section class="py-24 bg-surface-container-low px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-black text-center mb-16">体験ストーリー</h2>
+<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+<div class="bg-white p-10 rounded-xl border-l-8 border-orange-500 shadow-sm space-y-6">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+<div>
+<p class="font-black">Aさん</p>
+<p class="text-xs text-on-surface-variant">大学2年・経済学部</p>
+</div>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">ガクチカ型</span>
+</div>
+<p class="text-on-surface text-lg italic leading-relaxed">「何をすればいいか分からず焦っていましたが、診断で出たSNS運用のタスクを始めたら、自分の得意が見つかりました！」</p>
+</div>
+<div class="bg-white p-10 rounded-xl border-l-8 border-orange-500 shadow-sm space-y-6">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+<div>
+<p class="font-black">Bさん</p>
+<p class="text-xs text-on-surface-variant">大学1年・文学部</p>
+</div>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">留学型</span>
+</div>
+<p class="text-on-surface text-lg italic leading-relaxed">「英語は好きだけど、どう活かすか悩んでいました。英会話カフェでのボランティアから始め、今では短期留学を計画中です。」</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: FAQ -->
+<section class="py-24 bg-surface px-6">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-4xl font-black text-center mb-16">よくある質問</h2>
+<div class="space-y-4">
+<details class="group bg-surface-container-low rounded-xl overflow-hidden" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 bg-accent-gradient rounded-full flex items-center justify-center text-white font-black shrink-0">Q</span>
+<span class="font-bold text-lg">本当に無料ですか？</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pl-16 text-on-surface-variant leading-relaxed">
+                            はい、診断からその後のアクション提案、コミュニティへの参加まで、学生の方は全て無料でご利用いただけます。
+                        </div>
+</details>
+<details class="group bg-surface-container-low rounded-xl overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 bg-accent-gradient rounded-full flex items-center justify-center text-white font-black shrink-0">Q</span>
+<span class="font-bold text-lg">診断にどれくらい時間がかかりますか？</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pl-16 text-on-surface-variant leading-relaxed">
+                            直感的に答えられる5つの質問だけですので、約3分程度で完了します。
+                        </div>
+</details>
+<details class="group bg-surface-container-low rounded-xl overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 bg-accent-gradient rounded-full flex items-center justify-center text-white font-black shrink-0">Q</span>
+<span class="font-bold text-lg">特定のスクールへの勧誘はありますか？</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pl-16 text-on-surface-variant leading-relaxed">
+                            一切ありません。あくまであなたの「やりたい」を見つけるためのサポートが目的です。
+                        </div>
+</details>
+<details class="group bg-surface-container-low rounded-xl overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 bg-accent-gradient rounded-full flex items-center justify-center text-white font-black shrink-0">Q</span>
+<span class="font-bold text-lg">1年生でも参加できますか？</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pl-16 text-on-surface-variant leading-relaxed">
+                            もちろんです。早期から自分の方向性を見つけることで、大学生活をより充実させることができます。
+                        </div>
+</details>
+<details class="group bg-surface-container-low rounded-xl overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 bg-accent-gradient rounded-full flex items-center justify-center text-white font-black shrink-0">Q</span>
+<span class="font-bold text-lg">診断結果が自分の思っていたのと違う場合は？</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pl-16 text-on-surface-variant leading-relaxed">
+                            診断結果は一つのヒントです。別のタイプのアクションを閲覧したり、自分に合うものを組み合わせて活動することも可能です。
+                        </div>
+</details>
+</div>
+</div>
+</section>
+<!-- SECTION 9: FINAL CTA -->
+<section class="py-24 px-6 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-12 md:p-20 relative overflow-hidden shadow-2xl">
+<div class="relative z-10 max-w-2xl">
+<h2 class="text-4xl md:text-5xl font-black leading-tight mb-8">
+                            まだ迷ってる？<br/>
+                            それならまず、診断してみよう。
+                        </h2>
+<button class="bg-accent-gradient text-white text-xl px-12 py-6 rounded-full font-bold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-4">
+                            無料で診断してみる <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="hidden lg:block absolute bottom-0 right-20 w-80">
+<img alt="" class="w-full h-full object-contain filter drop-shadow-2xl" data-alt="a smiling Japanese university student holding a notebook and looking optimistic in a bright classroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxJO0PvpTB9PA764dVu_bSz-peclmOx9IIlpkYxb9soxE7-F7SNNmWTZESYa2_hwvvMDAo1vQSv8YnuNOv0Wh34MngIGmrTuktfjdRqFevDLUDRJ3VHfuqfe5FcOqLrLUTUX6PeDAvCBhXJcn7iVXJPJlV7VEThakZuAtEPno2mImfiT-tNO_xeiOipOYziIdGAqoC_Lu6oAeiYB9vIqydIYOClubihQbG2LoAqwpMrceR4O7boqXEGopzkcWv4CDh5Bz9ovMmAZM"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-slate-50 py-12 px-8 border-t border-surface-variant/30">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="flex items-center">
+<div class="w-8 h-10 bg-slate-300 rounded-full blur-[1px] -mr-1"></div>
+<div class="w-8 h-10 bg-accent-gradient rounded-full"></div>
+</div>
+<span class="text-2xl font-bold tracking-[3px] text-slate-900">KAIWAI</span>
+</div>
+<p class="text-slate-600 font-bold text-lg">学生の「やりたい」を、最初の一歩に変える</p>
+<p class="text-slate-500">Copyright © 2026 KAIWAI</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-6">
+<div class="space-y-4">
+<p class="text-slate-900 font-black">メニュー</p>
+<div class="flex flex-col gap-2">
+<a class="text-slate-500 hover:text-orange-600 hover:underline transition-all" href="#">利用規約</a>
+<a class="text-slate-500 hover:text-orange-600 hover:underline transition-all" href="#">プライバシー</a>
+<a class="text-slate-500 hover:text-orange-600 hover:underline transition-all" href="#">お問い合わせ</a>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-slate-900 font-black">公式SNS</p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-slate-600 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">share</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-slate-600 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">forum</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

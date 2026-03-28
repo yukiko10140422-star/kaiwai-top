@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAIWAI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
-
   :root {
     --primary: #0a0a0a;
     --surface: #fff;
-    --bg: #f8f8f8;
+    --bg: #ffffff;
+    --bg-alt: #f7f7f8;
     --muted: #999;
     --border: rgba(0,0,0,0.06);
     --accent: #ff6b35;
@@ -25,13 +26,12 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:auto}
+  html{scroll-behavior:smooth}
   body{
     font-family:var(--font);background:var(--bg);color:var(--primary);
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-
-  .cursor,.cursor-dot,.cursor-ring{display:none}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
 
   /* Scroll progress */
   .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));z-index:9998;transform-origin:left;transform:scaleX(0);will-change:transform}
@@ -45,9 +45,9 @@
 
   /* ===== NAV ===== */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 var(--gutter);
-    background:rgba(10,10,10,0.6);backdrop-filter:blur(40px) saturate(180%);
-    border-bottom:1px solid rgba(255,255,255,0.06);transition:all 0.5s var(--ease)}
-  nav.scrolled{background:rgba(248,248,248,0.95);box-shadow:0 1px 20px rgba(0,0,0,0.04);border-bottom-color:var(--border)}
+    background:rgba(255,255,255,0.92);backdrop-filter:blur(40px) saturate(180%);
+    border-bottom:1px solid var(--border);transition:all 0.5s var(--ease)}
+  nav.scrolled{background:rgba(255,255,255,0.95);box-shadow:0 1px 20px rgba(0,0,0,0.04)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;
     width:min(100%,var(--inner));margin:0 auto}
   .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -56,16 +56,12 @@
   .nav-logo-icon .r{width:16px;height:16px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50% 50% 0 50%;transition:transform 0.5s var(--ease-spring)}
   .nav-logo:hover .l{transform:rotate(-12deg) scale(1.15)}
   .nav-logo:hover .r{transform:rotate(12deg) scale(1.15)}
-  .nav-logo-text{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:3px;color:#fff;transition:color 0.5s var(--ease)}
-  nav.scrolled .nav-logo-text{color:var(--primary)}
+  .nav-logo-text{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:3px;color:var(--primary);transition:color 0.5s var(--ease)}
   .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);text-decoration:none;position:relative;transition:color 0.3s}
-  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#fff;transition:width 0.4s var(--ease)}
-  .nav-links a:hover{color:#fff}
+  .nav-links a{font-size:13px;font-weight:500;color:#666;text-decoration:none;position:relative;transition:color 0.3s}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--primary);transition:width 0.4s var(--ease)}
+  .nav-links a:hover{color:var(--primary)}
   .nav-links a:hover::after{width:100%}
-  nav.scrolled .nav-links a{color:#666}
-  nav.scrolled .nav-links a::after{background:var(--primary)}
-  nav.scrolled .nav-links a:hover{color:var(--primary)}
 
   /* Magnetic CTA */
   .mag-btn{
@@ -75,43 +71,41 @@
     transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease),background 0.5s var(--ease);
     will-change:transform;
   }
-  nav.scrolled .mag-btn{background:var(--primary);color:var(--surface)}
   .mag-btn:hover{box-shadow:0 8px 30px rgba(var(--accent-rgb),0.3)}
 
   /* ===== HERO ===== */
-  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(32px,4vw,64px);padding-top:100px;padding-bottom:60px;position:relative;background:var(--primary);color:#fff;
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(32px,4vw,64px);padding-top:100px;padding-bottom:60px;position:relative;background:var(--bg);color:var(--primary);
     margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding-left:max(var(--gutter),calc(50vw - var(--inner)/2));padding-right:max(var(--gutter),calc(50vw - var(--inner)/2))}
 
   /* Floating shapes background */
   .hero-shapes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
   .hero-shapes .shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:0;animation:shapeFloat 20s ease-in-out infinite}
-  .hero-shapes .shape:nth-child(1){width:500px;height:500px;background:rgba(var(--accent-rgb),0.15);top:-100px;right:-100px;animation-delay:0s}
-  .hero-shapes .shape:nth-child(2){width:400px;height:400px;background:rgba(var(--accent-rgb),0.08);bottom:-100px;left:-100px;animation-delay:-7s}
-  .hero-shapes .shape:nth-child(3){width:300px;height:300px;background:rgba(var(--accent-rgb),0.06);top:40%;left:30%;animation-delay:-14s}
-  @keyframes shapeFloat{0%,100%{transform:translate(0,0) scale(1);opacity:0.6}25%{transform:translate(30px,-20px) scale(1.1);opacity:1}50%{transform:translate(-20px,30px) scale(0.9);opacity:0.7}75%{transform:translate(10px,10px) scale(1.05);opacity:0.9}}
+  .hero-shapes .shape:nth-child(1){width:500px;height:500px;background:rgba(var(--accent-rgb),0.05);top:-100px;right:-100px;animation-delay:0s}
+  .hero-shapes .shape:nth-child(2){width:400px;height:400px;background:rgba(var(--accent-rgb),0.03);bottom:-100px;left:-100px;animation-delay:-7s}
+  .hero-shapes .shape:nth-child(3){width:300px;height:300px;background:rgba(var(--accent-rgb),0.025);top:40%;left:30%;animation-delay:-14s}
+  @keyframes shapeFloat{0%,100%{transform:translate(0,0) scale(1);opacity:0.25}25%{transform:translate(30px,-20px) scale(1.1);opacity:0.4}50%{transform:translate(-20px,30px) scale(0.9);opacity:0.3}75%{transform:translate(10px,10px) scale(1.05);opacity:0.35}}
 
   .hero-content{position:relative;z-index:1}
 
   /* Empathy chips */
   .hero-empathy{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:clamp(20px,3vw,28px)}
-  .empathy-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:5px 14px;border-radius:100px;font-size:11px;color:rgba(255,255,255,0.7);
+  .empathy-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(var(--accent-rgb),0.06);border:1px solid rgba(var(--accent-rgb),0.12);padding:5px 14px;border-radius:100px;font-size:11px;color:#666;
     opacity:0;transform:translateY(12px) scale(0.95);transition:all 0.3s var(--ease)}
   .empathy-chip::before{content:'';width:5px;height:5px;background:var(--accent);border-radius:50%;transition:background 0.3s}
-  .empathy-chip:hover{border-color:rgba(var(--accent-rgb),0.4);color:rgba(255,255,255,0.9)}
-  .empathy-chip:hover::before{background:var(--accent)}
+  .empathy-chip:hover{border-color:rgba(var(--accent-rgb),0.4);color:var(--primary)}
   .empathy-chip.in{opacity:1;transform:translateY(0) scale(1)}
 
-  /* Hero heading - lines reveal */
-  .hero h1{font-size:clamp(32px,3.5vw,44px);font-weight:800;line-height:1.45;letter-spacing:-0.03em;margin-bottom:clamp(14px,2vw,20px);overflow:hidden;color:#fff}
+  /* Hero heading */
+  .hero h1{font-size:clamp(32px,3.5vw,44px);font-weight:800;line-height:1.45;letter-spacing:-0.03em;margin-bottom:clamp(14px,2vw,20px);overflow:hidden;color:var(--primary)}
   .hero-line{display:block;overflow:hidden}
   .hero-line-inner{display:block;transform:translateY(110%);transition:transform 0.9s var(--ease)}
   .hero-line-inner.in{transform:translateY(0)}
   .hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-  .hero-sub{font-size:clamp(13px,1.2vw,15px);color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:clamp(24px,3vw,36px);max-width:440px;
+  .hero-sub{font-size:clamp(13px,1.2vw,15px);color:#666;line-height:1.9;margin-bottom:clamp(24px,3vw,36px);max-width:440px;
     opacity:0;transform:translateY(20px);transition:all 0.8s var(--ease) 0.6s}
   .hero-sub.in{opacity:1;transform:translateY(0)}
-  .hero-sub strong{color:#fff;font-weight:600}
+  .hero-sub strong{color:var(--primary);font-weight:600}
 
   /* Hero CTA */
   .hero-cta-wrap{opacity:0;transform:translateY(20px);transition:all 0.8s var(--ease) 0.8s}
@@ -128,25 +122,24 @@
   }
   .btn-hero::before{display:none}
   .btn-hero:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(var(--accent-rgb),0.45)}
-  .btn-hero span,.btn-hero svg{position:relative;z-index:1}
-  .btn-hero svg{width:18px;height:18px;transition:transform 0.4s var(--ease)}
-  .btn-hero:hover svg{transform:translateX(4px)}
-  /* Shimmer */
+  .btn-hero span,.btn-hero .material-symbols-outlined{position:relative;z-index:1}
+  .btn-hero .material-symbols-outlined{font-size:18px;transition:transform 0.4s var(--ease)}
+  .btn-hero:hover .material-symbols-outlined{transform:translateX(4px)}
   .btn-hero .shimmer{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);z-index:1;animation:shimmer 4s ease-in-out infinite 2s}
   @keyframes shimmer{0%,100%{left:-100%}50%{left:150%}}
 
   .trust-signals{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;
     opacity:0;transition:opacity 0.8s var(--ease) 1s}
   .trust-signals.in{opacity:1}
-  .trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.4)}
-  .trust-item svg{width:13px;height:13px;stroke:rgba(255,255,255,0.3)}
+  .trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#999}
+  .trust-item .material-symbols-outlined{font-size:14px;color:var(--accent);font-variation-settings:'FILL' 1}
 
   /* Hero Visual */
   .hero-visual{position:relative;z-index:1}
   .hero-img-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:10px}
   .hero-img{border-radius:20px;overflow:hidden;position:relative;
     clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
-    transition:clip-path 1s var(--ease);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+    transition:clip-path 1s var(--ease);box-shadow:0 8px 40px rgba(0,0,0,0.1)}
   .hero-img.in{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
   .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease),filter 0.6s var(--ease);will-change:transform}
   .hero-img:hover img{transform:scale(1.06);filter:brightness(0.88)}
@@ -154,16 +147,15 @@
   .hero-img-overlay{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,0.45));border-radius:0 0 20px 20px}
   .hero-img-tag{display:inline-block;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);color:#fff;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px}
 
-  .hero-float-card{position:absolute;background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:12px 16px;box-shadow:0 4px 24px rgba(0,0,0,0.2);display:flex;align-items:center;gap:10px;z-index:2;
+  .hero-float-card{position:absolute;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:14px;padding:12px 16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);display:flex;align-items:center;gap:10px;z-index:2;
     opacity:0;transform:translateY(24px) scale(0.85);transition:all 0.7s var(--ease-spring)}
   .hero-float-card.in{opacity:1;transform:translateY(0) scale(1)}
-  .hero-float-card.top-right{top:-4px;right:-12px}
   .hero-float-card.bottom-left{bottom:8px;left:-12px}
-  .float-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;font-family:var(--display)}
   .float-icon{width:32px;height:32px;border-radius:50%;background:rgba(var(--accent-rgb),0.08);display:flex;align-items:center;justify-content:center}
+  .float-icon .material-symbols-outlined{font-size:16px;color:var(--accent);font-variation-settings:'FILL' 1}
   .float-text{font-size:11px;line-height:1.4}
-  .float-text strong{display:block;font-size:12px;color:#fff;font-weight:600}
-  .float-text span{color:rgba(255,255,255,0.6)}
+  .float-text strong{display:block;font-size:12px;color:var(--primary);font-weight:600}
+  .float-text span{color:#999}
 
   /* ===== SCROLL SECTIONS ===== */
   .section{padding:clamp(80px,10vw,140px) 0}
@@ -174,12 +166,6 @@
   .section h2.center{text-align:center}
   .section-desc{font-size:clamp(13px,1.1vw,15px);color:#666;line-height:1.8;max-width:500px;margin-bottom:clamp(36px,4vw,52px)}
   .section-desc.center{text-align:center;margin-left:auto;margin-right:auto}
-
-  /* Accent line under section headings (desktop) */
-  .growth-path h2.center::after,.ecosystem-section h2.center::after{
-    content:'';display:block;width:40px;height:3px;margin:10px auto 0;
-    background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
-  }
 
   /* Reveal system */
   [data-reveal]{opacity:0;transform:translateY(50px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease)}
@@ -195,14 +181,71 @@
   [data-stagger].in > *:nth-child(4){transition-delay:0.36s}
 
   /* Divider */
-  .divider{height:1px;background-image:linear-gradient(to right,rgba(0,0,0,0.06) 0 40%,transparent 40%);background-size:8px 1px;
+  .divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,0,0,0.08),transparent);
     transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease)}
   .divider.in{transform:scaleX(1)}
 
+  /* ===== FLOW SECTION ===== */
+  .flow-section{padding:clamp(60px,8vw,100px) 0}
+  .flow-container{
+    background:#fff;border:1px solid var(--border);border-radius:24px;padding:clamp(32px,4vw,56px);
+    position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.04);
+    max-width:680px;margin:0 auto;
+  }
+  .flow-container::before{
+    content:'';position:absolute;top:-30%;right:-15%;width:50%;height:160%;
+    background:radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent 60%);
+    border-radius:50%;pointer-events:none;
+  }
+  .flow-title{font-size:clamp(22px,2.2vw,28px);font-weight:800;color:var(--primary);text-align:center;margin-bottom:6px}
+  .flow-subtitle{font-size:clamp(12px,1vw,14px);color:#999;text-align:center;margin-bottom:clamp(28px,3vw,44px)}
+  .flow-diagram{display:flex;flex-direction:column;align-items:stretch;gap:0;position:relative;z-index:1}
+
+  /* Flow Step */
+  .flow-step{display:flex;gap:16px;align-items:flex-start}
+  .flow-step-num{
+    width:36px;height:36px;min-width:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    color:#fff;font-family:var(--display);font-size:15px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px rgba(var(--accent-rgb),0.3);
+    margin-top:4px;
+  }
+  .flow-step-card{
+    flex:1;background:var(--bg-alt);border-radius:16px;padding:20px 24px;
+    border:1px solid var(--border);border-left:3px solid transparent;
+    box-shadow:0 4px 20px rgba(0,0,0,0.03);
+    transition:all 0.4s var(--ease);
+  }
+  .flow-step-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+  .flow-step-card.orange{border-left-color:var(--accent)}
+  .flow-step-card.blue{border-left-color:#3b82f6}
+  .flow-step-card.green{border-left-color:#22c55e}
+  .flow-step-title{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+  .flow-step-title .material-symbols-outlined{font-size:20px;font-variation-settings:'FILL' 1}
+  .flow-step-title .material-symbols-outlined.orange{color:var(--accent)}
+  .flow-step-title .material-symbols-outlined.blue{color:#3b82f6}
+  .flow-step-title .material-symbols-outlined.green{color:#22c55e}
+  .flow-step-title h3{font-size:16px;font-weight:700}
+  .flow-step-desc{font-size:13px;color:#999;margin-bottom:8px;line-height:1.6}
+  .flow-step-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 12px;border-radius:100px}
+  .flow-step-tag.orange{background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
+  .flow-step-tag.green{background:rgba(34,197,94,0.08);color:#16a34a}
+  .flow-type-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .flow-type-chip{font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;background:#fff;border:1px solid var(--border);color:var(--primary)}
+
+  /* Flow connector */
+  .flow-connector{display:flex;flex-direction:column;align-items:center;height:36px;position:relative;margin-left:18px}
+  .flow-connector-line{width:2px;flex:1;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.04))}
+  .flow-connector-arrow{display:flex;align-items:center;justify-content:center}
+  .flow-connector-arrow .material-symbols-outlined{font-size:20px;color:var(--accent)}
+
   /* ===== HORIZONTAL SCROLL CATEGORIES ===== */
   .cat-scroll-section{padding:clamp(80px,10vw,140px) 0;overflow:hidden}
+  .cat-scroll-header{padding:0 var(--gutter);width:min(100%,var(--inner));margin:0 auto clamp(24px,3vw,36px)}
   .cat-scroll-track{display:flex;gap:16px;padding:0 var(--gutter);cursor:grab;user-select:none;
-    transition:transform 0.1s linear}
+    transition:transform 0.1s linear;overflow-x:auto;scrollbar-width:none}
+  .cat-scroll-track::-webkit-scrollbar{display:none}
   .cat-scroll-track:active{cursor:grabbing}
   .cat-card{min-width:280px;height:340px;border-radius:24px;overflow:hidden;position:relative;flex-shrink:0;
     transition:transform 0.5s var(--ease);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
@@ -214,87 +257,17 @@
   .cat-badge{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);margin-bottom:10px;transition:transform 0.4s var(--ease-spring)}
   .cat-card:hover .cat-badge{transform:scale(1.15) rotate(5deg)}
   .cat-badge.g{background:rgba(255,107,53,0.3)}.cat-badge.r{background:rgba(59,130,246,0.3)}.cat-badge.s{background:rgba(168,85,247,0.3)}.cat-badge.c{background:rgba(34,197,94,0.3)}
+  .cat-badge .material-symbols-outlined{font-size:18px;color:#fff}
   .cat-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.01em}
   .cat-sub{font-size:12px;color:rgba(255,255,255,0.65)}
   .cat-arrow{position:absolute;bottom:28px;right:28px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
     display:flex;align-items:center;justify-content:center;
     opacity:0;transform:translateX(-8px);transition:all 0.4s var(--ease)}
   .cat-card:hover .cat-arrow{opacity:1;transform:translateX(0)}
-
-  /* ===== STATS ===== */
-  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--primary);border-radius:24px;padding:clamp(28px,3.5vw,48px);gap:16px;position:relative;overflow:hidden}
-  .stats-bar::before{content:'';position:absolute;top:-50%;right:-20%;width:60%;height:200%;background:radial-gradient(circle,rgba(var(--accent-rgb),0.08),transparent 60%);animation:statGlow 8s ease-in-out infinite alternate}
-  @keyframes statGlow{0%{transform:translate(0,0)}100%{transform:translate(-20%,10%)}}
-  .stat{text-align:center;position:relative;z-index:1;background:rgba(255,255,255,0.04);border-radius:16px;padding:24px 16px;border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px)}
-  .stat-num{font-family:var(--display);font-size:clamp(28px,3vw,42px);font-weight:800;background:linear-gradient(135deg,var(--accent),#ffcc70,#ffaa70);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
-  .stat-label{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;letter-spacing:0.02em}
-  .stats-note{text-align:center;font-size:11px;color:#ccc;margin-top:14px}
-
-  /* ===== TESTIMONIALS ===== */
-  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .test-card{background:linear-gradient(135deg,#fff 0%,#fafafa 100%);border:1px solid var(--border);border-radius:20px;padding:24px;padding-left:28px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
-  .test-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--accent-dark))}
-  .test-card::after{content:'\201C';position:absolute;top:12px;right:18px;font-size:52px;font-family:Georgia,serif;
-    background:linear-gradient(135deg,rgba(var(--accent-rgb),0.15),rgba(var(--accent-rgb),0.05));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;pointer-events:none}
-  .test-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.08)}
-  .test-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .test-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden}
-  .test-avatar img{width:100%;height:100%;object-fit:cover}
-  .test-name{font-size:13px;font-weight:600}
-  .test-meta{font-size:11px;color:var(--muted)}
-  .test-body{font-size:13px;color:#666;line-height:1.75}
-  .test-tag{display:inline-block;margin-top:12px;font-size:10px;font-weight:600;color:var(--accent);background:rgba(var(--accent-rgb),0.06);padding:3px 10px;border-radius:4px}
-
-  /* ===== FAQ ===== */
-  .faq-list{max-width:680px;margin:0 auto}
-  .faq-item{border-bottom:1px solid var(--border);padding:20px 0;cursor:pointer;border-radius:12px;padding-left:12px;padding-right:12px;transition:background 0.3s var(--ease)}
-  .faq-item:hover{background:rgba(var(--accent-rgb),0.03)}
-  .faq-q{font-size:14px;font-weight:600;display:flex;gap:10px;align-items:center;justify-content:space-between}
-  .faq-q-left{display:flex;gap:10px}
-  .faq-q-mark{font-family:var(--display);font-weight:700;color:#fff;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50%;font-size:12px}
-  .faq-arrow{width:20px;height:20px;transition:transform 0.4s var(--ease);color:var(--muted)}
-  .faq-item.open .faq-arrow{transform:rotate(180deg)}
-  .faq-a{font-size:13px;color:var(--muted);line-height:1.8;padding-left:30px;max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease),opacity 0.4s,padding 0.4s;opacity:0;padding-top:0}
-  .faq-item.open .faq-a{max-height:200px;opacity:1;padding-top:12px}
-
-  /* ===== LAST CTA ===== */
-  .cta-box{background:var(--primary);border-radius:28px;padding:clamp(40px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;overflow:hidden;position:relative}
-  .cta-box::before{content:'';position:absolute;bottom:-100px;left:-60px;width:350px;height:350px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.1),transparent 70%);border-radius:50%;pointer-events:none}
-  .cta-box::after{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.15),transparent 70%);border-radius:50%;animation:ctaGlow 6s ease-in-out infinite alternate}
-  @keyframes ctaGlow{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(-20px,20px)}}
-  .cta-content{position:relative;z-index:1}
-  .cta-content h2{font-size:clamp(22px,2.2vw,28px);font-weight:800;color:#fff;margin-bottom:12px;line-height:1.5;letter-spacing:-0.02em}
-  .cta-content p{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:24px;line-height:1.8}
-  .btn-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;padding:16px 36px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
-  .btn-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#ff8855,var(--accent));opacity:0;transition:opacity 0.4s}
-  .btn-cta:hover::before{opacity:1}
-  .btn-cta:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(var(--accent-rgb),0.35)}
-  .btn-cta span,.btn-cta svg{position:relative;z-index:1}
-  .btn-cta svg{width:16px;height:16px;transition:transform 0.4s var(--ease)}
-  .btn-cta:hover svg{transform:translateX(4px)}
-  .cta-trust{display:flex;gap:16px;margin-top:14px}
-  .cta-trust-item{font-size:11px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px}
-  .cta-trust-item svg{width:12px;height:12px}
-  .cta-img{position:relative;z-index:1;border-radius:20px;overflow:hidden;height:260px}
-  .cta-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease)}
-  .cta-box:hover .cta-img img{transform:scale(1.05)}
-
-  /* ===== FOOTER ===== */
-  footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.06);padding:32px 0;margin-top:20px}
-  .footer-inner{display:flex;justify-content:space-between;align-items:center}
-  .footer-logo{display:flex;align-items:center;gap:8px}
-  .footer-logo-icon{display:flex;gap:2px}
-  .footer-logo-icon .l{width:12px;height:12px;background:linear-gradient(135deg,#555,#777);border-radius:50% 0 50% 50%}
-  .footer-logo-icon .r{width:12px;height:12px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50% 50% 0 50%}
-  .footer-logo span{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.5)}
-  .footer-links{display:flex;gap:24px}
-  .footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.3s}
-  .footer-links a:hover{color:rgba(255,255,255,0.7)}
-  .footer-copy{font-size:11px;color:rgba(255,255,255,0.3)}
+  .cat-arrow .material-symbols-outlined{font-size:18px;color:#fff}
 
   /* ===== GROWTH PATH ===== */
-  .growth-path{padding:clamp(80px,10vw,140px) 0}
+  .growth-path{padding:clamp(80px,10vw,140px) 0;background:var(--bg-alt);margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding-left:max(var(--gutter),calc(50vw - var(--inner)/2));padding-right:max(var(--gutter),calc(50vw - var(--inner)/2))}
   .growth-path-inner{max-width:500px;margin:0 auto}
   .gp-stage{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;border-left:3px solid transparent;transition:all 0.5s var(--ease)}
   .gp-stage:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
@@ -318,92 +291,91 @@
   .gp-connector--yth-ama .gp-connector-line{background:linear-gradient(to bottom,#22c55e,#3b82f6)}
   .gp-connector--ama-pro .gp-connector-line{background:linear-gradient(to bottom,#3b82f6,var(--accent))}
   .gp-connector-label{font-size:11px;color:var(--muted);font-weight:500}
-  .gp-connector-arrow svg{width:18px;height:18px;color:var(--muted)}
+  .gp-connector-arrow .material-symbols-outlined{font-size:18px;color:var(--muted)}
+  .gp-bottom-text{text-align:center;margin-top:28px;font-size:13px;color:#666;line-height:1.8;max-width:400px;margin-left:auto;margin-right:auto}
 
-  /* ===== ECOSYSTEM CIRCLE DIAGRAM ===== */
-  .ecosystem-section{padding:clamp(80px,10vw,140px) 0}
-  .eco-diagram{max-width:380px;margin:0 auto;position:relative}
-  .eco-diagram svg{width:100%;height:auto;display:block}
-  .eco-label{position:absolute;text-align:center;pointer-events:none}
-  .eco-label--pro{top:-10px;left:50%;transform:translateX(-50%)}
-  .eco-label--youth{bottom:-10px;left:0;transform:translateX(-15%)}
-  .eco-label--ama{bottom:-10px;right:0;transform:translateX(15%)}
-  .eco-label-title{font-size:14px;font-weight:700;letter-spacing:-0.02em;color:var(--primary);margin-bottom:6px}
-  .eco-label-chips{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
-  .eco-label-chips span{font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;line-height:1.4;white-space:nowrap}
-  .eco-label--pro .eco-label-chips span{background:rgba(var(--accent-rgb),0.10);color:var(--accent-dark)}
-  .eco-label--youth .eco-label-chips span{background:rgba(34,197,94,0.10);color:#16a34a}
-  .eco-label--ama .eco-label-chips span{background:rgba(59,130,246,0.10);color:#2563eb}
-  .eco-edge-label{position:absolute;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;pointer-events:none}
-  .eco-edge-label--left{top:48%;left:-8px;transform:translateY(-50%);background:rgba(var(--accent-rgb),0.08);color:var(--accent-dark)}
-  .eco-edge-label--bottom{bottom:22%;left:50%;transform:translateX(-50%);background:rgba(34,197,94,0.08);color:#16a34a}
-  .eco-edge-label--right{top:48%;right:-8px;transform:translateY(-50%);background:rgba(59,130,246,0.08);color:#2563eb}
-  .eco-badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:32px auto 0;padding:12px 28px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;font-size:14px;font-weight:700;letter-spacing:-0.01em;box-shadow:0 6px 24px rgba(var(--accent-rgb),0.25);width:fit-content}
-  .eco-badge svg{width:18px;height:18px;animation:eco-spin 3s linear infinite}
-  @keyframes eco-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-  .eco-note{font-size:12px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.7}
-  @keyframes eco-draw{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}
-  .eco-arc{stroke-dasharray:200;stroke-dashoffset:200;animation:eco-draw 1.5s ease forwards}
-  .eco-arc--1{animation-delay:0.3s}
-  .eco-arc--2{animation-delay:0.7s}
-  .eco-arc--3{animation-delay:1.1s}
-
-  /* ===== VISUAL WORKFLOW DIAGRAM ===== */
-  .site-flow{padding:0 0 clamp(40px,5vw,60px);position:relative}
-  .flow-container{
-    background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);
-    border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:clamp(28px,4vw,44px);
-    position:relative;overflow:hidden;
-  }
-  .flow-container::before{
-    content:'';position:absolute;top:-30%;right:-15%;width:50%;height:160%;
-    background:radial-gradient(circle,rgba(var(--accent-rgb),0.08),transparent 60%);
-    border-radius:50%;pointer-events:none;
-  }
-  .flow-title{font-size:clamp(15px,1.4vw,18px);font-weight:800;color:#fff;text-align:center;margin-bottom:6px}
-  .flow-subtitle{font-size:clamp(12px,1vw,14px);color:rgba(255,255,255,0.5);text-align:center;margin-bottom:clamp(24px,3vw,36px)}
-
-  /* Diagram layout */
-  .flow-diagram{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1}
-
-  /* Node */
-  .flow-node{display:flex;align-items:center;gap:14px;width:100%;max-width:400px}
-  .flow-node-num{
-    width:32px;height:32px;min-width:32px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:#fff;font-family:var(--display);font-size:14px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 14px rgba(var(--accent-rgb),0.3);
-  }
-  .flow-node-card{
-    flex:1;background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 20px;
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 4px 20px rgba(0,0,0,0.2);
-    transition:all 0.4s var(--ease);
-  }
-  .flow-node-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
-  .flow-node-card.diag{border-left:3px solid var(--accent);border-top-color:rgba(255,255,255,0.08);border-right-color:rgba(255,255,255,0.08);border-bottom-color:rgba(255,255,255,0.08)}
-  .flow-node-card.result{border-left:3px solid #3b82f6;border-top-color:rgba(255,255,255,0.08);border-right-color:rgba(255,255,255,0.08);border-bottom-color:rgba(255,255,255,0.08)}
-  .flow-node-card.action{border-left:3px solid #22c55e;border-top-color:rgba(255,255,255,0.08);border-right-color:rgba(255,255,255,0.08);border-bottom-color:rgba(255,255,255,0.08)}
-  .flow-node-icon{margin-bottom:8px}
-  .flow-node-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
-  .flow-node-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:8px}
-  .flow-node-tag{
-    display:inline-block;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;
-    letter-spacing:0.02em;
-  }
-  .flow-node-tag.diag{background:rgba(var(--accent-rgb),0.15);color:#ff8855}
-  .flow-node-tag.action{background:rgba(34,197,94,0.15);color:#4ade80}
-  .flow-node-examples{display:flex;flex-wrap:wrap;gap:4px}
-  .flow-node-examples span{
-    font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px;
-    background:rgba(59,130,246,0.12);color:#60a5fa;
+  /* Accent line under headings */
+  .growth-path h2.center::after{
+    content:'';display:block;width:40px;height:3px;margin:10px auto 0;
+    background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
   }
 
-  /* Connector */
-  .flow-connector{display:flex;flex-direction:column;align-items:center;height:36px;position:relative;margin-left:16px}
-  .flow-connector-line{width:2px;flex:1;background:linear-gradient(to bottom,rgba(255,255,255,0.15),rgba(255,255,255,0.05))}
-  .flow-connector-arrow{display:flex;align-items:center;justify-content:center}
+  /* ===== FEATURES ===== */
+  .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .feature-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px 24px;text-align:center;
+    transition:all 0.5s var(--ease)}
+  .feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+  .feature-icon{width:56px;height:56px;border-radius:50%;background:rgba(var(--accent-rgb),0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .feature-icon .material-symbols-outlined{font-size:24px;color:var(--accent);font-variation-settings:'FILL' 1}
+  .feature-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+  .feature-card p{font-size:12px;color:#666;line-height:1.7}
+
+  /* ===== TESTIMONIALS ===== */
+  .test-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:800px;margin:0 auto}
+  .test-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;padding-left:32px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
+  .test-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--accent-dark))}
+  .test-card::after{content:'\201C';position:absolute;top:12px;right:18px;font-size:52px;font-family:Georgia,serif;
+    background:linear-gradient(135deg,rgba(var(--accent-rgb),0.15),rgba(var(--accent-rgb),0.05));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;pointer-events:none}
+  .test-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+  .test-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .test-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden}
+  .test-avatar img{width:100%;height:100%;object-fit:cover}
+  .test-info{flex:1}
+  .test-name{font-size:13px;font-weight:600}
+  .test-meta{font-size:11px;color:var(--muted)}
+  .test-tag{display:inline-block;font-size:10px;font-weight:600;color:var(--accent);background:rgba(var(--accent-rgb),0.06);padding:3px 10px;border-radius:4px}
+  .test-body{font-size:13px;color:#666;line-height:1.75;font-style:italic;margin-top:12px}
+
+  /* ===== FAQ ===== */
+  .faq-list{max-width:680px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--border);padding:20px 0;cursor:pointer;border-radius:12px;padding-left:12px;padding-right:12px;transition:background 0.3s var(--ease)}
+  .faq-item:hover{background:rgba(var(--accent-rgb),0.03)}
+  .faq-q{font-size:14px;font-weight:600;display:flex;gap:10px;align-items:center;justify-content:space-between}
+  .faq-q-left{display:flex;gap:10px;align-items:center}
+  .faq-q-mark{font-family:var(--display);font-weight:700;color:#fff;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50%;font-size:12px}
+  .faq-arrow{width:20px;height:20px;transition:transform 0.4s var(--ease);color:var(--muted)}
+  .faq-item.open .faq-arrow{transform:rotate(180deg)}
+  .faq-a{font-size:13px;color:var(--muted);line-height:1.8;padding-left:34px;max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease),opacity 0.4s,padding 0.4s;opacity:0;padding-top:0}
+  .faq-item.open .faq-a{max-height:200px;opacity:1;padding-top:12px}
+
+  /* ===== LAST CTA ===== */
+  .cta-box{background:linear-gradient(135deg,#fff 0%,#fffaf7 100%);border:1px solid rgba(var(--accent-rgb),0.1);border-radius:28px;padding:clamp(40px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;overflow:hidden;position:relative;box-shadow:0 8px 40px rgba(var(--accent-rgb),0.06)}
+  .cta-box::before{content:'';position:absolute;bottom:-100px;left:-60px;width:350px;height:350px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent 70%);border-radius:50%;pointer-events:none}
+  .cta-box::after{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent 70%);border-radius:50%;animation:ctaGlow 6s ease-in-out infinite alternate}
+  @keyframes ctaGlow{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(-20px,20px)}}
+  .cta-content{position:relative;z-index:1}
+  .cta-content h2{font-size:clamp(22px,2.2vw,28px);font-weight:800;color:var(--primary);margin-bottom:12px;line-height:1.5;letter-spacing:-0.02em}
+  .cta-content p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.8}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;padding:16px 36px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
+  .btn-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#ff8855,var(--accent));opacity:0;transition:opacity 0.4s}
+  .btn-cta:hover::before{opacity:1}
+  .btn-cta:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(var(--accent-rgb),0.35)}
+  .btn-cta span,.btn-cta .material-symbols-outlined{position:relative;z-index:1}
+  .btn-cta .material-symbols-outlined{font-size:18px;transition:transform 0.4s var(--ease)}
+  .btn-cta:hover .material-symbols-outlined{transform:translateX(4px)}
+  .cta-trust{display:flex;gap:16px;margin-top:14px}
+  .cta-trust-item{font-size:11px;color:#999;display:flex;align-items:center;gap:4px}
+  .cta-trust-item .material-symbols-outlined{font-size:13px;color:#bbb}
+  .cta-img{position:relative;z-index:1;border-radius:20px;overflow:hidden;height:260px}
+  .cta-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease)}
+  .cta-box:hover .cta-img img{transform:scale(1.05)}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:40px 0}
+  .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+  .footer-brand{display:flex;flex-direction:column;gap:8px}
+  .footer-logo{display:flex;align-items:center;gap:8px}
+  .footer-logo-icon{display:flex;gap:2px}
+  .footer-logo-icon .l{width:12px;height:12px;background:linear-gradient(135deg,#999,#bbb);border-radius:50% 0 50% 50%}
+  .footer-logo-icon .r{width:12px;height:12px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50% 50% 0 50%}
+  .footer-logo span{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:2px;color:#999}
+  .footer-tagline{font-size:13px;color:#666;font-weight:500;max-width:280px;line-height:1.6}
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{font-size:12px;color:#999;text-decoration:none;transition:color 0.3s}
+  .footer-links a:hover{color:var(--primary)}
+  .footer-copy{font-size:11px;color:#bbb}
+  .footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
 
   /* ===== MOBILE FLOATING CTA ===== */
   .mobile-fixed-cta{display:none}
@@ -412,19 +384,17 @@
   @media(max-width:768px){
     :root{--gutter:16px}
 
-    /* Hide br on mobile for natural reflow */
     .hero-sub br,.cta-content br,.cta-content p br{display:none}
 
-    /* Nav - glass effect (dark for hero) */
+    /* Nav */
     .nav-links{display:none}
     .nav-inner{height:52px}
-    nav{background:rgba(10,10,10,0.7);backdrop-filter:blur(24px) saturate(200%)}
-    nav.scrolled{background:rgba(248,248,248,0.95)}
+    nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(24px) saturate(200%)}
+    nav.scrolled{background:rgba(255,255,255,0.95)}
 
     /* Mobile menu button */
     .nav-menu-btn{display:flex;flex-direction:column;gap:5px;padding:8px;cursor:pointer;z-index:101}
-    .nav-menu-btn span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s var(--ease)}
-  nav.scrolled .nav-menu-btn span{background:var(--primary)}
+    .nav-menu-btn span{display:block;width:20px;height:2px;background:var(--primary);border-radius:2px;transition:all 0.3s var(--ease)}
     .nav-menu-btn.open span:nth-child(1){transform:rotate(45deg) translate(3px,4px)}
     .nav-menu-btn.open span:nth-child(2){opacity:0}
     .nav-menu-btn.open span:nth-child(3){transform:rotate(-45deg) translate(3px,-4px)}
@@ -433,13 +403,12 @@
       display:flex;flex-direction:column;
       position:fixed;top:52px;left:0;right:0;bottom:0;
       background:rgba(248,248,248,0.98);backdrop-filter:blur(20px);
-      padding:32px var(--gutter);gap:24px;
-      z-index:99;
+      padding:32px var(--gutter);gap:24px;z-index:99;
     }
     .nav-links.mobile-open a{font-size:18px;color:#333}
     .nav-links.mobile-open .mag-btn{text-align:center;padding:14px 24px;color:#fff}
 
-    /* ===== MOBILE FLOATING CTA BAR ===== */
+    /* Mobile floating CTA bar */
     .mobile-fixed-cta{
       display:block;position:fixed;bottom:0;left:0;right:0;z-index:98;
       padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
@@ -460,145 +429,80 @@
       background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
       animation:shimmer 3s ease-in-out infinite 1s;
     }
-    .mobile-fixed-cta svg{width:16px;height:16px}
-
-    /* Add padding to footer so it's not hidden behind fixed CTA */
+    .mobile-fixed-cta .material-symbols-outlined{font-size:16px}
     footer{padding-bottom:80px}
 
-    /* ===== HERO - RICH ===== */
+    /* Hero */
     .hero{grid-template-columns:1fr;min-height:auto;padding-top:68px;padding-bottom:28px;gap:24px}
     .hero-content{order:1}
     .hero-visual{order:2}
     .hero h1{font-size:26px;line-height:1.5;letter-spacing:-0.02em}
-    .hero-sub{font-size:14px;max-width:100%;line-height:1.85;color:rgba(255,255,255,0.6)}
+    .hero-sub{font-size:14px;max-width:100%;line-height:1.85;color:#666}
     .hero-empathy{gap:6px;margin-bottom:16px}
-    .empathy-chip{font-size:11px;padding:6px 14px;background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);box-shadow:0 2px 8px rgba(0,0,0,0.15);color:rgba(255,255,255,0.7)}
-    .empathy-chip::before{background:var(--accent);opacity:0.8}
+    .empathy-chip{font-size:11px;padding:6px 14px}
 
-    /* Hero CTA - gradient glow */
     .hero-cta-wrap{margin-top:8px}
     .btn-hero{
       width:100%;justify-content:center;padding:18px 24px;font-size:16px;font-weight:700;border-radius:16px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
       box-shadow:0 8px 32px rgba(var(--accent-rgb),0.35);
     }
 
-    /* Trust signals - pill badges (dark) */
     .trust-signals{gap:8px;margin-top:14px;display:flex;flex-wrap:wrap}
     .trust-item{
-      font-size:11px;background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);
-      padding:6px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 1px 4px rgba(0,0,0,0.15);color:rgba(255,255,255,0.4);
+      font-size:11px;background:rgba(0,0,0,0.03);backdrop-filter:blur(8px);
+      padding:6px 12px;border-radius:100px;border:1px solid var(--border);color:#999;
     }
-    .trust-item svg{stroke:rgba(255,255,255,0.3)}
 
-    /* Hero image grid */
     .hero-img-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:8px}
     .hero-img:nth-child(1){grid-row:auto;grid-column:1/-1}
     .hero-img:nth-child(1) img{aspect-ratio:16/9}
     .hero-img:nth-child(2) img,.hero-img:nth-child(3) img{aspect-ratio:4/3}
     .hero-img img{width:100%;height:auto!important}
-    .hero-img{border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .hero-img{border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
 
-    /* Float card - show compact version on mobile */
     .hero-float-card{display:none}
     .hero-float-card.bottom-left{
       display:flex;position:relative;bottom:auto;left:auto;margin-top:10px;
-      background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);
-      border:1px solid rgba(255,255,255,0.1);border-radius:14px;
-      padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.2);
+      background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);
+      border:1px solid var(--border);border-radius:14px;
+      padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);
       opacity:1;transform:none;
     }
 
-    /* ===== SECTIONS - RICH ===== */
+    /* Sections */
     .section{padding:52px 0}
     .section h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
-    .section-label{font-size:10px;letter-spacing:4px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .section-label{font-size:10px;letter-spacing:4px}
     .section-desc{font-size:13px;margin-bottom:28px}
-    .cat-scroll-section{padding:52px 0}
 
-    /* Decorative gradient line under section headings */
     .section h2::after{
       content:'';display:block;width:40px;height:3px;margin-top:10px;
       background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
     }
     .section h2.center::after{margin-left:auto;margin-right:auto}
 
-    /* ===== CAT SCROLL - RICHER ===== */
-    .cat-card{min-width:270px;height:320px;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+    /* Flow */
+    .flow-section{padding:40px 0}
+    .flow-container{padding:24px 18px;border-radius:20px}
+    .flow-title{font-size:20px}
+    .flow-subtitle{font-size:12px;margin-bottom:20px}
+    .flow-step{gap:12px}
+    .flow-step-num{width:30px;height:30px;min-width:30px;font-size:13px}
+    .flow-step-card{padding:16px}
+    .flow-step-title h3{font-size:15px}
+    .flow-connector{height:28px;margin-left:15px}
+
+    /* Categories */
+    .cat-scroll-section{padding:52px 0}
+    .cat-scroll-header{padding:0 var(--gutter)}
+    .cat-card{min-width:270px;height:320px;border-radius:20px}
     .cat-title{font-size:22px}
     .cat-sub{font-size:13px}
 
-    /* ===== STATS - INDIVIDUAL GLOW CELLS ===== */
-    .stats-bar{grid-template-columns:1fr 1fr;padding:20px;gap:12px;border-radius:20px}
-    .stat{
-      background:rgba(255,255,255,0.06);border-radius:14px;padding:18px 12px;
-      border:1px solid rgba(255,255,255,0.06);
-    }
-    .stat-num{font-size:30px}
-    .stat-label{font-size:11px;color:rgba(255,255,255,0.5)}
-
-    /* ===== TESTIMONIALS - HORIZONTAL SCROLL + QUOTE ===== */
-    .test-grid{
-      grid-template-columns:none;display:flex;gap:14px;
-      overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
-      margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));
-      padding-left:var(--gutter);padding-right:var(--gutter);
-    }
-    .test-grid::-webkit-scrollbar{display:none}
-    .test-card{
-      min-width:300px;flex-shrink:0;scroll-snap-align:start;
-      border-radius:18px;padding:22px;padding-left:26px;position:relative;
-      box-shadow:0 4px 24px rgba(0,0,0,0.05);
-      background:linear-gradient(135deg,#fff 0%,#fafafa 100%);
-    }
-    .test-body{font-size:13px;position:relative;padding-left:0}
-    .test-card::before{
-      content:'';position:absolute;top:0;left:0;width:3px;height:100%;
-      background:linear-gradient(to bottom,var(--accent),var(--accent-dark));
-      border-radius:3px 0 0 3px;
-    }
-
-    /* ===== CTA BOX - RICHER ===== */
-    .cta-box{
-      grid-template-columns:1fr;padding:28px 20px;border-radius:24px;gap:20px;
-      background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 50%,#0a0a0a 100%);
-    }
-    .cta-content h2{font-size:21px;line-height:1.55}
-    .cta-content p{font-size:13px}
-    .cta-img{height:200px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
-    .btn-cta{
-      width:100%;justify-content:center;padding:16px 24px;font-size:15px;font-weight:700;
-      border-radius:16px;box-shadow:0 8px 32px rgba(var(--accent-rgb),0.3);
-    }
-    .cta-trust{flex-wrap:wrap;gap:10px}
-
-    /* ===== FAQ - RICHER ===== */
-    .faq-item{padding:18px 0;border-bottom:1px solid rgba(0,0,0,0.04)}
-    .faq-q{font-size:14px}
-    .faq-q-mark{
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-      -webkit-background-clip:unset;-webkit-text-fill-color:#fff;background-clip:unset;
-      font-size:12px;color:#fff;min-width:24px;height:24px;border-radius:50%;
-      display:inline-flex;align-items:center;justify-content:center;
-    }
-    .faq-a{font-size:13px;padding-left:26px}
-
-    /* ===== FOOTER ===== */
-    .footer-inner{flex-direction:column;gap:16px;text-align:center}
-    .footer-links{gap:16px}
-
-    /* Divider - gradient */
-    .divider{margin:0 16px;background-image:linear-gradient(to right,transparent,rgba(var(--accent-rgb),0.15),transparent);background-size:100% 1px}
-
-    /* ===== GROWTH PATH - MOBILE ===== */
-    .growth-path{padding:52px 0}
-    .growth-path .section-label{font-size:10px;letter-spacing:4px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    /* Growth path */
+    .growth-path{padding:52px 16px}
     .growth-path h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
-    .growth-path h2::after{
+    .growth-path h2.center::after{
       content:'';display:block;width:40px;height:3px;margin-top:10px;
       background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
       margin-left:auto;margin-right:auto;
@@ -607,64 +511,77 @@
     .gp-stage h3{font-size:16px}
     .gp-chip{font-size:11px;padding:4px 12px}
 
-    /* ===== ECOSYSTEM CIRCLE DIAGRAM - MOBILE ===== */
-    .ecosystem-section{padding:52px 0}
-    .ecosystem-section .section-label{font-size:10px;letter-spacing:4px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .ecosystem-section h2{font-size:22px;line-height:1.5;letter-spacing:-0.02em}
-    .ecosystem-section h2::after{
-      content:'';display:block;width:40px;height:3px;margin-top:10px;
-      background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;
-      margin-left:auto;margin-right:auto;
-    }
-    .eco-label-title{font-size:13px}
-    .eco-label-chips span{font-size:9px;padding:2px 8px}
-    .eco-badge{font-size:13px;padding:10px 22px;margin-top:24px}
-    .eco-note{font-size:11px;margin-top:14px}
+    /* Features */
+    .features-grid{grid-template-columns:1fr 1fr;gap:12px}
+    .feature-card{padding:20px 16px;border-radius:16px}
+    .feature-icon{width:48px;height:48px;margin-bottom:12px}
+    .feature-card h3{font-size:14px}
+    .feature-card p{font-size:11px}
 
-    /* ===== FLOW DIAGRAM - MOBILE ===== */
-    .site-flow{padding:0 0 40px}
-    .flow-container{padding:24px 18px;border-radius:20px}
-    .flow-title{font-size:16px;margin-bottom:4px}
-    .flow-subtitle{font-size:12px;margin-bottom:20px}
-    .flow-node{gap:12px}
-    .flow-node-num{width:28px;height:28px;min-width:28px;font-size:12px}
-    .flow-node-card{padding:16px;border-radius:14px}
-    .flow-node-title{font-size:14px}
-    .flow-node-desc{font-size:12px}
-    .flow-connector{height:28px;margin-left:14px}
-    .flow-connector-arrow svg{width:16px;height:16px}
+    /* Testimonials */
+    .test-grid{
+      grid-template-columns:none;display:flex;gap:14px;
+      overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .test-grid::-webkit-scrollbar{display:none}
+    .test-card{
+      min-width:300px;flex-shrink:0;scroll-snap-align:start;
+      border-radius:18px;padding:22px;padding-left:26px;
+    }
+    .test-body{font-size:13px}
+
+    /* CTA */
+    .cta-box{grid-template-columns:1fr;padding:28px 20px;border-radius:24px;gap:20px}
+    .cta-content h2{font-size:21px;line-height:1.55}
+    .cta-content p{font-size:13px}
+    .cta-img{height:200px;border-radius:16px}
+    .btn-cta{width:100%;justify-content:center;padding:16px 24px;font-size:15px;font-weight:700;border-radius:16px;box-shadow:0 8px 32px rgba(var(--accent-rgb),0.3)}
+    .cta-trust{flex-wrap:wrap;gap:10px}
+
+    /* FAQ */
+    .faq-item{padding:18px 0}
+    .faq-q{font-size:14px}
+    .faq-a{font-size:13px;padding-left:34px}
+
+    /* Footer */
+    .footer-inner{flex-direction:column;gap:20px;align-items:center;text-align:center}
+    .footer-right{align-items:center}
+    .footer-links{gap:16px}
+
+    /* Divider */
+    .divider{margin:0 16px;background:linear-gradient(to right,transparent,rgba(0,0,0,0.08),transparent)}
   }
 
   /* Tablet */
   @media(min-width:769px) and (max-width:1024px){
     .hero{grid-template-columns:1fr 1fr;gap:24px}
     .hero h1{font-size:clamp(26px,3vw,36px)}
-    .test-grid{grid-template-columns:repeat(3,1fr);gap:12px}
-    .stats-bar{grid-template-columns:repeat(4,1fr)}
-  }
-  @media(min-width:769px){
-    .eco-diagram{max-width:440px}
+    .features-grid{grid-template-columns:repeat(2,1fr)}
   }
 
   /* Hide menu button on desktop */
   .nav-menu-btn{display:none}
 
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}[data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important}.hero-img{clip-path:none!important}.cursor,.cursor-dot,.cursor-ring,.grain,.scroll-progress{display:none!important}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}[data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important}.hero-img{clip-path:none!important}.grain,.scroll-progress{display:none!important}}
 </style>
 </head>
 <body>
 
-<div class="cursor"><div class="cursor-dot"></div></div>
-<div class="cursor"><div class="cursor-ring"></div></div>
 <div class="scroll-progress"></div>
 <div class="grain"></div>
 
+<!-- ===== NAV ===== -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo"><div class="nav-logo-icon"><div class="l"></div><div class="r"></div></div><div class="nav-logo-text">KAIWAI</div></a>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon"><div class="l"></div><div class="r"></div></div>
+      <div class="nav-logo-text">KAIWAI</div>
+    </a>
     <div class="nav-links">
-      <a href="#">サービス</a><a href="#">診断について</a><a href="#">活動事例</a>
+      <a href="#flow">サービス</a>
+      <a href="#faq">診断について</a>
+      <a href="#testimonials">活動事例</a>
       <a href="#" class="mag-btn">無料で診断する</a>
     </div>
     <div class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
@@ -673,86 +590,101 @@
 
 <main class="container">
 
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="hero-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
     <div class="hero-content">
       <div class="hero-empathy">
         <span class="empathy-chip">何を始めればいいかわからない</span>
         <span class="empathy-chip">ガクチカがない</span>
+        <span class="empathy-chip">就活が不安</span>
       </div>
       <h1>
         <span class="hero-line"><span class="hero-line-inner">迷っている学生へ。</span></span>
         <span class="hero-line"><span class="hero-line-inner"><span class="accent">3分の診断</span>で、次の一歩がわかる。</span></span>
       </h1>
-      <p class="hero-sub">あなたの志向に合った選択肢と行動を無料で提案します。</p>
+      <p class="hero-sub">あなたの志向・興味・現在地から、4つのタイプに分類。<br>ガクチカ・留学・資格・サークル、それぞれに合った<br>具体的なアクションを無料で提案します。</p>
       <div class="hero-cta-wrap">
-        <a href="#" class="btn-hero"><div class="shimmer"></div><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn-hero">
+          <div class="shimmer"></div>
+          <span>無料で診断してみる</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
       </div>
       <div class="trust-signals">
-        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div>
-        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div>
-        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div>
-        <div class="trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M10 6l-4 4M6 6l4 4"/></svg>無理な勧誘なし</div>
+        <div class="trust-item"><span class="material-symbols-outlined">timer</span>3分で完了</div>
+        <div class="trust-item"><span class="material-symbols-outlined">verified_user</span>完全無料</div>
+        <div class="trust-item"><span class="material-symbols-outlined">bolt</span>結果はすぐ表示</div>
+        <div class="trust-item"><span class="material-symbols-outlined">do_not_disturb_on</span>無理な勧誘なし</div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-img-grid">
-        <div class="hero-img"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=800&fit=crop&crop=faces" alt=""><div class="hero-img-overlay"><span class="hero-img-tag">実務参加で成長</span></div></div>
-        <div class="hero-img"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces" alt=""></div>
-        <div class="hero-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces" alt=""></div>
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=800&fit=crop&crop=faces" alt="学生が協力して学んでいる様子"><div class="hero-img-overlay"><span class="hero-img-tag">実務参加で成長</span></div></div>
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces" alt="学生グループの議論"></div>
+        <div class="hero-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces" alt="チームでの作業風景"></div>
       </div>
-      <div class="hero-float-card bottom-left"><div class="float-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><div class="float-text"><strong>87%の学生が</strong><span>診断後に行動を開始</span></div></div>
+      <div class="hero-float-card bottom-left">
+        <div class="float-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;font-size:16px;color:var(--accent)">trending_up</span></div>
+        <div class="float-text"><strong>87%の学生が</strong><span>診断後に行動を開始</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- What this site does - Visual Flow -->
-  <!-- Visual Workflow Diagram -->
-  <section class="site-flow">
+  <!-- ===== FLOW: KAIWAIでできること ===== -->
+  <section class="flow-section" id="flow" data-reveal>
     <div class="flow-container">
       <div class="flow-title">KAIWAIでできること</div>
       <div class="flow-subtitle">たった3分で「次にやるべきこと」がわかる無料診断サービス</div>
       <div class="flow-diagram">
         <!-- Step 1 -->
-        <div class="flow-node">
-          <div class="flow-node-num">1</div>
-          <div class="flow-node-card diag">
-            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <div class="flow-node-title">3分で無料診断</div>
-            <div class="flow-node-tag diag">所要時間 3分</div>
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-card orange">
+            <div class="flow-step-title">
+              <span class="material-symbols-outlined orange" style="font-variation-settings:'FILL' 1">check_circle</span>
+              <h3>3分で無料診断</h3>
+            </div>
+            <div class="flow-step-desc">5つの質問に答えるだけ</div>
+            <span class="flow-step-tag orange">所要時間 3分</span>
           </div>
         </div>
         <!-- Connector -->
         <div class="flow-connector">
           <div class="flow-connector-line"></div>
-          <div class="flow-connector-arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          </div>
+          <div class="flow-connector-arrow"><span class="material-symbols-outlined">south</span></div>
         </div>
         <!-- Step 2 -->
-        <div class="flow-node">
-          <div class="flow-node-num">2</div>
-          <div class="flow-node-card result">
-            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div class="flow-node-title">タイプ＆選択肢を提示</div>
-            <div class="flow-node-examples">
-              <span>ガクチカ型</span><span>留学型</span><span>資格型</span><span>サークル型</span>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-card blue">
+            <div class="flow-step-title">
+              <span class="material-symbols-outlined blue" style="font-variation-settings:'FILL' 1">bolt</span>
+              <h3>あなたのタイプを提示</h3>
+            </div>
+            <div class="flow-type-chips">
+              <span class="flow-type-chip">ガクチカ型</span>
+              <span class="flow-type-chip">留学型</span>
+              <span class="flow-type-chip">資格型</span>
+              <span class="flow-type-chip">サークル型</span>
             </div>
           </div>
         </div>
         <!-- Connector -->
         <div class="flow-connector">
           <div class="flow-connector-line"></div>
-          <div class="flow-connector-arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          </div>
+          <div class="flow-connector-arrow"><span class="material-symbols-outlined">south</span></div>
         </div>
         <!-- Step 3 -->
-        <div class="flow-node">
-          <div class="flow-node-num">3</div>
-          <div class="flow-node-card action">
-            <div class="flow-node-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
-            <div class="flow-node-title">具体的な一歩が決まる</div>
-            <div class="flow-node-tag action">すぐに行動開始できる</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-card green">
+            <div class="flow-step-title">
+              <span class="material-symbols-outlined green" style="font-variation-settings:'FILL' 1">verified</span>
+              <h3>具体的なアクションを提案</h3>
+            </div>
+            <div class="flow-step-desc">タイプに合った最初の一歩を提示</div>
+            <span class="flow-step-tag green">すぐに行動開始できる</span>
           </div>
         </div>
       </div>
@@ -761,30 +693,65 @@
 
   <div class="divider"></div>
 
+  <!-- ===== CATEGORIES: あなたはどのタイプ？ ===== -->
   <section class="cat-scroll-section">
-    <div class="container" data-reveal>
-      <div class="section-label center">What you'll discover</div>
-      <h2 class="center">4つのカテゴリ</h2>
+    <div class="cat-scroll-header" data-reveal>
+      <div class="section-label">YOUR TYPE</div>
+      <h2>あなたはどのタイプ？</h2>
     </div>
     <div class="cat-scroll-track" id="catTrack">
       <div style="min-width:clamp(20px,4vw,64px);flex-shrink:0"></div>
-      <div class="cat-card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="cat-title">ガクチカ</div><div class="cat-sub">経験を作る・発信する・運営する</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
-      <div class="cat-card"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge r"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div class="cat-title">留学</div><div class="cat-sub">世界を広げる・語学を磨く</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
-      <div class="cat-card"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=500&fit=crop" alt=""><div class="cat-overlay"><div class="cat-badge s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div class="cat-title">資格</div><div class="cat-sub">武器を手に入れる</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
-      <div class="cat-card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=500&fit=crop&crop=faces" alt=""><div class="cat-overlay"><div class="cat-badge c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="cat-title">サークル</div><div class="cat-sub">仲間と動く・居場所を見つける</div></div><div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop" alt="ガクチカ">
+        <div class="cat-overlay">
+          <div class="cat-badge g"><span class="material-symbols-outlined">stars</span></div>
+          <div class="cat-title">ガクチカ</div>
+          <div class="cat-sub">経験を作る・発信する・運営する</div>
+        </div>
+        <div class="cat-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt="留学">
+        <div class="cat-overlay">
+          <div class="cat-badge r"><span class="material-symbols-outlined">public</span></div>
+          <div class="cat-title">留学</div>
+          <div class="cat-sub">世界を広げる・語学を磨く</div>
+        </div>
+        <div class="cat-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=500&fit=crop" alt="資格">
+        <div class="cat-overlay">
+          <div class="cat-badge s"><span class="material-symbols-outlined">history_edu</span></div>
+          <div class="cat-title">資格</div>
+          <div class="cat-sub">武器を手に入れる</div>
+        </div>
+        <div class="cat-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=500&fit=crop&crop=faces" alt="サークル">
+        <div class="cat-overlay">
+          <div class="cat-badge c"><span class="material-symbols-outlined">groups</span></div>
+          <div class="cat-title">サークル</div>
+          <div class="cat-sub">仲間と動く・居場所を見つける</div>
+        </div>
+        <div class="cat-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+      </div>
       <div style="min-width:clamp(20px,4vw,64px);flex-shrink:0"></div>
     </div>
   </section>
 
-  <section class="growth-path section" data-reveal>
+  <!-- ===== GROWTH PATH ===== -->
+  <section class="growth-path" data-reveal>
     <div class="container">
-      <div class="section-label center">Growth Path</div>
-      <h2 class="center">3段階で、挑戦が加速する。</h2>
+      <div class="section-label center">GROWTH STORY</div>
+      <h2 class="center">診断の先にある、成長ストーリー</h2>
+      <div style="height:clamp(28px,3vw,40px)"></div>
       <div class="growth-path-inner">
 
         <div class="gp-stage gp-stage--youth" data-reveal>
           <div class="gp-stage-header">
-            <div class="gp-stage-icon">1</div>
+            <div class="gp-stage-icon">Y</div>
             <div>
               <div class="gp-stage-label">Youth</div>
               <h3>まず知る・参加する</h3>
@@ -801,12 +768,12 @@
         <div class="gp-connector gp-connector--yth-ama" data-reveal>
           <div class="gp-connector-line"></div>
           <div class="gp-connector-label">経験を積んで</div>
-          <div class="gp-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div class="gp-connector-arrow"><span class="material-symbols-outlined">south</span></div>
         </div>
 
         <div class="gp-stage gp-stage--amateur" data-reveal>
           <div class="gp-stage-header">
-            <div class="gp-stage-icon">2</div>
+            <div class="gp-stage-icon">A</div>
             <div>
               <div class="gp-stage-label">Amateur</div>
               <h3>やりたいことを形にする</h3>
@@ -823,12 +790,12 @@
         <div class="gp-connector gp-connector--ama-pro" data-reveal>
           <div class="gp-connector-line"></div>
           <div class="gp-connector-label">さらに挑戦して</div>
-          <div class="gp-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div class="gp-connector-arrow"><span class="material-symbols-outlined">south</span></div>
         </div>
 
         <div class="gp-stage gp-stage--pro" data-reveal>
           <div class="gp-stage-header">
-            <div class="gp-stage-icon">3</div>
+            <div class="gp-stage-icon">P</div>
             <div>
               <div class="gp-stage-label">Pro</div>
               <h3>挑戦を加速させる</h3>
@@ -836,139 +803,139 @@
           </div>
           <div class="gp-chips">
             <span class="gp-chip">伴走型支援</span>
-            <span class="gp-chip">ブランド化</span>
+            <span class="gp-chip">実案件参加</span>
             <span class="gp-chip">外部発信</span>
             <span class="gp-chip">事業共創</span>
           </div>
         </div>
 
+        <p class="gp-bottom-text">プロの案件で生まれたタスクは、ユースやアマチュアにも切り出されます。全員が「実務」を通じて成長できる仕組みです。</p>
+
       </div>
     </div>
-  </section>
-
-  <section class="ecosystem-section section" data-reveal>
-    <div class="container">
-      <div class="section-label center">Ecosystem</div>
-      <h2 class="center">プロの案件に、参加できる仕組み。</h2>
-
-      <div class="eco-diagram" data-reveal>
-        <svg viewBox="0 0 380 400" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <defs>
-            <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b35"/>
-            </marker>
-            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e"/>
-            </marker>
-            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
-            </marker>
-          </defs>
-
-          <!-- Arc: PRO -> YOUTH (orange) -->
-          <path class="eco-arc eco-arc--1" d="M 170,98 A 110,110 0 0,1 110,218" stroke="#ff6b35" stroke-width="2.5" fill="none" marker-end="url(#arrow-orange)"/>
-          <!-- Arc: YOUTH -> AMA (green) -->
-          <path class="eco-arc eco-arc--2" d="M 118,262 A 110,110 0 0,1 265,262" stroke="#22c55e" stroke-width="2.5" fill="none" marker-end="url(#arrow-green)"/>
-          <!-- Arc: AMA -> PRO (blue) -->
-          <path class="eco-arc eco-arc--3" d="M 268,218 A 110,110 0 0,1 210,98" stroke="#3b82f6" stroke-width="2.5" fill="none" marker-end="url(#arrow-blue)"/>
-
-          <!-- Center logo circle -->
-          <circle cx="190" cy="185" r="28" fill="#fff" stroke="var(--border)" stroke-width="1.5"/>
-          <text x="190" y="183" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="0.5" fill="var(--primary)" font-family="system-ui,sans-serif">KAIWAI</text>
-          <text x="190" y="196" text-anchor="middle" font-size="6.5" fill="var(--muted)" font-family="system-ui,sans-serif">ecosystem</text>
-
-          <!-- Node: PRO (top) -->
-          <circle cx="190" cy="75" r="26" fill="#ff6b35" stroke="#fff" stroke-width="3"/>
-          <g transform="translate(190,75)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="-8" y="-6" width="16" height="11" rx="1.5"/>
-            <path d="M-4,-6 L-4,-9 L4,-9 L4,-6"/>
-          </g>
-
-          <!-- Node: YOUTH (bottom-left) -->
-          <circle cx="95" cy="240" r="26" fill="#22c55e" stroke="#fff" stroke-width="3"/>
-          <g transform="translate(95,240)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="0" cy="-4" r="5"/>
-            <path d="M-8,8 a8,8 0 0,1 16,0"/>
-          </g>
-
-          <!-- Node: AMA (bottom-right) -->
-          <circle cx="285" cy="240" r="26" fill="#3b82f6" stroke="#fff" stroke-width="3"/>
-          <g transform="translate(285,240)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="0,-8 2.5,-3 8,-3 3.5,1 5,7 0,3.5 -5,7 -3.5,1 -8,-3 -2.5,-3"/>
-          </g>
-        </svg>
-
-        <!-- Text labels (HTML overlays) -->
-        <div class="eco-label eco-label--pro">
-          <div class="eco-label-title">PRO 実案件</div>
-          <div class="eco-label-chips">
-            <span>Web制作</span><span>イベント運営</span>
-          </div>
-        </div>
-        <div class="eco-label eco-label--youth">
-          <div class="eco-label-title">YOUTH 参加</div>
-          <div class="eco-label-chips">
-            <span>調査</span><span>制作補助</span>
-          </div>
-        </div>
-        <div class="eco-label eco-label--ama">
-          <div class="eco-label-title">AMA 成長</div>
-          <div class="eco-label-chips">
-            <span>企画立案</span><span>発信主導</span>
-          </div>
-        </div>
-
-        <!-- Edge labels -->
-        <div class="eco-edge-label eco-edge-label--left">タスクを切り出し</div>
-        <div class="eco-edge-label eco-edge-label--bottom">実績が積める</div>
-        <div class="eco-edge-label eco-edge-label--right">さらに挑戦</div>
-      </div>
-
-      <div style="text-align:center">
-        <div class="eco-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          この循環が成長を生む
-        </div>
-      </div>
-      <p class="eco-note">ユースはプロの実案件に参加し、実績を積みながらステップアップできます。</p>
-    </div>
-  </section>
-
-  <section style="padding:40px 0" data-reveal>
-    <div class="stats-bar" id="statsBar">
-      <div class="stat"><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">累計診断ユーザー数</div></div>
-      <div class="stat"><div class="stat-num" data-count="12" data-suffix="">0</div><div class="stat-label">参加できる<br>成長カテゴリ</div></div>
-      <div class="stat"><div class="stat-num" data-count="87" data-suffix="%">0</div><div class="stat-label">診断後に<br>行動を始めた学生</div></div>
-      <div class="stat"><div class="stat-num" data-count="3" data-suffix=" min">0</div><div class="stat-label">診断にかかる時間</div></div>
-    </div>
-    <p class="stats-note">* 2026年3月時点。行動開始には応募・相談・情報収集を含みます。</p>
   </section>
 
   <div class="divider"></div>
 
+  <!-- ===== FEATURES ===== -->
   <section class="section" data-reveal>
-    <h2 class="center" style="margin-bottom:36px">利用した学生の声</h2>
+    <div class="features-grid" data-stagger>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-symbols-outlined">schedule</span></div>
+        <h3>3分で完了</h3>
+        <p>通学中や休憩時間のスキマ時間で、すぐに自分のタイプを知ることができます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-symbols-outlined">verified_user</span></div>
+        <h3>完全無料</h3>
+        <p>診断からアクションの提案まで、全ての機能を無料で利用いただけます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-symbols-outlined">bolt</span></div>
+        <h3>結果はすぐ</h3>
+        <p>質問回答後、待つことなくその場であなたのタイプと推奨アクションを表示。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><span class="material-symbols-outlined">group_add</span></div>
+        <h3>実務に参加</h3>
+        <p>ただの診断で終わらず、実際にスキルを活かせる実案件への参加もサポート。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" id="testimonials" data-reveal>
+    <div class="section-label center">VOICE</div>
+    <h2 class="center" style="margin-bottom:36px">体験ストーリー</h2>
     <div class="test-grid" data-stagger>
-      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">K.T さん</div><div class="test-meta">大学2年・経済学部</div></div></div><div class="test-body">診断で「ガクチカ型」と出て、SNS運用タスクに参加。今は自分で企画も回しています。</div><div class="test-tag">ガクチカ型</div></div>
-      <div class="test-card"><div class="test-head"><div class="test-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""></div><div><div class="test-name">R.Y さん</div><div class="test-meta">大学1年・工学部</div></div></div><div class="test-body">方向が見えて制作補助から開始。小さな実績が自信になりました。</div><div class="test-tag">ガクチカ型</div></div>
+      <div class="test-card">
+        <div class="test-head">
+          <div class="test-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""></div>
+          <div class="test-info">
+            <div class="test-name">Aさん</div>
+            <div class="test-meta">大学2年・経済学部</div>
+          </div>
+          <span class="test-tag">ガクチカ型</span>
+        </div>
+        <div class="test-body">「何をすればいいか分からず焦っていましたが、診断で出たSNS運用のタスクを始めたら、自分の得意が見つかりました!」</div>
+      </div>
+      <div class="test-card">
+        <div class="test-head">
+          <div class="test-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""></div>
+          <div class="test-info">
+            <div class="test-name">Bさん</div>
+            <div class="test-meta">大学1年・文学部</div>
+          </div>
+          <span class="test-tag">留学型</span>
+        </div>
+        <div class="test-body">「英語は好きだけど、どう活かすか悩んでいました。英会話カフェでのボランティアから始め、今では短期留学を計画中です。」</div>
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section class="section" data-reveal>
-    <h2 class="center" style="font-size:24px;margin-bottom:36px">よくある質問</h2>
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq" data-reveal>
+    <h2 class="center" style="margin-bottom:36px">よくある質問</h2>
     <div class="faq-list">
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>本当に無料ですか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">はい、完全無料です。費用は一切かかりません。</div></div>
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>勧誘されませんか？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">無理な勧誘は一切ありません。</div></div>
-      <div class="faq-item"><div class="faq-q"><div class="faq-q-left"><span class="faq-q-mark">Q</span>やりたいことが決まっていなくても？</div><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">もちろん。むしろそういう方のための診断です。</div></div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-left"><span class="faq-q-mark">Q</span>本当に無料ですか？</div>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">はい、診断からその後のアクション提案、コミュニティへの参加まで、学生の方は全て無料でご利用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-left"><span class="faq-q-mark">Q</span>診断にどれくらい時間がかかりますか？</div>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">直感的に答えられる5つの質問だけですので、約3分程度で完了します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-left"><span class="faq-q-mark">Q</span>特定のスクールへの勧誘はありますか？</div>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">一切ありません。あくまであなたの「やりたい」を見つけるためのサポートが目的です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-left"><span class="faq-q-mark">Q</span>1年生でも参加できますか？</div>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">もちろんです。早期から自分の方向性を見つけることで、大学生活をより充実させることができます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-left"><span class="faq-q-mark">Q</span>診断結果が自分の思っていたのと違う場合は？</div>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">診断結果は一つのヒントです。別のタイプのアクションを閲覧したり、自分に合うものを組み合わせて活動することも可能です。</div>
+      </div>
     </div>
   </section>
 
+  <!-- ===== CTA ===== -->
   <section class="section">
     <div class="cta-box" data-reveal="scale">
-      <div class="cta-content"><h2>無料診断で、<br>次の一歩を見つけよう。</h2><a href="#" class="btn-cta"><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><div class="cta-trust"><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2.5 1.5"/></svg>3分で完了</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5.5 8.5l2 2 3.5-4"/></svg>完全無料</div><div class="cta-trust-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5 8h6"/></svg>結果はすぐ表示</div></div></div>
-      <div class="cta-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces" alt=""></div>
+      <div class="cta-content">
+        <h2>まだ迷ってる？<br>それならまず、診断してみよう。</h2>
+        <p>3分であなたのタイプがわかる。無料で、勧誘なし。<br>まずは気軽に試してみてください。</p>
+        <a href="#" class="btn-cta">
+          <span>無料で診断してみる</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        <div class="cta-trust">
+          <div class="cta-trust-item"><span class="material-symbols-outlined">timer</span>3分で完了</div>
+          <div class="cta-trust-item"><span class="material-symbols-outlined">verified_user</span>完全無料</div>
+          <div class="cta-trust-item"><span class="material-symbols-outlined">bolt</span>結果はすぐ表示</div>
+        </div>
+      </div>
+      <div class="cta-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces" alt="チームでの作業"></div>
     </div>
   </section>
 
@@ -976,47 +943,41 @@
 
 <!-- Mobile Fixed CTA -->
 <div class="mobile-fixed-cta" id="mobileCta">
-  <a href="#"><span>無料で診断してみる</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  <a href="#">
+    <span>無料で診断してみる</span>
+    <span class="material-symbols-outlined">arrow_forward</span>
+  </a>
 </div>
 
-<footer><div class="container"><div class="footer-inner"><div class="footer-logo"><div class="footer-logo-icon"><div class="l"></div><div class="r"></div></div><span>KAIWAI</span></div><div class="footer-links"><a href="#">利用規約</a><a href="#">プライバシー</a><a href="#">お問い合わせ</a></div><div class="footer-copy">&copy; 2026 KAIWAI</div></div></div></footer>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><div class="l"></div><div class="r"></div></div>
+          <span>KAIWAI</span>
+        </div>
+        <div class="footer-tagline">学生の「やりたい」を、最初の一歩に変える</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="#">利用規約</a>
+          <a href="#">プライバシー</a>
+          <a href="#">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 KAIWAI</div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
-// ===== Custom Cursor =====
-const dot = document.querySelector('.cursor-dot');
-const ring = document.querySelector('.cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-document.addEventListener('mousedown', () => ring.classList.add('clicking'));
-document.addEventListener('mouseup', () => ring.classList.remove('clicking'));
-
-const hoverEls = 'a, button, .cat-card, .step-card, .tier-card, .test-card, .faq-item, .btn-hero, .btn-cta, .mag-btn';
-document.querySelectorAll(hoverEls).forEach(el => {
-  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-});
-
-function cursorLoop() {
-  dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-  requestAnimationFrame(cursorLoop);
-}
-cursorLoop();
-
-// Touch device: hide cursor
-if ('ontouchstart' in window) {
-  document.querySelectorAll('.cursor').forEach(c => c.style.display = 'none');
-  document.body.style.cursor = 'auto';
-}
-
 // ===== Scroll Progress =====
 const progressBar = document.querySelector('.scroll-progress');
 window.addEventListener('scroll', () => {
   const h = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.transform = `scaleX(${window.scrollY / h})`;
+  if (h > 0) progressBar.style.transform = 'scaleX(' + (window.scrollY / h) + ')';
 }, { passive: true });
 
 // ===== Nav scroll state =====
@@ -1036,70 +997,54 @@ function heroSequence() {
   const floats = document.querySelectorAll('.hero-float-card');
 
   let d = 100;
-  chips.forEach((c, i) => setTimeout(() => c.classList.add('in'), d + i * 120));
+  chips.forEach(function(c, i) { setTimeout(function() { c.classList.add('in'); }, d + i * 120); });
   d += chips.length * 120 + 100;
-  lines.forEach((l, i) => setTimeout(() => l.classList.add('in'), d + i * 180));
+  lines.forEach(function(l, i) { setTimeout(function() { l.classList.add('in'); }, d + i * 180); });
   d += lines.length * 180 + 100;
-  setTimeout(() => sub.classList.add('in'), d);
-  setTimeout(() => cta.classList.add('in'), d + 200);
-  setTimeout(() => trust.classList.add('in'), d + 400);
-  imgs.forEach((img, i) => setTimeout(() => img.classList.add('in'), 400 + i * 200));
-  floats.forEach((f, i) => setTimeout(() => f.classList.add('in'), 1200 + i * 300));
+  setTimeout(function() { sub.classList.add('in'); }, d);
+  setTimeout(function() { cta.classList.add('in'); }, d + 200);
+  setTimeout(function() { trust.classList.add('in'); }, d + 400);
+  imgs.forEach(function(img, i) { setTimeout(function() { img.classList.add('in'); }, 400 + i * 200); });
+  floats.forEach(function(f, i) { setTimeout(function() { f.classList.add('in'); }, 1200 + i * 300); });
 }
 heroSequence();
 
 // ===== Scroll Reveal =====
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('[data-reveal], [data-stagger], .divider, .result-card').forEach(el => revealObs.observe(el));
-
-// ===== Counter =====
-function countUp(el) {
-  const target = +el.dataset.count;
-  const suffix = el.dataset.suffix || '';
-  const dur = 2000;
-  const start = performance.now();
-  const ease = t => 1 - Math.pow(1 - t, 4);
-  (function tick(now) {
-    const p = Math.min((now - start) / dur, 1);
-    el.textContent = Math.round(ease(p) * target) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-  })(start);
-}
-const countObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); countObs.unobserve(e.target); } });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+document.querySelectorAll('[data-reveal], [data-stagger], .divider').forEach(function(el) {
+  revealObs.observe(el);
+});
 
 // ===== Magnetic Button =====
-document.querySelectorAll('.mag-btn').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top - r.height / 2;
-    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+document.querySelectorAll('.mag-btn').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var r = btn.getBoundingClientRect();
+    var x = e.clientX - r.left - r.width / 2;
+    var y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = 'translate(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px)';
   });
-  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
 });
 
 // ===== Horizontal Drag Scroll =====
-const track = document.getElementById('catTrack');
-let isDown = false, startX, scrollLeft;
-track.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; track.style.cursor = 'grabbing'; });
-track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
-track.style.overflowX = 'auto'; track.style.scrollbarWidth = 'none';
+var track = document.getElementById('catTrack');
+var isDown = false, startX, scrollLeft;
+track.addEventListener('mousedown', function(e) { isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; track.style.cursor = 'grabbing'; });
+track.addEventListener('mouseleave', function() { isDown = false; track.style.cursor = 'grab'; });
+track.addEventListener('mouseup', function() { isDown = false; track.style.cursor = 'grab'; });
+track.addEventListener('mousemove', function(e) { if (!isDown) return; e.preventDefault(); var x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
 
 // ===== Mobile Fixed CTA =====
-const mobileCta = document.getElementById('mobileCta');
+var mobileCta = document.getElementById('mobileCta');
 if (mobileCta) {
-  let lastY = 0;
-  const heroCtaEl = document.querySelector('.hero-cta-wrap');
-  const ctaObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
+  var heroCtaEl = document.querySelector('.hero-cta-wrap');
+  var ctaObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (!e.isIntersecting && window.scrollY > 300) mobileCta.classList.add('visible');
       else mobileCta.classList.remove('visible');
     });
@@ -1108,15 +1053,15 @@ if (mobileCta) {
 }
 
 // ===== Mobile Menu =====
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.querySelector('.nav-links');
-menuBtn.addEventListener('click', () => {
+var menuBtn = document.getElementById('menuBtn');
+var navLinks = document.querySelector('.nav-links');
+menuBtn.addEventListener('click', function() {
   menuBtn.classList.toggle('open');
   navLinks.classList.toggle('mobile-open');
   document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
 });
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
+navLinks.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
     menuBtn.classList.remove('open');
     navLinks.classList.remove('mobile-open');
     document.body.style.overflow = '';
@@ -1124,10 +1069,10 @@ navLinks.querySelectorAll('a').forEach(a => {
 });
 
 // ===== FAQ Accordion =====
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+document.querySelectorAll('.faq-item').forEach(function(item) {
+  item.querySelector('.faq-q').addEventListener('click', function() {
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
     if (!wasOpen) item.classList.add('open');
   });
 });
