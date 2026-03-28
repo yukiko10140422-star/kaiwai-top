@@ -76,12 +76,12 @@ export default function Hero() {
         {/* Heading */}
         <h1 className="text-[clamp(32px,3.5vw,44px)] max-md:text-[26px] font-extrabold leading-[1.45] max-md:leading-[1.5] tracking-[-0.03em] max-md:tracking-[-0.02em] mb-[clamp(14px,2vw,20px)] overflow-hidden text-primary">
           <span className="block overflow-hidden">
-            <span className="hero-line-inner block translate-y-[110%] transition-transform duration-900">
+            <span className="hero-line-inner block transition-transform duration-900" style={{ translate: '0 110%' }}>
               迷っている学生へ。
             </span>
           </span>
           <span className="block overflow-hidden">
-            <span className="hero-line-inner block translate-y-[110%] transition-transform duration-900">
+            <span className="hero-line-inner block transition-transform duration-900" style={{ translate: '0 110%' }}>
               <span className="bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent">
                 3分の診断
               </span>
