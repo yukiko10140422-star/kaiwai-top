@@ -1,1 +1,19 @@
+node_modules/
+.next/
+out/
+*.png
+.playwright-mcp/
 .superpowers/
+
+# dependencies
+
+# env files
+.env
+.env*.local
+
+# debug
+npm-debug.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
