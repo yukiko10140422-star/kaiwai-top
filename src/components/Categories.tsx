@@ -109,7 +109,7 @@ export default function Categories() {
         {categories.map((cat) => (
           <div
             key={cat.title}
-            className="min-w-[280px] max-md:min-w-[270px] h-[340px] max-md:h-[320px] rounded-3xl max-md:rounded-[20px] overflow-hidden relative shrink-0 transition-transform duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:scale-[1.03] group"
+            className="min-w-[280px] max-md:min-w-[260px] h-[340px] max-md:h-[320px] rounded-3xl max-md:rounded-[20px] overflow-hidden relative shrink-0 transition-transform duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:scale-[1.03] group"
           >
             <img
               src={cat.img}

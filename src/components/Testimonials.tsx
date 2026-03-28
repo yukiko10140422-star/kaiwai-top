@@ -40,13 +40,13 @@ export default function Testimonials() {
       </h2>
 
       <div
-        className="grid grid-cols-2 max-md:grid-cols-none max-md:flex gap-6 max-md:gap-3.5 max-w-[800px] mx-auto max-md:overflow-x-auto max-md:[scroll-snap-type:x_mandatory] max-md:[-webkit-overflow-scrolling:touch] max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden"
+        className="grid grid-cols-2 max-md:grid-cols-1 gap-6 max-md:gap-3.5 max-w-[800px] mx-auto"
         data-stagger=""
       >
         {testimonials.map((t) => (
           <div
             key={t.name}
-            className="bg-white border border-border rounded-[20px] max-md:rounded-[18px] p-8 max-md:p-[22px] pl-8 max-md:pl-[26px] transition-all duration-500 relative overflow-hidden max-md:min-w-[300px] max-md:shrink-0 max-md:[scroll-snap-align:start] before:content-[''] before:absolute before:top-0 before:left-0 before:w-[3px] before:h-full before:bg-gradient-to-b before:from-accent before:to-accent-dark after:content-['\201C'] after:absolute after:top-3 after:right-[18px] after:text-[52px] after:font-[Georgia,serif] after:bg-gradient-to-br after:from-[rgba(var(--accent-rgb),0.15)] after:to-[rgba(var(--accent-rgb),0.05)] after:bg-clip-text after:text-transparent after:leading-none after:pointer-events-none hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
+            className="bg-white border border-border rounded-[20px] max-md:rounded-[18px] p-8 max-md:p-[22px] pl-8 max-md:pl-[26px] transition-all duration-500 relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-[3px] before:h-full before:bg-gradient-to-b before:from-accent before:to-accent-dark after:content-['\201C'] after:absolute after:top-3 after:right-[18px] after:text-[52px] after:font-[Georgia,serif] after:bg-gradient-to-br after:from-[rgba(var(--accent-rgb),0.15)] after:to-[rgba(var(--accent-rgb),0.05)] after:bg-clip-text after:text-transparent after:leading-none after:pointer-events-none hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
           >
             <div className="flex items-center gap-3 mb-3.5">
               <div className="w-10 h-10 rounded-full overflow-hidden">

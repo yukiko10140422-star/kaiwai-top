@@ -80,7 +80,7 @@ export default function Hero() {
             (text) => (
               <span
                 key={text}
-                className={`empathy-chip inline-flex items-center gap-1.5 bg-[rgba(var(--accent-rgb),0.06)] border border-[rgba(var(--accent-rgb),0.12)] py-[5px] px-3.5 rounded-full text-[11px] text-[#666] transition-all duration-300 before:content-[''] before:w-[5px] before:h-[5px] before:bg-accent before:rounded-full hover:border-[rgba(var(--accent-rgb),0.4)] hover:text-primary${isClient ? " opacity-0 translate-y-3 scale-95" : ""}`}
+                className={`empathy-chip inline-flex items-center gap-1.5 bg-[rgba(var(--accent-rgb),0.06)] border border-[rgba(var(--accent-rgb),0.12)] py-[5px] px-3.5 max-md:py-[6px] max-md:px-3 rounded-full text-[11px] max-md:text-[12px] text-[#666] transition-all duration-300 before:content-[''] before:w-[5px] before:h-[5px] before:bg-accent before:rounded-full hover:border-[rgba(var(--accent-rgb),0.4)] hover:text-primary${isClient ? " opacity-0 translate-y-3 scale-95" : ""}`}
               >
                 {text}
               </span>
@@ -124,7 +124,7 @@ export default function Hero() {
 
         {/* CTA */}
         <div
-          className={`hero-cta-wrap transition-all duration-800 delay-800 max-md:mt-2${isClient ? " opacity-0 translate-y-5" : ""}`}
+          className={`hero-cta-wrap transition-all duration-800 delay-800 max-md:mt-4${isClient ? " opacity-0 translate-y-5" : ""}`}
         >
           <a
             href="#"
@@ -140,7 +140,7 @@ export default function Hero() {
 
         {/* Trust signals */}
         <div
-          className={`trust-signals flex gap-[18px] max-md:gap-2 flex-wrap mt-4 max-md:mt-3.5 transition-opacity duration-800 delay-1000${isClient ? " opacity-0" : ""}`}
+          className={`trust-signals flex gap-[18px] max-md:grid max-md:grid-cols-2 max-md:gap-2 flex-wrap mt-4 max-md:mt-3.5 transition-opacity duration-800 delay-1000${isClient ? " opacity-0" : ""}`}
         >
           {[
             { icon: "timer", text: "3分で完了" },
