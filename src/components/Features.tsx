@@ -45,7 +45,7 @@ export default function Features() {
             className="bg-white border border-border rounded-2xl text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
             style={{ padding: '24px 20px' }}
           >
-            <div className="w-14 max-md:w-12 h-14 max-md:h-12 rounded-full bg-[rgba(var(--accent-rgb),0.06)] flex items-center justify-center mx-auto mb-4 max-md:mb-3">
+            <div className="rounded-full bg-[rgba(var(--accent-rgb),0.06)] flex items-center justify-center mx-auto" style={{ width: 48, height: 48, marginBottom: 16 }}>
               <span
                 className="material-symbols-outlined text-2xl text-accent"
                 style={{ fontVariationSettings: "'FILL' 1" }}

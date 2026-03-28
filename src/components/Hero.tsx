@@ -13,8 +13,8 @@ export default function Hero() {
               {["何を始めればいいかわからない", "ガクチカがない", "就活が不安"].map(text => (
                 <span
                   key={text}
-                  style={{ padding: '8px 16px', fontSize: 13 }}
-                  className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 rounded-full text-gray-600"
+                  style={{ padding: '8px 18px', fontSize: 13, background: 'rgba(var(--accent-rgb), 0.08)' }}
+                  className="inline-flex items-center gap-1.5 rounded-full text-accent-dark border border-orange-200"
                 >
                   <span
                     style={{ width: 6, height: 6, flexShrink: 0 }}
@@ -66,11 +66,11 @@ export default function Hero() {
               ].map(item => (
                 <div
                   key={item.text}
-                  style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#999' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#999' }}
                 >
                   <span
                     className="material-symbols-outlined text-accent"
-                    style={{ fontVariationSettings: "'FILL' 1", fontSize: 16 }}
+                    style={{ fontVariationSettings: "'FILL' 1", fontSize: 15 }}
                   >
                     {item.icon}
                   </span>

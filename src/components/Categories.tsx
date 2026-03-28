@@ -88,12 +88,8 @@ export default function Categories() {
       <div
         className="container-inner mb-[clamp(24px,3vw,36px)]"
       >
-        <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3">
-          YOUR TYPE
-        </div>
-        <h2 className="text-[clamp(26px,2.8vw,36px)] max-md:text-[22px] font-extrabold tracking-[-0.03em] max-md:tracking-[-0.02em] leading-[1.35] max-md:leading-[1.5] mb-2.5 max-md:after:content-[''] max-md:after:block max-md:after:w-10 max-md:after:h-[3px] max-md:after:mt-2.5 max-md:after:bg-gradient-to-r max-md:after:from-accent max-md:after:to-accent-dark max-md:after:rounded-sm">
-          あなたはどのタイプ？
-        </h2>
+        <div className="section-label">YOUR TYPE</div>
+        <h2 className="section-heading">あなたはどのタイプ？</h2>
       </div>
 
       <div

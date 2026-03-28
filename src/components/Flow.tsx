@@ -1,10 +1,10 @@
 export default function Flow() {
   return (
     <section
-      className="section-spacing"
+      className="section-spacing bg-bg-alt"
       id="flow"
     >
-      <div className="bg-white border border-border rounded-3xl relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 600, margin: '0 auto', padding: 'clamp(32px, 4vw, 56px)' }}>
+      <div className="bg-white border border-border rounded-3xl relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 640, margin: '0 auto', padding: 'clamp(32px, 4vw, 56px)' }}>
         <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
           KAIWAIでできること
         </div>
@@ -33,7 +33,7 @@ export default function Flow() {
               <div className="text-[13px] text-[#999] mb-2 leading-[1.6]">
                 5つの質問に答えるだけ
               </div>
-              <span className="inline-block text-[11px] font-semibold py-[3px] px-3 rounded-full bg-[rgba(var(--accent-rgb),0.08)] text-accent-dark">
+              <span className="inline-block font-semibold py-[3px] px-3 rounded-full bg-[rgba(var(--accent-rgb),0.08)] text-accent-dark" style={{ fontSize: 12 }}>
                 所要時間 3分
               </span>
             </div>
@@ -111,7 +111,7 @@ export default function Flow() {
               <div className="text-[13px] text-[#999] mb-2 leading-[1.6]">
                 タイプに合った最初の一歩を提示
               </div>
-              <span className="inline-block text-[11px] font-semibold py-[3px] px-3 rounded-full bg-[rgba(34,197,94,0.08)] text-[#16a34a]">
+              <span className="inline-block font-semibold py-[3px] px-3 rounded-full bg-[rgba(34,197,94,0.08)] text-[#16a34a]" style={{ fontSize: 12 }}>
                 すぐに行動開始できる
               </span>
             </div>

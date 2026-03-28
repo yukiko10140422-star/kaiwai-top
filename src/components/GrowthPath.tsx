@@ -67,7 +67,7 @@ function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
           background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
         }}
       />
-      <div className="text-[11px] text-muted font-medium">{label}</div>
+      <div className="text-muted font-medium" style={{ fontSize: 13 }}>{label}</div>
       <div>
         <span className="material-symbols-outlined text-lg text-muted">
           south
@@ -84,15 +84,11 @@ export default function GrowthPath() {
     >
       <div className="container-inner">
         <div className="w-12 h-[1px] mx-auto mb-6 bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3 text-center">
-          GROWTH STORY
-        </div>
-        <h2 className="text-[clamp(26px,2.8vw,36px)] max-md:text-[22px] font-extrabold tracking-[-0.03em] max-md:tracking-[-0.02em] leading-[1.35] max-md:leading-[1.5] text-center after:content-[''] after:block after:w-10 after:h-[3px] after:mx-auto after:mt-2.5 after:bg-gradient-to-r after:from-accent after:to-accent-dark after:rounded-sm">
-          診断の先にある、成長ストーリー
-        </h2>
+        <div className="section-label">GROWTH STORY</div>
+        <h2 className="section-heading">診断の先にある、成長ストーリー</h2>
         <div style={{ height: 'clamp(32px, 3vw, 44px)' }} />
 
-        <div className="max-w-[500px] mx-auto">
+        <div style={{ maxWidth: 600, margin: '0 auto' }}>
           {stages.map((stage, index) => (
             <div key={stage.letter}>
               <div
@@ -106,7 +102,7 @@ export default function GrowthPath() {
                     {stage.letter}
                   </div>
                   <div>
-                    <div className="font-display text-[10px] font-bold tracking-[2px] uppercase text-muted">
+                    <div className="font-display font-bold tracking-[2px] uppercase text-muted" style={{ fontSize: 12 }}>
                       {stage.label}
                     </div>
                     <h3 className="text-[clamp(16px,1.4vw,19px)] max-md:text-base font-bold tracking-[-0.02em] text-primary">
@@ -144,7 +140,7 @@ export default function GrowthPath() {
             </div>
           ))}
 
-          <p className="text-center mt-7 text-[13px] text-[#666] leading-[1.8] max-w-[400px] mx-auto">
+          <p className="text-center mt-7 text-[#666]" style={{ fontSize: 14, lineHeight: 2, maxWidth: 440, margin: '28px auto 0' }}>
             プロの案件で生まれたタスクは、ユースやアマチュアにも切り出されます。全員が「実務」を通じて成長できる仕組みです。
           </p>
         </div>

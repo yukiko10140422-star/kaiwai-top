@@ -33,8 +33,8 @@ export default function CTA() {
             ].map((item) => (
               <div
                 key={item.text}
-                className="text-[#999] flex items-center gap-1"
-                style={{ fontSize: 12 }}
+                className="text-[#777] flex items-center gap-1.5"
+                style={{ fontSize: 13 }}
               >
                 <span className="material-symbols-outlined text-[13px] text-[#bbb]">
                   {item.icon}

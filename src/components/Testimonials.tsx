@@ -28,15 +28,11 @@ const testimonials: TestimonialItem[] = [
 export default function Testimonials() {
   return (
     <section
-      className="section-spacing"
+      className="section-spacing bg-bg-alt"
       id="testimonials"
     >
-      <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3 text-center">
-        VOICE
-      </div>
-      <h2 className="text-[clamp(26px,2.8vw,36px)] max-md:text-[22px] font-extrabold tracking-[-0.03em] max-md:tracking-[-0.02em] leading-[1.35] max-md:leading-[1.5] text-center mb-9 max-md:after:content-[''] max-md:after:block max-md:after:w-10 max-md:after:h-[3px] max-md:after:mt-2.5 max-md:after:mx-auto max-md:after:bg-gradient-to-r max-md:after:from-accent max-md:after:to-accent-dark max-md:after:rounded-sm">
-        体験ストーリー
-      </h2>
+      <div className="section-label">VOICE</div>
+      <h2 className="section-heading">体験ストーリー</h2>
 
       <div
         className="grid grid-cols-2 max-md:grid-cols-1 gap-6 max-md:gap-3.5 max-w-[800px] mx-auto"
