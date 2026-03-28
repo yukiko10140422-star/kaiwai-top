@@ -202,12 +202,6 @@ body {
   }
 }
 
-/* Categories モバイルカード幅 */
-@media (max-width: 768px) {
-  .categories-card {
-    min-width: calc(100vw - 80px);
-  }
-}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

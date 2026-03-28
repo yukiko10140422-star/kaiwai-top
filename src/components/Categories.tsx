@@ -1,141 +1,118 @@
-"use client";
-
-import { useRef, useCallback } from "react";
-
-interface CategoryItem {
-  img: string;
-  alt: string;
-  icon: string;
-  badgeClass: string;
-  title: string;
-  sub: string;
-}
-
-const categories: CategoryItem[] = [
+const types = [
   {
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop",
-    alt: "ガクチカ",
     icon: "stars",
-    badgeClass: "bg-[rgba(255,107,53,0.3)]",
-    title: "ガクチカ",
-    sub: "経験を作る・発信する・運営する",
+    title: "ガクチカ型",
+    color: "#ff6b35",
+    bg: "rgba(255,107,53,0.05)",
+    description: "経験を作る・発信する・運営する",
+    actions: ["SNS運用を始める", "Web制作に挑戦", "イベント企画に参加"],
   },
   {
-    img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop",
-    alt: "留学",
     icon: "public",
-    badgeClass: "bg-[rgba(59,130,246,0.3)]",
-    title: "留学",
-    sub: "世界を広げる・語学を磨く",
+    title: "留学型",
+    color: "#3b82f6",
+    bg: "rgba(59,130,246,0.05)",
+    description: "世界を広げる・語学を磨く",
+    actions: ["英語カフェに参加", "留学準備を開始", "TOEIC対策"],
   },
   {
-    img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=500&fit=crop",
-    alt: "資格",
     icon: "history_edu",
-    badgeClass: "bg-[rgba(168,85,247,0.3)]",
-    title: "資格",
-    sub: "武器を手に入れる",
+    title: "資格型",
+    color: "#22c55e",
+    bg: "rgba(34,197,94,0.05)",
+    description: "武器を手に入れる",
+    actions: ["人気資格を調べる", "学習計画を立てる", "検定に挑戦"],
   },
   {
-    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=500&fit=crop&crop=faces",
-    alt: "サークル",
     icon: "groups",
-    badgeClass: "bg-[rgba(34,197,94,0.3)]",
-    title: "サークル",
-    sub: "仲間と動く・居場所を見つける",
+    title: "サークル型",
+    color: "#8b5cf6",
+    bg: "rgba(139,92,246,0.05)",
+    description: "仲間と動く・居場所を見つける",
+    actions: ["コミュニティに参加", "イベント運営", "団体活動に参加"],
   },
 ];
 
 export default function Categories() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftRef = useRef(0);
-
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      isDragging.current = true;
-      startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0);
-      scrollLeftRef.current = trackRef.current?.scrollLeft ?? 0;
-      if (trackRef.current) trackRef.current.style.cursor = "grabbing";
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    isDragging.current = false;
-    if (trackRef.current) trackRef.current.style.cursor = "grab";
-  }, []);
-
-  const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
-    if (trackRef.current) trackRef.current.style.cursor = "grab";
-  }, []);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!isDragging.current || !trackRef.current) return;
-      e.preventDefault();
-      const x = e.pageX - trackRef.current.offsetLeft;
-      trackRef.current.scrollLeft =
-        scrollLeftRef.current - (x - startX.current) * 1.5;
-    },
-    []
-  );
-
   return (
-    <section className="section-spacing overflow-x-clip">
-      <div
-        className="container-inner mb-[clamp(24px,3vw,36px)]"
-      >
-        <div className="section-label">YOUR TYPE</div>
+    <section className="section-spacing bg-surface">
+      <div className="container-inner">
+        <div className="section-label">タイプ紹介</div>
         <h2 className="section-heading">あなたはどのタイプ？</h2>
-      </div>
 
-      <div
-        ref={trackRef}
-        className="flex gap-4 cursor-grab select-none overflow-x-auto [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
-        style={{ scrollSnapType: 'x mandatory' }}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
-        <div className="min-w-[max(var(--gutter),calc((100vw-var(--inner))/2))] shrink-0" />
-        {categories.map((cat) => (
-          <div
-            key={cat.title}
-            className="categories-card min-w-[280px] h-[340px] max-md:h-[320px] rounded-3xl max-md:rounded-[20px] overflow-hidden relative shrink-0 transition-transform duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:scale-[1.03] group"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <img
-              src={cat.img}
-              alt={cat.alt}
-              className="w-full h-full object-cover transition-all duration-800 group-hover:scale-110 group-hover:brightness-[0.8]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-[rgba(0,0,0,0.65)] flex flex-col justify-end p-7 transition-[background] duration-500 group-hover:from-15% group-hover:to-[rgba(0,0,0,0.75)]">
-              <div
-                className={`w-9 h-9 rounded-[10px] flex items-center justify-center backdrop-blur-[8px] mb-2.5 transition-transform duration-400 group-hover:scale-115 group-hover:rotate-5 ${cat.badgeClass}`}
+        <div
+          className="grid grid-cols-2 max-md:grid-cols-1"
+          style={{ gap: 16, maxWidth: 680, margin: "0 auto" }}
+        >
+          {types.map((type) => (
+            <div
+              key={type.title}
+              className="card-base"
+              style={{ padding: 28, background: type.bg }}
+            >
+              <span
+                className="material-symbols-outlined"
+                style={{
+                  fontSize: 28,
+                  color: type.color,
+                  fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24',
+                  display: "block",
+                  marginBottom: 12,
+                }}
               >
-                <span className="material-symbols-outlined text-lg text-white">
-                  {cat.icon}
-                </span>
-              </div>
-              <div className="text-[20px] max-md:text-[22px] font-bold text-white mb-1 tracking-[-0.01em]">
-                {cat.title}
-              </div>
-              <div className="text-xs max-md:text-[13px] text-white/65">
-                {cat.sub}
-              </div>
-            </div>
-            <div className="absolute bottom-7 right-7 w-9 h-9 rounded-full bg-white/15 backdrop-blur-[8px] flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-hover:opacity-100 group-hover:translate-x-0">
-              <span className="material-symbols-outlined text-lg text-white">
-                arrow_forward
+                {type.icon}
               </span>
+
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: type.color,
+                  marginBottom: 4,
+                }}
+              >
+                {type.title}
+              </div>
+
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "#666",
+                  marginBottom: 16,
+                }}
+              >
+                {type.description}
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {type.actions.map((action) => (
+                  <div
+                    key={action}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                    }}
+                  >
+                    <span
+                      className="material-symbols-outlined"
+                      style={{
+                        fontSize: 18,
+                        color: type.color,
+                        fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24',
+                      }}
+                    >
+                      check_circle
+                    </span>
+                    <span style={{ fontSize: 14, color: "#333" }}>
+                      {action}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-        <div className="min-w-[max(var(--gutter),calc((100vw-var(--inner))/2))] shrink-0" />
+          ))}
+        </div>
       </div>
     </section>
   );
