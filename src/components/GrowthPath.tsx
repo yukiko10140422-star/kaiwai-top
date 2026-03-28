@@ -180,29 +180,30 @@ export default function GrowthPath() {
             </div>
           ))}
 
-          {/* 循環構造の説明 */}
+          {/* 循環構造の説明 — with photo */}
           <div
-            className="card-base"
             style={{
               marginTop: 32,
-              padding: '20px 24px',
-              background: 'rgba(var(--accent-rgb), 0.03)',
-              borderColor: 'rgba(var(--accent-rgb), 0.1)',
-              textAlign: 'center',
+              borderRadius: 20,
+              overflow: 'hidden',
+              position: 'relative',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 8 }}>
-              <span className="material-symbols-outlined text-accent" style={{ fontSize: 20, fontVariationSettings: "'FILL' 1" }}>
-                sync
-              </span>
-              <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-primary)' }}>
-                循環する成長の仕組み
-              </span>
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&h=280&fit=crop&crop=faces"
+              alt="学生たちが協力している様子"
+              style={{ width: '100%', height: 160, objectFit: 'cover', display: 'block' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(var(--accent-rgb), 0.7), rgba(var(--accent-rgb), 0.9))' }} />
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span className="material-symbols-outlined" style={{ fontSize: 22, color: '#fff', fontVariationSettings: "'FILL' 1" }}>sync</span>
+                <span style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>循環する成長の仕組み</span>
+              </div>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', lineHeight: 1.7, textAlign: 'center', maxWidth: 480 }}>
+                挑戦フェーズの実案件は、入口フェーズの学生にもタスクとして開放。支援を受ける側が、やがて支援する側にもなれる。
+              </p>
             </div>
-            <p style={{ fontSize: 14, color: '#666', lineHeight: 1.8 }}>
-              挑戦フェーズの実案件から生まれたタスクは、入口フェーズの学生にも開放されます。
-              支援を受ける側が、やがて支援する側にもなれる — これがKAIWAIの循環構造です。
-            </p>
           </div>
         </div>
       </div>
