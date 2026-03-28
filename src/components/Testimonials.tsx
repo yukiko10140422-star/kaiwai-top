@@ -47,13 +47,14 @@ export default function Testimonials() {
       className="section-spacing bg-bg-alt"
       id="testimonials"
     >
-      <div className="section-label">体験談</div>
-      <h2 className="section-heading">体験ストーリー</h2>
+      <div className="container-inner">
+        <div className="section-label">体験談</div>
+        <h2 className="section-heading">体験ストーリー</h2>
 
-      <div
-        className="grid grid-cols-2 max-md:grid-cols-1 max-w-[800px] mx-auto"
-        style={{ gap: 16 }}
-      >
+        <div
+          className="grid grid-cols-2 max-md:grid-cols-1"
+          style={{ gap: 16, maxWidth: 800, margin: '0 auto' }}
+        >
         {testimonials.map((t) => (
           <div
             key={t.name}
@@ -93,6 +94,7 @@ export default function Testimonials() {
             </div>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );

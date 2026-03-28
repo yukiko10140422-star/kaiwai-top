@@ -47,9 +47,10 @@ export default function FAQ() {
       className="section-spacing"
       id="faq"
     >
-      <h2 className="section-heading">よくある質問</h2>
+      <div className="container-inner">
+        <h2 className="section-heading">よくある質問</h2>
 
-      <div className="max-w-[680px] mx-auto">
+        <div style={{ maxWidth: 680, margin: '0 auto' }}>
         {faqs.map((faq, index) => (
           <div
             key={index}
@@ -86,6 +87,7 @@ export default function FAQ() {
             </div>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );
