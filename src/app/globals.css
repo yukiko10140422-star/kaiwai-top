@@ -180,6 +180,7 @@ body {
   .hero-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+    padding-top: 48px !important;
   }
 
   .hero-grid > :first-child {
@@ -190,30 +191,14 @@ body {
     order: 2;
   }
 
-  .hero-photo-grid {
-    grid-template-rows: auto !important;
-  }
-
-  .hero-photo-main {
-    grid-row: auto !important;
-    grid-column: 1 / -1;
-  }
-
-  .hero-photo-main img {
-    aspect-ratio: 16 / 9;
-    height: auto !important;
-  }
-
-  .hero-float-card {
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
-    margin-top: 12px;
-  }
-
   .hero-cta {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-trust-bar {
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 }
 

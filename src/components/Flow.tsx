@@ -4,115 +4,166 @@ export default function Flow() {
       className="section-spacing bg-bg-alt"
       id="flow"
     >
-      <div className="card-base relative overflow-hidden before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.03),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 680, margin: '0 auto', padding: 'clamp(36px, 5vw, 64px)' }}>
-        <div className="section-label">HOW IT WORKS</div>
+      <div className="card-base relative overflow-hidden" style={{ maxWidth: 680, margin: '0 auto', padding: 'clamp(36px, 5vw, 64px)' }}>
+        {/* Decorative radial gradient */}
+        <div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            top: '-30%',
+            right: '-15%',
+            width: '50%',
+            height: '160%',
+            background: 'radial-gradient(circle, rgba(var(--accent-rgb), 0.03), transparent 60%)',
+          }}
+        />
+
+        <div className="section-label">診断の流れ</div>
         <h2 className="font-extrabold text-primary text-center" style={{ fontSize: 'clamp(22px, 2.5vw, 30px)', marginBottom: 8 }}>
-          KAIWAIでできること
+          たった3ステップで、次の一歩が見える
         </h2>
         <div className="text-center" style={{ fontSize: 14, color: '#999', marginBottom: 'clamp(32px, 3vw, 48px)' }}>
-          たった3分で「次にやるべきこと」がわかる無料診断サービス
+          5つの質問に答えるだけ。あなた専用のアクションプランが手に入ります。
         </div>
 
-        <div className="flex flex-col items-stretch relative z-1">
+        <div className="flex flex-col items-stretch relative" style={{ zIndex: 1 }}>
           {/* Step 1 */}
-          <div className="flex gap-4 max-md:gap-3 items-start">
-            <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
+          <div className="flex items-start" style={{ gap: 16 }}>
+            <div
+              className="rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display font-extrabold flex items-center justify-center"
+              style={{ width: 36, height: 36, minWidth: 36, fontSize: 15, boxShadow: '0 4px 14px rgba(var(--accent-rgb), 0.3)', marginTop: 4 }}
+            >
               1
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#ff6b35", padding: '20px 24px' }}>
-              <div className="flex items-center gap-2 mb-1">
+            <div
+              className="flex-1 bg-bg-alt border border-border transition-all hover:-translate-y-0.5"
+              style={{ borderRadius: 16, borderLeftWidth: 3, borderLeftColor: '#ff6b35', padding: '20px 24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}
+            >
+              <div className="flex items-center" style={{ gap: 8, marginBottom: 4 }}>
                 <span
-                  className="material-symbols-outlined text-[20px] text-accent"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
+                  className="material-symbols-outlined text-accent"
+                  style={{ fontSize: 20, fontVariationSettings: "'FILL' 1" }}
                 >
                   check_circle
                 </span>
-                <h3 className="text-base max-md:text-[15px] font-bold">
+                <h3 className="font-bold" style={{ fontSize: 16 }}>
                   3分で無料診断
                 </h3>
               </div>
-              <div className="text-[13px] text-[#999] mb-2 leading-[1.6]">
+              <div style={{ fontSize: 13, color: '#999', marginBottom: 8, lineHeight: 1.6 }}>
                 5つの質問に答えるだけ
               </div>
-              <span className="inline-block font-semibold py-[3px] px-3 rounded-full bg-[rgba(var(--accent-rgb),0.08)] text-accent-dark" style={{ fontSize: 12 }}>
+              <span
+                className="inline-block font-semibold text-accent-dark"
+                style={{ fontSize: 12, padding: '3px 12px', borderRadius: 9999, background: 'rgba(var(--accent-rgb), 0.08)' }}
+              >
                 所要時間 3分
               </span>
             </div>
           </div>
 
           {/* Connector */}
-          <div className="flex flex-col items-center h-10 relative ml-[18px] max-md:ml-[15px]">
-            <div className="w-0.5 flex-1 bg-gradient-to-b from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.04)]" />
+          <div className="flex flex-col items-center relative" style={{ height: 40, marginLeft: 18 }}>
+            <div className="flex-1" style={{ width: 2, background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.04))' }} />
             <div className="flex items-center justify-center">
-              <span className="material-symbols-outlined text-[20px] text-accent">
+              <span className="material-symbols-outlined text-accent" style={{ fontSize: 20 }}>
                 south
               </span>
             </div>
           </div>
 
           {/* Step 2 */}
-          <div className="flex gap-4 max-md:gap-3 items-start">
-            <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
+          <div className="flex items-start" style={{ gap: 16 }}>
+            <div
+              className="rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display font-extrabold flex items-center justify-center"
+              style={{ width: 36, height: 36, minWidth: 36, fontSize: 15, boxShadow: '0 4px 14px rgba(var(--accent-rgb), 0.3)', marginTop: 4 }}
+            >
               2
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#3b82f6", padding: '20px 24px' }}>
-              <div className="flex items-center gap-2 mb-1">
+            <div
+              className="flex-1 bg-bg-alt border border-border transition-all hover:-translate-y-0.5"
+              style={{ borderRadius: 16, borderLeftWidth: 3, borderLeftColor: '#3b82f6', padding: '20px 24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}
+            >
+              <div className="flex items-center" style={{ gap: 8, marginBottom: 4 }}>
                 <span
-                  className="material-symbols-outlined text-[20px] text-[#3b82f6]"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 20, color: '#3b82f6', fontVariationSettings: "'FILL' 1" }}
                 >
                   bolt
                 </span>
-                <h3 className="text-base max-md:text-[15px] font-bold">
+                <h3 className="font-bold" style={{ fontSize: 16 }}>
                   あなたのタイプを提示
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-1.5 mt-1">
-                {["ガクチカ型", "留学型", "資格型", "サークル型"].map(
-                  (type) => (
-                    <span
-                      key={type}
-                      className="text-xs font-semibold py-1 px-3 rounded-full bg-white border border-border text-primary"
-                    >
-                      {type}
-                    </span>
-                  )
-                )}
+              <div style={{ fontSize: 13, color: '#999', marginBottom: 10, lineHeight: 1.6 }}>
+                4つのタイプからあなたに最適なキャリアパスを診断
+              </div>
+              {/* 4タイプ ミニプレビューカード */}
+              <div className="flex flex-wrap" style={{ gap: 6 }}>
+                {([
+                  { label: 'ガクチカ型', color: '#ff6b35', bg: 'rgba(255,107,53,0.1)' },
+                  { label: '留学型', color: '#3b82f6', bg: 'rgba(59,130,246,0.1)' },
+                  { label: '資格型', color: '#22c55e', bg: 'rgba(34,197,94,0.1)' },
+                  { label: 'サークル型', color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)' },
+                ] as const).map((type) => (
+                  <span
+                    key={type.label}
+                    className="inline-block font-semibold"
+                    style={{
+                      fontSize: 11,
+                      padding: '3px 10px',
+                      borderRadius: 9999,
+                      background: type.bg,
+                      color: type.color,
+                      border: `1px solid ${type.color}20`,
+                    }}
+                  >
+                    {type.label}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Connector */}
-          <div className="flex flex-col items-center h-10 relative ml-[18px] max-md:ml-[15px]">
-            <div className="w-0.5 flex-1 bg-gradient-to-b from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.04)]" />
+          <div className="flex flex-col items-center relative" style={{ height: 40, marginLeft: 18 }}>
+            <div className="flex-1" style={{ width: 2, background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.04))' }} />
             <div className="flex items-center justify-center">
-              <span className="material-symbols-outlined text-[20px] text-accent">
+              <span className="material-symbols-outlined text-accent" style={{ fontSize: 20 }}>
                 south
               </span>
             </div>
           </div>
 
           {/* Step 3 */}
-          <div className="flex gap-4 max-md:gap-3 items-start">
-            <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
+          <div className="flex items-start" style={{ gap: 16 }}>
+            <div
+              className="rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display font-extrabold flex items-center justify-center"
+              style={{ width: 36, height: 36, minWidth: 36, fontSize: 15, boxShadow: '0 4px 14px rgba(var(--accent-rgb), 0.3)', marginTop: 4 }}
+            >
               3
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#22c55e", padding: '20px 24px' }}>
-              <div className="flex items-center gap-2 mb-1">
+            <div
+              className="flex-1 bg-bg-alt border border-border transition-all hover:-translate-y-0.5"
+              style={{ borderRadius: 16, borderLeftWidth: 3, borderLeftColor: '#22c55e', padding: '20px 24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}
+            >
+              <div className="flex items-center" style={{ gap: 8, marginBottom: 4 }}>
                 <span
-                  className="material-symbols-outlined text-[20px] text-[#22c55e]"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 20, color: '#22c55e', fontVariationSettings: "'FILL' 1" }}
                 >
                   verified
                 </span>
-                <h3 className="text-base max-md:text-[15px] font-bold">
-                  具体的なアクションを提案
+                <h3 className="font-bold" style={{ fontSize: 16 }}>
+                  あなた専用の行動プランを提案
                 </h3>
               </div>
-              <div className="text-[13px] text-[#999] mb-2 leading-[1.6]">
-                タイプに合った最初の一歩を提示
+              <div style={{ fontSize: 13, color: '#999', marginBottom: 8, lineHeight: 1.6 }}>
+                タイプに合った具体的なタスクリストを受け取れます
               </div>
-              <span className="inline-block font-semibold py-[3px] px-3 rounded-full bg-[rgba(34,197,94,0.08)] text-[#16a34a]" style={{ fontSize: 12 }}>
+              <span
+                className="inline-block font-semibold"
+                style={{ fontSize: 12, padding: '3px 12px', borderRadius: 9999, background: 'rgba(34,197,94,0.08)', color: '#16a34a' }}
+              >
                 すぐに行動開始できる
               </span>
             </div>
