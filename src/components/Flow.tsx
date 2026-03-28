@@ -4,7 +4,7 @@ export default function Flow() {
       className="section-spacing"
       id="flow"
     >
-      <div className="bg-white border border-border rounded-3xl p-[clamp(32px,4vw,56px)] max-md:p-[24px_18px] relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 600, margin: '0 auto' }}>
+      <div className="bg-white border border-border rounded-3xl relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 600, margin: '0 auto', padding: 'clamp(32px, 4vw, 56px)' }}>
         <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
           KAIWAIでできること
         </div>

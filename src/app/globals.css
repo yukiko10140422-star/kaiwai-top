@@ -95,8 +95,8 @@ body {
 
 @media (max-width: 768px) {
   .section-spacing {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 

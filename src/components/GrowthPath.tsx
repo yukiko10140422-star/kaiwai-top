@@ -96,8 +96,8 @@ export default function GrowthPath() {
           {stages.map((stage, index) => (
             <div key={stage.letter}>
               <div
-                className="relative bg-surface border border-border rounded-[18px] max-md:rounded-2xl p-[28px_24px_24px] max-md:p-[22px_18px_20px] border-l-[3px] transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]"
-                style={{ borderLeftColor: stage.borderColorValue }}
+                className="relative bg-surface border border-border rounded-2xl border-l-[3px] transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]"
+                style={{ borderLeftColor: stage.borderColorValue, padding: '28px 24px 24px' }}
               >
                 <div className="flex items-center gap-3.5 mb-3.5">
                   <div

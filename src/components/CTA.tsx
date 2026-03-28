@@ -1,9 +1,9 @@
 export default function CTA() {
   return (
-    <section className="py-[clamp(80px,10vw,140px)] max-md:py-[52px]">
+    <section className="section-spacing">
       <div
-        className="border border-[rgba(var(--accent-rgb),0.1)] rounded-[28px] max-md:rounded-3xl p-[clamp(40px,5vw,64px)] max-md:p-[28px_20px] grid grid-cols-2 max-md:grid-cols-1 items-center gap-12 max-md:gap-5 overflow-hidden relative shadow-[0_8px_40px_rgba(var(--accent-rgb),0.06)] before:content-[''] before:absolute before:-bottom-[100px] before:-left-[60px] before:w-[350px] before:h-[350px] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent_70%)] before:rounded-full before:pointer-events-none after:content-[''] after:absolute after:-top-[120px] after:-right-20 after:w-[400px] after:h-[400px] after:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent_70%)] after:rounded-full after:animate-[ctaGlow_6s_ease-in-out_infinite_alternate]"
-        style={{ background: "linear-gradient(135deg, #ffffff 0%, #fffaf7 100%)" }}
+        className="border border-[rgba(var(--accent-rgb),0.1)] rounded-3xl grid grid-cols-2 max-md:grid-cols-1 items-center gap-12 max-md:gap-5 overflow-hidden relative shadow-[0_8px_40px_rgba(var(--accent-rgb),0.06)] before:content-[''] before:absolute before:-bottom-[100px] before:-left-[60px] before:w-[350px] before:h-[350px] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent_70%)] before:rounded-full before:pointer-events-none after:content-[''] after:absolute after:-top-[120px] after:-right-20 after:w-[400px] after:h-[400px] after:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent_70%)] after:rounded-full after:animate-[ctaGlow_6s_ease-in-out_infinite_alternate]"
+        style={{ background: "linear-gradient(135deg, #ffffff 0%, #fffaf7 100%)", padding: 'clamp(40px, 5vw, 64px)' }}
       >
         <div className="relative z-1">
           <h2 className="text-[clamp(22px,2.2vw,28px)] max-md:text-[21px] font-extrabold text-primary mb-3 leading-[1.5] max-md:leading-[1.55] tracking-[-0.02em]">
