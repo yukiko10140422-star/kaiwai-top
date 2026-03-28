@@ -1,0 +1,20 @@
+name: 改善提案
+description: 既存機能のデザイン・動作の改善
+labels: ["改善"]
+body:
+  - type: textarea
+    id: where
+    attributes:
+      label: どこを改善したいか
+      description: 改善したい箇所を教えてください
+      placeholder: 例）トップページのヒーローセクション
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: どう変えたいか
+      description: どのように改善したいかを教えてください
+      placeholder: 例）アニメーションをもっと滑らかにしたい
+    validations:
+      required: true

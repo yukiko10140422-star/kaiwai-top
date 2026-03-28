@@ -1,11 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  // SSR時はfalse → 全要素が表示状態でHTMLに出力される（白画面防止）
+  // クライアントサイドでのみtrueになり、アニメーション用の非表示状態を適用してからアニメーション開始
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // まずisClientをtrueにして非表示状態のクラスを付与する
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const section = sectionRef.current;
     if (!section) return;
 
@@ -17,25 +27,30 @@ export default function Hero() {
     const imgs = section.querySelectorAll<HTMLElement>(".hero-img");
     const floats = section.querySelectorAll<HTMLElement>(".hero-float-card");
 
-    let d = 100;
-    chips.forEach((c, i) => {
-      setTimeout(() => c.classList.add("in"), d + i * 120);
+    // 2フレーム待ってからアニメーション開始（非表示状態が適用されてからinクラスを追加）
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        let d = 100;
+        chips.forEach((c, i) => {
+          setTimeout(() => c.classList.add("in"), d + i * 120);
+        });
+        d += chips.length * 120 + 100;
+        lines.forEach((l, i) => {
+          setTimeout(() => l.classList.add("in"), d + i * 180);
+        });
+        d += lines.length * 180 + 100;
+        setTimeout(() => sub?.classList.add("in"), d);
+        setTimeout(() => cta?.classList.add("in"), d + 200);
+        setTimeout(() => trust?.classList.add("in"), d + 400);
+        imgs.forEach((img, i) => {
+          setTimeout(() => img.classList.add("in"), 400 + i * 200);
+        });
+        floats.forEach((f, i) => {
+          setTimeout(() => f.classList.add("in"), 1200 + i * 300);
+        });
+      });
     });
-    d += chips.length * 120 + 100;
-    lines.forEach((l, i) => {
-      setTimeout(() => l.classList.add("in"), d + i * 180);
-    });
-    d += lines.length * 180 + 100;
-    setTimeout(() => sub?.classList.add("in"), d);
-    setTimeout(() => cta?.classList.add("in"), d + 200);
-    setTimeout(() => trust?.classList.add("in"), d + 400);
-    imgs.forEach((img, i) => {
-      setTimeout(() => img.classList.add("in"), 400 + i * 200);
-    });
-    floats.forEach((f, i) => {
-      setTimeout(() => f.classList.add("in"), 1200 + i * 300);
-    });
-  }, []);
+  }, [isClient]);
 
   return (
     <section
@@ -65,7 +80,7 @@ export default function Hero() {
             (text) => (
               <span
                 key={text}
-                className="empathy-chip inline-flex items-center gap-1.5 bg-[rgba(var(--accent-rgb),0.06)] border border-[rgba(var(--accent-rgb),0.12)] py-[5px] px-3.5 rounded-full text-[11px] text-[#666] opacity-0 translate-y-3 scale-95 transition-all duration-300 before:content-[''] before:w-[5px] before:h-[5px] before:bg-accent before:rounded-full hover:border-[rgba(var(--accent-rgb),0.4)] hover:text-primary"
+                className={`empathy-chip inline-flex items-center gap-1.5 bg-[rgba(var(--accent-rgb),0.06)] border border-[rgba(var(--accent-rgb),0.12)] py-[5px] px-3.5 rounded-full text-[11px] text-[#666] transition-all duration-300 before:content-[''] before:w-[5px] before:h-[5px] before:bg-accent before:rounded-full hover:border-[rgba(var(--accent-rgb),0.4)] hover:text-primary${isClient ? " opacity-0 translate-y-3 scale-95" : ""}`}
               >
                 {text}
               </span>
@@ -76,12 +91,18 @@ export default function Hero() {
         {/* Heading */}
         <h1 className="text-[clamp(32px,3.5vw,44px)] max-md:text-[26px] font-extrabold leading-[1.45] max-md:leading-[1.5] tracking-[-0.03em] max-md:tracking-[-0.02em] mb-[clamp(14px,2vw,20px)] overflow-hidden text-primary">
           <span className="block overflow-hidden">
-            <span className="hero-line-inner block transition-transform duration-900" style={{ translate: '0 110%' }}>
+            <span
+              className="hero-line-inner block transition-transform duration-900"
+              style={isClient ? { translate: "0 110%" } : undefined}
+            >
               迷っている学生へ。
             </span>
           </span>
           <span className="block overflow-hidden">
-            <span className="hero-line-inner block transition-transform duration-900" style={{ translate: '0 110%' }}>
+            <span
+              className="hero-line-inner block transition-transform duration-900"
+              style={isClient ? { translate: "0 110%" } : undefined}
+            >
               <span className="bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent">
                 3分の診断
               </span>
@@ -91,7 +112,9 @@ export default function Hero() {
         </h1>
 
         {/* Sub text */}
-        <p className="hero-sub text-[clamp(13px,1.2vw,15px)] max-md:text-[14px] text-[#666] leading-[1.9] max-md:leading-[1.85] mb-[clamp(24px,3vw,36px)] max-w-[440px] max-md:max-w-full opacity-0 translate-y-5 transition-all duration-800 delay-600">
+        <p
+          className={`hero-sub text-[clamp(13px,1.2vw,15px)] max-md:text-[14px] text-[#666] leading-[1.9] max-md:leading-[1.85] mb-[clamp(24px,3vw,36px)] max-w-[440px] max-md:max-w-full transition-all duration-800 delay-600${isClient ? " opacity-0 translate-y-5" : ""}`}
+        >
           あなたの志向・興味・現在地から、4つのタイプに分類。
           <br className="max-md:hidden" />
           ガクチカ・留学・資格・サークル、それぞれに合った
@@ -100,7 +123,9 @@ export default function Hero() {
         </p>
 
         {/* CTA */}
-        <div className="hero-cta-wrap opacity-0 translate-y-5 transition-all duration-800 delay-800 max-md:mt-2">
+        <div
+          className={`hero-cta-wrap transition-all duration-800 delay-800 max-md:mt-2${isClient ? " opacity-0 translate-y-5" : ""}`}
+        >
           <a
             href="#"
             className="inline-flex max-md:w-full max-md:justify-center items-center gap-2.5 bg-gradient-to-br from-accent to-accent-dark text-white py-[18px] px-10 max-md:px-6 rounded-[14px] max-md:rounded-[16px] text-base font-semibold max-md:font-bold no-underline relative overflow-hidden transition-all duration-400 shadow-[0_8px_32px_rgba(var(--accent-rgb),0.3)] max-md:shadow-[0_8px_32px_rgba(var(--accent-rgb),0.35)] hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(var(--accent-rgb),0.45)]"
@@ -114,7 +139,9 @@ export default function Hero() {
         </div>
 
         {/* Trust signals */}
-        <div className="trust-signals flex gap-[18px] max-md:gap-2 flex-wrap mt-4 max-md:mt-3.5 opacity-0 transition-opacity duration-800 delay-1000">
+        <div
+          className={`trust-signals flex gap-[18px] max-md:gap-2 flex-wrap mt-4 max-md:mt-3.5 transition-opacity duration-800 delay-1000${isClient ? " opacity-0" : ""}`}
+        >
           {[
             { icon: "timer", text: "3分で完了" },
             { icon: "verified_user", text: "完全無料" },
@@ -140,7 +167,10 @@ export default function Hero() {
       {/* Hero Visual */}
       <div className="relative z-1 max-md:order-2">
         <div className="grid grid-cols-2 gap-2.5 max-md:gap-2" style={{ gridTemplateRows: "200px 200px" }}>
-          <div className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] row-span-2 max-md:row-span-1 max-md:col-span-2 [clip-path:polygon(0_100%,100%_100%,100%_100%,0_100%)] transition-[clip-path] duration-1000">
+          <div
+            className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] row-span-2 max-md:row-span-1 max-md:col-span-2 transition-[clip-path] duration-1000"
+            style={isClient ? { clipPath: "polygon(0 100%,100% 100%,100% 100%,0 100%)" } : undefined}
+          >
             <img
               src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=800&fit=crop&crop=faces"
               alt="学生が協力して学んでいる様子"
@@ -152,14 +182,20 @@ export default function Hero() {
               </span>
             </div>
           </div>
-          <div className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] [clip-path:polygon(0_100%,100%_100%,100%_100%,0_100%)] transition-[clip-path] duration-1000">
+          <div
+            className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] transition-[clip-path] duration-1000"
+            style={isClient ? { clipPath: "polygon(0 100%,100% 100%,100% 100%,0 100%)" } : undefined}
+          >
             <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces"
               alt="学生グループの議論"
               className="w-full h-full max-md:h-auto object-cover transition-all duration-800 will-change-transform hover:scale-[1.06] hover:brightness-[0.88] max-md:aspect-[4/3]"
             />
           </div>
-          <div className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] [clip-path:polygon(0_100%,100%_100%,100%_100%,0_100%)] transition-[clip-path] duration-1000">
+          <div
+            className="hero-img rounded-[20px] max-md:rounded-[14px] overflow-hidden relative shadow-[0_8px_40px_rgba(0,0,0,0.1)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.1)] transition-[clip-path] duration-1000"
+            style={isClient ? { clipPath: "polygon(0 100%,100% 100%,100% 100%,0 100%)" } : undefined}
+          >
             <img
               src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces"
               alt="チームでの作業風景"
@@ -169,7 +205,9 @@ export default function Hero() {
         </div>
 
         {/* Float card */}
-        <div className="hero-float-card absolute max-md:relative bottom-2 max-md:bottom-auto left-[-12px] max-md:left-auto max-md:mt-2.5 bg-white/90 backdrop-blur-[16px] border border-border rounded-[14px] py-3 px-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-2.5 z-2 opacity-0 translate-y-6 scale-[0.85] transition-all duration-700 max-md:opacity-100 max-md:translate-y-0 max-md:scale-100">
+        <div
+          className={`hero-float-card absolute max-md:relative bottom-2 max-md:bottom-auto left-[-12px] max-md:left-auto max-md:mt-2.5 bg-white/90 backdrop-blur-[16px] border border-border rounded-[14px] py-3 px-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] max-md:shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-2.5 z-2 transition-all duration-700 max-md:opacity-100 max-md:translate-y-0 max-md:scale-100${isClient ? " opacity-0 translate-y-6 scale-[0.85]" : ""}`}
+        >
           <div className="w-8 h-8 rounded-full bg-[rgba(var(--accent-rgb),0.08)] flex items-center justify-center">
             <span
               className="material-symbols-outlined text-base text-accent"

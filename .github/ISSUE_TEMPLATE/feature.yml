@@ -1,0 +1,20 @@
+name: 機能追加
+description: 新しい機能やセクションの追加
+labels: ["機能追加"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: やりたいこと
+      description: 追加したい機能やセクションの内容を教えてください
+      placeholder: 例）お問い合わせフォームを追加したい
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 詳細・参考情報
+      description: 参考サイトやデザインイメージがあれば共有してください
+      placeholder: 参考URL、スクリーンショットなど
+    validations:
+      required: false
