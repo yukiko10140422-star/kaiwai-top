@@ -1,0 +1,28 @@
+name: バグ報告
+description: 表示崩れや動作の不具合
+labels: ["バグ"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 何が起きたか
+      description: 発生した問題を具体的に教えてください
+      placeholder: 例）スマホで見るとヘッダーが重なって表示される
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する動作
+      description: 本来どう動くべきかを教えてください
+      placeholder: 例）ヘッダーが正しく表示され、コンテンツと重ならない
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: スクリーンショット
+      description: 問題の様子がわかる画像があれば添付してください
+      placeholder: 画像をここにドラッグ＆ドロップしてください
+    validations:
+      required: false
