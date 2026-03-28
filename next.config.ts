@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/kaiwai-top",
+  basePath: "",
 };
 
 export default nextConfig;
