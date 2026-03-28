@@ -1,91 +1,41 @@
 export default function CTA() {
   return (
-    <section className="section-spacing">
-      <div
-        className="card-base relative overflow-hidden"
-        style={{
-          maxWidth: 800,
-          margin: '0 auto',
-          padding: 'clamp(40px, 6vw, 72px) clamp(32px, 5vw, 64px)',
-          background: 'linear-gradient(135deg, #fffaf7 0%, #fff5f0 100%)',
-          borderColor: 'rgba(var(--accent-rgb), 0.12)',
-        }}
-      >
-        {/* Decorative glow */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            top: -120,
-            right: -80,
-            width: 400,
-            height: 400,
-            background: 'radial-gradient(circle, rgba(var(--accent-rgb), 0.06), transparent 70%)',
-          }}
-        />
+    <section style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)', padding: 'clamp(72px, 10vw, 120px) 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Glow decoration */}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(var(--accent-rgb), 0.15), transparent 70%)', pointerEvents: 'none' }} />
 
-        <div className="relative" style={{ zIndex: 1, textAlign: 'center' }}>
-          <h2
-            className="font-extrabold text-primary"
-            style={{
-              fontSize: 'clamp(22px, 2.5vw, 30px)',
-              lineHeight: 1.5,
-              letterSpacing: '-0.02em',
-              marginBottom: 16,
-            }}
+      <div className="container-inner" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+        <h2 style={{ fontSize: 'clamp(26px, 3.2vw, 40px)', fontWeight: 800, color: '#fff', lineHeight: 1.4, letterSpacing: '-0.02em', marginBottom: 20 }}>
+          まだ悩んでいるあなたへ
+        </h2>
+
+        <p style={{ fontSize: 16, lineHeight: 1.85, color: 'rgba(255,255,255,0.7)', maxWidth: 520, margin: '0 auto 36px' }}>
+          「何をすればいいかわからない」は、多くの学生が感じている、ごく普通の気持ちです。
+          KAIWAIの診断は、5つの質問に答えるだけ。
+          3分後には、あなた専用の「最初の一歩」が見えています。
+        </p>
+
+        <div style={{ marginBottom: 28 }}>
+          <a
+            href="#"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '20px 48px', fontSize: 17, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, var(--color-accent), var(--color-accent-dark))', borderRadius: 16, textDecoration: 'none', boxShadow: '0 8px 32px rgba(var(--accent-rgb), 0.4)', transition: 'all 0.3s ease' }}
           >
-            まだ悩んでいるあなたへ
-          </h2>
+            <span>無料で診断する</span>
+            <span className="material-symbols-outlined" style={{ fontSize: 22 }}>arrow_forward</span>
+          </a>
+        </div>
 
-          <p style={{ fontSize: 15, lineHeight: 1.9, color: '#555', marginBottom: 32, maxWidth: 520, margin: '0 auto 32px' }}>
-            「何をすればいいかわからない」は、
-            多くの学生が感じている、ごく普通の気持ちです。
-            <br />
-            KAIWAIの診断は、5つの質問に答えるだけ。
-            <br />
-            3分後には、あなた専用の「最初の一歩」が見えています。
-          </p>
-
-          {/* CTAボタン */}
-          <div style={{ marginBottom: 24 }}>
-            <a
-              href="#"
-              className="items-center bg-gradient-to-br from-accent to-accent-dark text-white font-bold no-underline shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-              style={{
-                padding: '18px 48px',
-                display: 'inline-flex',
-                gap: 10,
-                borderRadius: 14,
-                fontSize: 16,
-              }}
-            >
-              <span>無料で診断する — 登録不要</span>
-              <span className="material-symbols-outlined" style={{ fontSize: 20 }}>
-                arrow_forward
-              </span>
-            </a>
-          </div>
-
-          {/* 信頼要素 */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-            {[
-              { icon: "group", text: "1,200人が診断済み" },
-              { icon: "trending_up", text: "87%が行動を開始" },
-              { icon: "do_not_disturb_on", text: "勧誘なし" },
-            ].map((item) => (
-              <div
-                key={item.text}
-                style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#888' }}
-              >
-                <span
-                  className="material-symbols-outlined"
-                  style={{ fontSize: 16, color: 'var(--color-accent)', fontVariationSettings: "'FILL' 1" }}
-                >
-                  {item.icon}
-                </span>
-                {item.text}
-              </div>
-            ))}
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 28, flexWrap: 'wrap' }}>
+          {[
+            { icon: "group", text: "1,200人が診断済み" },
+            { icon: "trending_up", text: "87%が行動を開始" },
+            { icon: "verified_user", text: "登録不要・勧誘なし" },
+          ].map(item => (
+            <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: 16, color: 'rgba(var(--accent-rgb), 0.7)', fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
+              {item.text}
+            </div>
+          ))}
         </div>
       </div>
     </section>
