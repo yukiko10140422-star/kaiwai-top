@@ -10,8 +10,8 @@ import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import MobileFixedCTA from "@/components/MobileFixedCTA";
+import MidCTA from "@/components/MidCTA";
 import ScrollEffects from "@/components/ScrollEffects";
-import Divider from "@/components/Divider";
 
 export default function Home() {
   return (
@@ -21,23 +21,17 @@ export default function Home() {
       <ScrollEffects />
       <Nav />
       <main>
-        <div className="container-inner">
-          <Hero />
-          <Flow />
-          <Divider />
-        </div>
+        <Hero />
+        <Flow />
         <ResultPreview />
         <Categories />
+        <MidCTA />
         <GrowthPath />
-        <div className="container-inner">
-          <Divider />
-          <Features />
-          <Divider />
-          <Testimonials />
-          <Divider />
-          <FAQ />
-          <CTA />
-        </div>
+        <Features />
+        <MidCTA />
+        <Testimonials />
+        <FAQ />
+        <CTA />
       </main>
       <MobileFixedCTA />
       <Footer />
