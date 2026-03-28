@@ -9,6 +9,8 @@ interface Stage {
   borderColor: string;
   borderColorValue: string;
   chips: string[];
+  reward: string;
+  rewardColor: string;
 }
 
 const stages: Stage[] = [
@@ -23,6 +25,8 @@ const stages: Stage[] = [
     borderColor: "border-l-[#22c55e]",
     borderColorValue: "#22c55e",
     chips: ["タイプ診断", "初回タスク", "小さな実績づくり", "コミュニティ"],
+    reward: "チームへの参加感、ガクチカのタネ",
+    rewardColor: "rgba(34,197,94,0.5)",
   },
   {
     letter: "A",
@@ -35,6 +39,8 @@ const stages: Stage[] = [
     borderColor: "border-l-[#3b82f6]",
     borderColorValue: "#3b82f6",
     chips: ["制作支援", "発信支援", "目標設計", "継続サポート"],
+    reward: "ポートフォリオ、実績、就活で話せる経験",
+    rewardColor: "rgba(59,130,246,0.5)",
   },
   {
     letter: "P",
@@ -47,6 +53,8 @@ const stages: Stage[] = [
     borderColor: "border-l-accent",
     borderColorValue: "#ff6b35",
     chips: ["伴走型支援", "実案件参加", "外部発信", "事業共創"],
+    reward: "実務経験、企業との接点、起業の種",
+    rewardColor: "rgba(255,107,53,0.5)",
   },
 ];
 
@@ -83,7 +91,7 @@ export default function GrowthPath() {
       className="section-spacing bg-bg-alt"
     >
       <div className="container-inner">
-        <div className="section-label">GROWTH STORY</div>
+        <div className="section-label">成長ストーリー</div>
         <h2 className="section-heading">診断の先にある、成長ストーリー</h2>
 
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
@@ -119,6 +127,9 @@ export default function GrowthPath() {
                     </span>
                   ))}
                 </div>
+                <div style={{ fontSize: 13, fontStyle: 'italic', color: stage.rewardColor, marginTop: 12 }}>
+                  ✨ 得られるもの: {stage.reward}
+                </div>
               </div>
 
               {index === 0 && (
@@ -139,7 +150,7 @@ export default function GrowthPath() {
           ))}
 
           <p className="text-center mt-7 text-[#666]" style={{ fontSize: 14, lineHeight: 2, maxWidth: 440, margin: '28px auto 0' }}>
-            プロの案件で生まれたタスクは、ユースやアマチュアにも切り出されます。全員が「実務」を通じて成長できる仕組みです。
+            💡 挑戦フェーズの実案件は、入口フェーズの学生にもタスクとして開放。全員が「実務」を通じて成長できる循環構造です。
           </p>
         </div>
       </div>
