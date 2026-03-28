@@ -100,35 +100,59 @@ body {
   }
 }
 
-/* Section heading */
+/* Section heading — editorial underline accent */
 .section-heading {
   font-size: clamp(24px, 3vw, 36px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.4;
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 20px;
+}
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 16px auto 0;
+  background: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
+  border-radius: 2px;
 }
 
 @media (max-width: 768px) {
   .section-heading {
     font-size: 24px;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
   }
 }
 
-/* Section label */
+/* Section label — refined uppercase tag */
 .section-label {
+  font-family: var(--font-display);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   background: linear-gradient(to bottom right, var(--color-accent), var(--color-accent-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Card base — consistent shadow and radius */
+.card-base {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+}
+.card-base:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
 /* Shimmer animation */

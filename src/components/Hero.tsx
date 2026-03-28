@@ -134,9 +134,9 @@ export default function Hero() {
                   trending_up
                 </span>
               </div>
-              <div style={{ fontSize: 11, lineHeight: 1.4 }}>
-                <strong style={{ display: 'block', fontSize: 12, fontWeight: 600 }}>87%の学生が</strong>
-                <span style={{ color: '#999' }}>診断後に行動を開始</span>
+              <div style={{ fontSize: 13, lineHeight: 1.5 }}>
+                <strong style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>87%の学生が</strong>
+                <span style={{ color: '#777' }}>診断後に行動を開始</span>
               </div>
             </div>
           </div>

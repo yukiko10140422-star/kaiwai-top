@@ -4,11 +4,12 @@ export default function Flow() {
       className="section-spacing bg-bg-alt"
       id="flow"
     >
-      <div className="bg-white border border-border rounded-3xl relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 640, margin: '0 auto', padding: 'clamp(32px, 4vw, 56px)' }}>
-        <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
+      <div className="card-base relative overflow-hidden before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.03),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 680, margin: '0 auto', padding: 'clamp(36px, 5vw, 64px)' }}>
+        <div className="section-label">HOW IT WORKS</div>
+        <h2 className="font-extrabold text-primary text-center" style={{ fontSize: 'clamp(22px, 2.5vw, 30px)', marginBottom: 8 }}>
           KAIWAIでできること
-        </div>
-        <div className="text-[#999] text-center" style={{ fontSize: 'clamp(12px, 1vw, 14px)', marginBottom: 'clamp(28px, 3vw, 44px)' }}>
+        </h2>
+        <div className="text-center" style={{ fontSize: 14, color: '#999', marginBottom: 'clamp(32px, 3vw, 48px)' }}>
           たった3分で「次にやるべきこと」がわかる無料診断サービス
         </div>
 

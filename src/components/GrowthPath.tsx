@@ -83,10 +83,8 @@ export default function GrowthPath() {
       className="section-spacing bg-bg-alt"
     >
       <div className="container-inner">
-        <div className="w-12 h-[1px] mx-auto mb-6 bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="section-label">GROWTH STORY</div>
         <h2 className="section-heading">診断の先にある、成長ストーリー</h2>
-        <div style={{ height: 'clamp(32px, 3vw, 44px)' }} />
 
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           {stages.map((stage, index) => (
