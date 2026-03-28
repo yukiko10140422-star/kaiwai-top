@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-bg-alt border-t border-border py-10 max-md:pb-20">
+    <footer className="bg-bg-alt border-t border-border py-10" style={{ paddingBottom: 80 }}>
       <div className="container-inner">
         <div className="flex max-md:flex-col justify-between items-start max-md:items-center max-md:text-center gap-10 max-md:gap-5">
           <div className="flex flex-col gap-2">

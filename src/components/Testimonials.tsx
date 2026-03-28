@@ -28,9 +28,8 @@ const testimonials: TestimonialItem[] = [
 export default function Testimonials() {
   return (
     <section
-      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px]"
+      className="section-spacing"
       id="testimonials"
-      data-reveal=""
     >
       <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3 text-center">
         VOICE
@@ -41,7 +40,6 @@ export default function Testimonials() {
 
       <div
         className="grid grid-cols-2 max-md:grid-cols-1 gap-6 max-md:gap-3.5 max-w-[800px] mx-auto"
-        data-stagger=""
       >
         {testimonials.map((t) => (
           <div

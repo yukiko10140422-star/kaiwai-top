@@ -2,28 +2,9 @@
 
 import { useEffect } from "react";
 
+// data-reveal は削除済み。useScrollReveal は空関数として残す（互換性のため）
 export function useScrollReveal(): void {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    document
-      .querySelectorAll("[data-reveal], [data-stagger], .divider")
-      .forEach((el) => {
-        observer.observe(el);
-      });
-
-    return () => observer.disconnect();
-  }, []);
+  // noop
 }
 
 export function useScrollProgress(): void {

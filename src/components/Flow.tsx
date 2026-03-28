@@ -1,11 +1,10 @@
 export default function Flow() {
   return (
     <section
-      className="py-[clamp(60px,8vw,100px)] max-md:py-10"
+      className="section-spacing"
       id="flow"
-      data-reveal=""
     >
-      <div className="bg-white border border-border rounded-3xl p-[clamp(32px,4vw,56px)] max-md:p-[24px_18px] relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] max-w-[700px] mx-auto before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none">
+      <div className="bg-white border border-border rounded-3xl p-[clamp(32px,4vw,56px)] max-md:p-[24px_18px] relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none" style={{ maxWidth: 600, margin: '0 auto' }}>
         <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
           KAIWAIでできること
         </div>

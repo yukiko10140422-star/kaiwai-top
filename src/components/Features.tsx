@@ -34,12 +34,10 @@ const features: FeatureItem[] = [
 export default function Features() {
   return (
     <section
-      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px]"
-      data-reveal=""
+      className="section-spacing"
     >
       <div
         className="grid grid-cols-4 max-md:grid-cols-2 max-lg:grid-cols-2 gap-[18px] max-md:gap-3"
-        data-stagger=""
       >
         {features.map((feature) => (
           <div

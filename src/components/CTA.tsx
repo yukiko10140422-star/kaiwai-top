@@ -4,7 +4,6 @@ export default function CTA() {
       <div
         className="border border-[rgba(var(--accent-rgb),0.1)] rounded-[28px] max-md:rounded-3xl p-[clamp(40px,5vw,64px)] max-md:p-[28px_20px] grid grid-cols-2 max-md:grid-cols-1 items-center gap-12 max-md:gap-5 overflow-hidden relative shadow-[0_8px_40px_rgba(var(--accent-rgb),0.06)] before:content-[''] before:absolute before:-bottom-[100px] before:-left-[60px] before:w-[350px] before:h-[350px] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent_70%)] before:rounded-full before:pointer-events-none after:content-[''] after:absolute after:-top-[120px] after:-right-20 after:w-[400px] after:h-[400px] after:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent_70%)] after:rounded-full after:animate-[ctaGlow_6s_ease-in-out_infinite_alternate]"
         style={{ background: "linear-gradient(135deg, #ffffff 0%, #fffaf7 100%)" }}
-        data-reveal="scale"
       >
         <div className="relative z-1">
           <h2 className="text-[clamp(22px,2.2vw,28px)] max-md:text-[21px] font-extrabold text-primary mb-3 leading-[1.5] max-md:leading-[1.55] tracking-[-0.02em]">
@@ -49,6 +48,7 @@ export default function CTA() {
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces"
             alt="チームでの作業"
             className="w-full h-full object-cover transition-transform duration-800 group-hover:scale-105"
+            style={{ maxHeight: 240, objectFit: 'cover', borderRadius: 16 }}
           />
         </div>
       </div>

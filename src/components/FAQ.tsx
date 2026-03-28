@@ -44,9 +44,8 @@ export default function FAQ() {
 
   return (
     <section
-      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px]"
+      className="section-spacing"
       id="faq"
-      data-reveal=""
     >
       <h2 className="text-[clamp(26px,2.8vw,36px)] max-md:text-[22px] font-extrabold tracking-[-0.03em] max-md:tracking-[-0.02em] leading-[1.35] max-md:leading-[1.5] text-center mb-9 max-md:after:content-[''] max-md:after:block max-md:after:w-10 max-md:after:h-[3px] max-md:after:mt-2.5 max-md:after:mx-auto max-md:after:bg-gradient-to-r max-md:after:from-accent max-md:after:to-accent-dark max-md:after:rounded-sm">
         よくある質問

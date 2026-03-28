@@ -60,7 +60,6 @@ function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
   return (
     <div
       className="flex flex-col items-center gap-1 py-1.5"
-      data-reveal=""
     >
       <div
         className="w-0.5 h-5 rounded-sm"
@@ -81,8 +80,7 @@ function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
 export default function GrowthPath() {
   return (
     <section
-      className="pt-[clamp(100px,12vw,160px)] pb-[clamp(80px,10vw,140px)] max-md:pt-16 max-md:pb-[52px] bg-bg-alt"
-      data-reveal=""
+      className="section-spacing bg-bg-alt"
     >
       <div className="container-inner">
         <div className="w-12 h-[1px] mx-auto mb-6 bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -100,7 +98,6 @@ export default function GrowthPath() {
               <div
                 className="relative bg-surface border border-border rounded-[18px] max-md:rounded-2xl p-[28px_24px_24px] max-md:p-[22px_18px_20px] border-l-[3px] transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]"
                 style={{ borderLeftColor: stage.borderColorValue }}
-                data-reveal=""
               >
                 <div className="flex items-center gap-3.5 mb-3.5">
                   <div
@@ -121,7 +118,8 @@ export default function GrowthPath() {
                   {stage.chips.map((chip) => (
                     <span
                       key={chip}
-                      className={`inline-block text-xs max-md:text-[12px] font-medium py-[5px] max-md:py-1.5 px-3.5 max-md:px-3 rounded-full leading-[1.4] ${stage.chipBg} ${stage.chipText}`}
+                      className={`inline-block text-xs font-medium py-[5px] max-md:py-1.5 px-3.5 max-md:px-3 rounded-full leading-[1.4] ${stage.chipBg} ${stage.chipText}`}
+                      style={{ fontSize: 13 }}
                     >
                       {chip}
                     </span>

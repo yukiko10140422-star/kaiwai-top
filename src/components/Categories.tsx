@@ -84,10 +84,9 @@ export default function Categories() {
   );
 
   return (
-    <section className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] overflow-x-clip">
+    <section className="section-spacing overflow-x-clip">
       <div
         className="container-inner mb-[clamp(24px,3vw,36px)]"
-        data-reveal=""
       >
         <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3">
           YOUR TYPE
@@ -100,6 +99,7 @@ export default function Categories() {
       <div
         ref={trackRef}
         className="flex gap-4 cursor-grab select-none overflow-x-auto [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
+        style={{ scrollSnapType: 'x mandatory' }}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
@@ -109,7 +109,8 @@ export default function Categories() {
         {categories.map((cat) => (
           <div
             key={cat.title}
-            className="min-w-[280px] max-md:min-w-[260px] h-[340px] max-md:h-[320px] rounded-3xl max-md:rounded-[20px] overflow-hidden relative shrink-0 transition-transform duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:scale-[1.03] group"
+            className="categories-card min-w-[280px] h-[340px] max-md:h-[320px] rounded-3xl max-md:rounded-[20px] overflow-hidden relative shrink-0 transition-transform duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:scale-[1.03] group"
+            style={{ scrollSnapAlign: 'start' }}
           >
             <img
               src={cat.img}
