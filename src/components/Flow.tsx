@@ -8,7 +8,7 @@ export default function Flow() {
         <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
           KAIWAIでできること
         </div>
-        <div className="text-[clamp(12px,1vw,14px)] max-md:text-xs text-[#999] text-center mb-[clamp(28px,3vw,44px)] max-md:mb-5">
+        <div className="text-[#999] text-center" style={{ fontSize: 'clamp(12px, 1vw, 14px)', marginBottom: 'clamp(28px, 3vw, 44px)' }}>
           たった3分で「次にやるべきこと」がわかる無料診断サービス
         </div>
 
@@ -18,7 +18,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               1
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#ff6b35" }}>
+            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#ff6b35", padding: '20px 24px' }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-accent"
@@ -40,7 +40,7 @@ export default function Flow() {
           </div>
 
           {/* Connector */}
-          <div className="flex flex-col items-center h-9 max-md:h-7 relative ml-[18px] max-md:ml-[15px]">
+          <div className="flex flex-col items-center h-10 relative ml-[18px] max-md:ml-[15px]">
             <div className="w-0.5 flex-1 bg-gradient-to-b from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.04)]" />
             <div className="flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px] text-accent">
@@ -54,7 +54,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               2
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#3b82f6" }}>
+            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#3b82f6", padding: '20px 24px' }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-[#3b82f6]"
@@ -82,7 +82,7 @@ export default function Flow() {
           </div>
 
           {/* Connector */}
-          <div className="flex flex-col items-center h-9 max-md:h-7 relative ml-[18px] max-md:ml-[15px]">
+          <div className="flex flex-col items-center h-10 relative ml-[18px] max-md:ml-[15px]">
             <div className="w-0.5 flex-1 bg-gradient-to-b from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.04)]" />
             <div className="flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px] text-accent">
@@ -96,7 +96,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               3
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#22c55e" }}>
+            <div className="flex-1 bg-bg-alt rounded-2xl border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#22c55e", padding: '20px 24px' }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-[#22c55e]"

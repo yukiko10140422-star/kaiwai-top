@@ -37,12 +37,13 @@ export default function Features() {
       className="section-spacing"
     >
       <div
-        className="grid grid-cols-4 max-md:grid-cols-2 max-lg:grid-cols-2 gap-[18px] max-md:gap-3"
+        className="grid grid-cols-4 max-md:grid-cols-2 max-lg:grid-cols-2 gap-5 max-md:gap-3.5"
       >
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="bg-white border border-border rounded-[20px] max-md:rounded-2xl p-[28px_24px] max-md:p-[20px_16px] text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
+            className="bg-white border border-border rounded-2xl text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)]"
+            style={{ padding: '24px 20px' }}
           >
             <div className="w-14 max-md:w-12 h-14 max-md:h-12 rounded-full bg-[rgba(var(--accent-rgb),0.06)] flex items-center justify-center mx-auto mb-4 max-md:mb-3">
               <span
@@ -55,7 +56,7 @@ export default function Features() {
             <h3 className="text-base max-md:text-sm font-bold mb-2">
               {feature.title}
             </h3>
-            <p className="text-xs max-md:text-[11px] text-[#666] leading-[1.7]">
+            <p className="text-[#666]" style={{ fontSize: 13, lineHeight: 1.7 }}>
               {feature.description}
             </p>
           </div>

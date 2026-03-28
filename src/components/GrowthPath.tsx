@@ -59,7 +59,7 @@ interface ConnectorProps {
 function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
   return (
     <div
-      className="flex flex-col items-center gap-1 py-1.5"
+      className="flex flex-col items-center gap-1.5 py-3"
     >
       <div
         className="w-0.5 h-5 rounded-sm"
@@ -90,7 +90,7 @@ export default function GrowthPath() {
         <h2 className="text-[clamp(26px,2.8vw,36px)] max-md:text-[22px] font-extrabold tracking-[-0.03em] max-md:tracking-[-0.02em] leading-[1.35] max-md:leading-[1.5] text-center after:content-[''] after:block after:w-10 after:h-[3px] after:mx-auto after:mt-2.5 after:bg-gradient-to-r after:from-accent after:to-accent-dark after:rounded-sm">
           診断の先にある、成長ストーリー
         </h2>
-        <div className="h-[clamp(28px,3vw,40px)]" />
+        <div style={{ height: 'clamp(32px, 3vw, 44px)' }} />
 
         <div className="max-w-[500px] mx-auto">
           {stages.map((stage, index) => (

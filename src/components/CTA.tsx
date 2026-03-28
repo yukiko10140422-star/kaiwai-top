@@ -25,7 +25,7 @@ export default function CTA() {
               arrow_forward
             </span>
           </a>
-          <div className="flex max-md:flex-wrap gap-4 max-md:gap-2.5 mt-3.5">
+          <div className="flex max-md:flex-wrap gap-4 max-md:gap-3 mt-4">
             {[
               { icon: "timer", text: "3分で完了" },
               { icon: "verified_user", text: "完全無料" },
@@ -33,7 +33,8 @@ export default function CTA() {
             ].map((item) => (
               <div
                 key={item.text}
-                className="text-[11px] text-[#999] flex items-center gap-1"
+                className="text-[#999] flex items-center gap-1"
+                style={{ fontSize: 12 }}
               >
                 <span className="material-symbols-outlined text-[13px] text-[#bbb]">
                   {item.icon}
