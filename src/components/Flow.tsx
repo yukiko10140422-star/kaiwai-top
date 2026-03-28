@@ -5,7 +5,7 @@ export default function Flow() {
       id="flow"
       data-reveal=""
     >
-      <div className="bg-white border border-border rounded-3xl p-[clamp(32px,4vw,56px)] max-md:p-[24px_18px] relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] max-w-[680px] mx-auto before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none">
+      <div className="bg-white border border-border rounded-3xl p-[clamp(32px,4vw,56px)] max-md:p-[24px_18px] relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] max-w-[700px] mx-auto before:content-[''] before:absolute before:-top-[30%] before:-right-[15%] before:w-1/2 before:h-[160%] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.04),transparent_60%)] before:rounded-full before:pointer-events-none">
         <div className="text-[clamp(22px,2.2vw,28px)] max-md:text-[20px] font-extrabold text-primary text-center mb-1.5">
           KAIWAIでできること
         </div>
@@ -19,7 +19,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               1
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border border-l-[3px] border-l-accent shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#ff6b35" }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-accent"
@@ -55,7 +55,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               2
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border border-l-[3px] border-l-[#3b82f6] shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#3b82f6" }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-[#3b82f6]"
@@ -97,7 +97,7 @@ export default function Flow() {
             <div className="w-9 h-9 max-md:w-[30px] max-md:h-[30px] min-w-9 max-md:min-w-[30px] rounded-full bg-gradient-to-br from-accent to-accent-dark text-white font-display text-[15px] max-md:text-[13px] font-extrabold flex items-center justify-center shadow-[0_4px_14px_rgba(var(--accent-rgb),0.3)] mt-1">
               3
             </div>
-            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border border-l-[3px] border-l-[#22c55e] shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <div className="flex-1 bg-bg-alt rounded-2xl p-[20px_24px] max-md:p-4 border border-border shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]" style={{ borderLeftWidth: "3px", borderLeftColor: "#22c55e" }}>
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="material-symbols-outlined text-[20px] text-[#22c55e]"

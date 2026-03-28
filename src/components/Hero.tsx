@@ -40,7 +40,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen grid grid-cols-1 md:grid-cols-2 items-center gap-[clamp(32px,4vw,64px)] pt-[100px] max-md:pt-[68px] pb-[60px] max-md:pb-7 relative bg-surface text-primary -mx-[calc(50vw-50%)] px-[max(var(--gutter),calc(50vw-var(--inner)/2))]"
+      className="grid grid-cols-1 md:grid-cols-2 items-center gap-[clamp(32px,4vw,64px)] pt-[100px] max-md:pt-[68px] pb-[60px] max-md:pb-7 relative bg-surface text-primary"
     >
       {/* Floating shapes background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

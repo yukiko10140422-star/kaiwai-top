@@ -84,9 +84,9 @@ export default function Categories() {
   );
 
   return (
-    <section className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] overflow-hidden">
+    <section className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] overflow-x-clip">
       <div
-        className="px-[var(--gutter)] w-[min(100%,var(--inner))] mx-auto mb-[clamp(24px,3vw,36px)]"
+        className="container-inner mb-[clamp(24px,3vw,36px)]"
         data-reveal=""
       >
         <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3">
@@ -99,13 +99,13 @@ export default function Categories() {
 
       <div
         ref={trackRef}
-        className="flex gap-4 px-[var(--gutter)] cursor-grab select-none overflow-x-auto [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
+        className="flex gap-4 cursor-grab select-none overflow-x-auto [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        <div className="min-w-[clamp(20px,4vw,64px)] shrink-0" />
+        <div className="min-w-[max(var(--gutter),calc((100vw-var(--inner))/2))] shrink-0" />
         {categories.map((cat) => (
           <div
             key={cat.title}
@@ -138,7 +138,7 @@ export default function Categories() {
             </div>
           </div>
         ))}
-        <div className="min-w-[clamp(20px,4vw,64px)] shrink-0" />
+        <div className="min-w-[max(var(--gutter),calc((100vw-var(--inner))/2))] shrink-0" />
       </div>
     </section>
   );

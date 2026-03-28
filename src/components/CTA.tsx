@@ -2,7 +2,8 @@ export default function CTA() {
   return (
     <section className="py-[clamp(80px,10vw,140px)] max-md:py-[52px]">
       <div
-        className="bg-gradient-to-br from-white to-[#fffaf7] border border-[rgba(var(--accent-rgb),0.1)] rounded-[28px] max-md:rounded-3xl p-[clamp(40px,5vw,64px)] max-md:p-[28px_20px] grid grid-cols-2 max-md:grid-cols-1 items-center gap-12 max-md:gap-5 overflow-hidden relative shadow-[0_8px_40px_rgba(var(--accent-rgb),0.06)] before:content-[''] before:absolute before:-bottom-[100px] before:-left-[60px] before:w-[350px] before:h-[350px] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent_70%)] before:rounded-full before:pointer-events-none after:content-[''] after:absolute after:-top-[120px] after:-right-20 after:w-[400px] after:h-[400px] after:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent_70%)] after:rounded-full after:animate-[ctaGlow_6s_ease-in-out_infinite_alternate]"
+        className="border border-[rgba(var(--accent-rgb),0.1)] rounded-[28px] max-md:rounded-3xl p-[clamp(40px,5vw,64px)] max-md:p-[28px_20px] grid grid-cols-2 max-md:grid-cols-1 items-center gap-12 max-md:gap-5 overflow-hidden relative shadow-[0_8px_40px_rgba(var(--accent-rgb),0.06)] before:content-[''] before:absolute before:-bottom-[100px] before:-left-[60px] before:w-[350px] before:h-[350px] before:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.05),transparent_70%)] before:rounded-full before:pointer-events-none after:content-[''] after:absolute after:-top-[120px] after:-right-20 after:w-[400px] after:h-[400px] after:bg-[radial-gradient(circle,rgba(var(--accent-rgb),0.06),transparent_70%)] after:rounded-full after:animate-[ctaGlow_6s_ease-in-out_infinite_alternate]"
+        style={{ background: "linear-gradient(135deg, #ffffff 0%, #fffaf7 100%)" }}
         data-reveal="scale"
       >
         <div className="relative z-1">

@@ -19,19 +19,23 @@ export default function Home() {
       <div className="grain" />
       <ScrollEffects />
       <Nav />
-      <main className="container-inner">
-        <Hero />
-        <Flow />
-        <Divider />
+      <main>
+        <div className="container-inner">
+          <Hero />
+          <Flow />
+          <Divider />
+        </div>
         <Categories />
         <GrowthPath />
-        <Divider />
-        <Features />
-        <Divider />
-        <Testimonials />
-        <Divider />
-        <FAQ />
-        <CTA />
+        <div className="container-inner">
+          <Divider />
+          <Features />
+          <Divider />
+          <Testimonials />
+          <Divider />
+          <FAQ />
+          <CTA />
+        </div>
       </main>
       <MobileFixedCTA />
       <Footer />

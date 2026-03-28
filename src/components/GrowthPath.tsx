@@ -7,6 +7,7 @@ interface Stage {
   chipBg: string;
   chipText: string;
   borderColor: string;
+  borderColorValue: string;
   chips: string[];
 }
 
@@ -20,6 +21,7 @@ const stages: Stage[] = [
     chipBg: "bg-[rgba(34,197,94,0.08)]",
     chipText: "text-[#16a34a]",
     borderColor: "border-l-[#22c55e]",
+    borderColorValue: "#22c55e",
     chips: ["タイプ診断", "初回タスク", "小さな実績づくり", "コミュニティ"],
   },
   {
@@ -31,6 +33,7 @@ const stages: Stage[] = [
     chipBg: "bg-[rgba(59,130,246,0.08)]",
     chipText: "text-[#2563eb]",
     borderColor: "border-l-[#3b82f6]",
+    borderColorValue: "#3b82f6",
     chips: ["制作支援", "発信支援", "目標設計", "継続サポート"],
   },
   {
@@ -42,6 +45,7 @@ const stages: Stage[] = [
     chipBg: "bg-[rgba(var(--accent-rgb),0.08)]",
     chipText: "text-accent-dark",
     borderColor: "border-l-accent",
+    borderColorValue: "#ff6b35",
     chips: ["伴走型支援", "実案件参加", "外部発信", "事業共創"],
   },
 ];
@@ -77,7 +81,7 @@ function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
 export default function GrowthPath() {
   return (
     <section
-      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] bg-bg-alt -mx-[calc(50vw-50%)] px-[max(var(--gutter),calc(50vw-var(--inner)/2))] max-md:px-4"
+      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] bg-bg-alt"
       data-reveal=""
     >
       <div className="container-inner">
@@ -93,7 +97,8 @@ export default function GrowthPath() {
           {stages.map((stage, index) => (
             <div key={stage.letter}>
               <div
-                className={`relative bg-surface border border-border rounded-[18px] max-md:rounded-2xl p-[28px_24px_24px] max-md:p-[22px_18px_20px] border-l-[3px] ${stage.borderColor} transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]`}
+                className="relative bg-surface border border-border rounded-[18px] max-md:rounded-2xl p-[28px_24px_24px] max-md:p-[22px_18px_20px] border-l-[3px] transition-all duration-500 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)]"
+                style={{ borderLeftColor: stage.borderColorValue }}
                 data-reveal=""
               >
                 <div className="flex items-center gap-3.5 mb-3.5">
