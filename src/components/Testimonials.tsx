@@ -79,10 +79,10 @@ export default function Testimonials() {
               <span
                 className="inline-block font-semibold rounded"
                 style={{
-                  fontSize: 10,
+                  fontSize: 12,
                   color: t.tagColor,
                   backgroundColor: `${t.tagColor}10`,
-                  padding: '3px 10px',
+                  padding: '4px 12px',
                 }}
               >
                 {t.tag}

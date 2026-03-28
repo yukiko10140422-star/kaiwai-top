@@ -38,7 +38,7 @@ export default function Footer() {
                 お問い合わせ
               </a>
             </div>
-            <div className="text-[11px] text-[#bbb]">&copy; 2026 KAIWAI</div>
+            <div style={{ fontSize: 12 }} className="text-[#bbb]">&copy; 2026 KAIWAI</div>
           </div>
         </div>
       </div>

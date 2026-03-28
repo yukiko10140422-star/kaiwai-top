@@ -109,8 +109,8 @@ export default function Flow() {
                     key={type.label}
                     className="inline-block font-semibold"
                     style={{
-                      fontSize: 11,
-                      padding: '3px 10px',
+                      fontSize: 12,
+                      padding: '4px 12px',
                       borderRadius: 9999,
                       background: type.bg,
                       color: type.color,

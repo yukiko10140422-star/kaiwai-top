@@ -27,7 +27,9 @@ export default function Hero() {
               }}
               className="text-primary"
             >
-              「やりたいことが見つからない」を
+              「やりたいことが
+              <br className="md:hidden" />
+              見つからない」を、
               <br />
               <span
                 style={{
@@ -39,24 +41,20 @@ export default function Hero() {
               >
                 たった5問
               </span>
-              で解決する。
+              で解決。
             </h1>
 
             {/* サブヘッド */}
             <p
               style={{
-                fontSize: 14,
-                lineHeight: 1.9,
+                fontSize: 15,
+                lineHeight: 1.85,
                 marginBottom: 32,
-                maxWidth: 480,
+                maxWidth: 460,
                 color: '#666',
               }}
             >
-              5つの質問に答えるだけで、あなたの志向を4タイプに分類。
-              <br />
-              ガクチカ・留学・資格・サークル — それぞれに合った
-              <br />
-              「最初の一歩」を無料で提案します。
+              5つの質問に答えるだけで、あなたの志向を4タイプに分類。ガクチカ・留学・資格・サークル — それぞれに合った「最初の一歩」を無料で提案します。
             </p>
 
             {/* CTAボタン */}
