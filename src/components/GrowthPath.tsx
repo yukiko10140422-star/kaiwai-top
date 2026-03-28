@@ -81,10 +81,11 @@ function Connector({ label, gradientFrom, gradientTo }: ConnectorProps) {
 export default function GrowthPath() {
   return (
     <section
-      className="py-[clamp(80px,10vw,140px)] max-md:py-[52px] bg-bg-alt"
+      className="pt-[clamp(100px,12vw,160px)] pb-[clamp(80px,10vw,140px)] max-md:pt-16 max-md:pb-[52px] bg-bg-alt"
       data-reveal=""
     >
       <div className="container-inner">
+        <div className="w-12 h-[1px] mx-auto mb-6 bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="font-display text-[11px] max-md:text-[10px] font-semibold tracking-[3px] max-md:tracking-[4px] uppercase bg-gradient-to-br from-accent to-accent-dark bg-clip-text text-transparent mb-3 text-center">
           GROWTH STORY
         </div>
