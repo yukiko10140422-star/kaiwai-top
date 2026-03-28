@@ -88,7 +88,7 @@ export default function Hero() {
             >
               <div className="hero-photo-main" style={{ gridRow: '1 / 3' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=800&fit=crop&crop=faces"
+                  src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&h=800&fit=crop&crop=faces"
                   alt="学生が協力して学んでいる様子"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 20 }}
                   className="shadow-lg"
@@ -96,7 +96,7 @@ export default function Hero() {
               </div>
               <div>
                 <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=faces"
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop&crop=faces"
                   alt="学生グループの議論"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 20 }}
                   className="shadow-lg"
@@ -104,7 +104,7 @@ export default function Hero() {
               </div>
               <div>
                 <img
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=faces"
+                  src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=300&fit=crop&crop=faces"
                   alt="チームでの作業風景"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 20 }}
                   className="shadow-lg"

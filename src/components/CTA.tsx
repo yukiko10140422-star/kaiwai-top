@@ -45,7 +45,7 @@ export default function CTA() {
         </div>
         <div className="relative z-1 rounded-[20px] max-md:rounded-2xl overflow-hidden h-[260px] max-md:h-[200px] group">
           <img
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop&crop=faces"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop&crop=faces"
             alt="チームでの作業"
             className="w-full h-full object-cover transition-transform duration-800 group-hover:scale-105"
             style={{ maxHeight: 240, objectFit: 'cover', borderRadius: 16 }}

@@ -9,7 +9,7 @@ interface TestimonialItem {
 const testimonials: TestimonialItem[] = [
   {
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces",
+      "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=80&h=80&fit=crop&crop=faces",
     name: "Aさん",
     meta: "大学2年・経済学部",
     tag: "ガクチカ型",
@@ -17,7 +17,7 @@ const testimonials: TestimonialItem[] = [
   },
   {
     avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces",
+      "https://images.unsplash.com/photo-1614644147724-2d4785d69962?w=80&h=80&fit=crop&crop=faces",
     name: "Bさん",
     meta: "大学1年・文学部",
     tag: "留学型",
