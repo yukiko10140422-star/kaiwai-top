@@ -121,7 +121,7 @@ export default function GrowthPath() {
                   {stage.chips.map((chip) => (
                     <span
                       key={chip}
-                      className={`inline-block text-xs max-md:text-[11px] font-medium py-[5px] max-md:py-1 px-3.5 max-md:px-3 rounded-full leading-[1.4] ${stage.chipBg} ${stage.chipText}`}
+                      className={`inline-block text-xs max-md:text-[12px] font-medium py-[5px] max-md:py-1.5 px-3.5 max-md:px-3 rounded-full leading-[1.4] ${stage.chipBg} ${stage.chipText}`}
                     >
                       {chip}
                     </span>
