@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Flow from "@/components/Flow";
+import ResultPreview from "@/components/ResultPreview";
 import Categories from "@/components/Categories";
 import GrowthPath from "@/components/GrowthPath";
 import Features from "@/components/Features";
@@ -25,6 +26,7 @@ export default function Home() {
           <Flow />
           <Divider />
         </div>
+        <ResultPreview />
         <Categories />
         <GrowthPath />
         <div className="container-inner">
