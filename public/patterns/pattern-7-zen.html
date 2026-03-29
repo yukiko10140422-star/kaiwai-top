@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAIWAI — キャリア診断 | Japanese Zen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans JP',sans-serif;font-weight:300;color:#333;background:#f5f0eb;line-height:1.9;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+:root{
+  --beige:#f5f0eb;--ink:#333333;--vermilion:#c0392b;--white:#fff;
+  --beige-dark:#e8e0d6;--ink-light:#666;--vermilion-light:#e74c3c;
+}
+
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+.section-title{font-family:'Noto Serif JP',serif;font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:.6rem;letter-spacing:.08em;color:var(--ink)}
+.section-sub{text-align:center;color:var(--ink-light);max-width:520px;margin:0 auto 3rem;font-size:.9rem}
+.icon{font-family:'Material Symbols Outlined';font-size:24px;vertical-align:middle}
+
+/* Divider */
+.zen-divider{text-align:center;margin:0 auto;padding:16px 0;color:var(--beige-dark);font-size:1.2rem;letter-spacing:12px}
+
+/* CTA */
+.cta-btn{
+  display:inline-block;padding:16px 48px;border-radius:4px;font-size:1rem;font-weight:700;
+  background:var(--vermilion);color:#fff;letter-spacing:.1em;
+  transition:background .2s;cursor:pointer;border:none;
+  font-family:'Noto Serif JP',serif;
+}
+.cta-btn:hover{background:var(--vermilion-light)}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;width:100%;background:rgba(245,240,235,.95);backdrop-filter:blur(8px);z-index:100;padding:16px 0;border-bottom:1px solid var(--beige-dark)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:900;color:var(--ink);letter-spacing:.12em}
+.logo span{color:var(--vermilion)}
+.nav-links{display:flex;gap:24px;font-size:.82rem;color:var(--ink-light);letter-spacing:.06em}
+.nav-links a:hover{color:var(--vermilion)}
+.nav-cta{padding:8px 20px;border-radius:3px;background:var(--vermilion);color:#fff;font-size:.82rem;font-family:'Noto Serif JP',serif;letter-spacing:.06em}
+
+/* Hero */
+.hero{padding:160px 0 80px;text-align:center;position:relative;background:var(--beige)}
+.hero h1{font-family:'Noto Serif JP',serif;font-size:2.4rem;font-weight:900;line-height:1.5;margin-bottom:1.5rem;color:var(--ink);letter-spacing:.06em}
+.hero h1 em{font-style:normal;color:var(--vermilion)}
+.hero p{font-size:.95rem;color:var(--ink-light);max-width:500px;margin:0 auto 2.5rem;line-height:2}
+.hero-trust{display:flex;justify-content:center;gap:24px;margin-top:2rem;flex-wrap:wrap}
+.hero-trust span{font-size:.8rem;color:var(--ink-light);display:flex;align-items:center;gap:6px;letter-spacing:.04em}
+.hero-stats{display:flex;justify-content:center;gap:40px;margin-top:2rem;flex-wrap:wrap}
+.hero-stats .stat{text-align:center}
+.hero-stats .stat-num{font-family:'Noto Serif JP',serif;font-size:1.6rem;font-weight:700;color:var(--vermilion);display:block}
+.hero-stats .stat-label{font-size:.75rem;color:var(--ink-light)}
+.hero-visual{margin-top:3.5rem;position:relative}
+.hero-visual img{width:100%;max-width:560px;margin:0 auto;border-radius:4px;filter:sepia(.15) contrast(.95);box-shadow:0 16px 48px rgba(0,0,0,.08)}
+
+/* Flow */
+.flow{padding:80px 0;background:var(--white)}
+.flow-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:2rem}
+.flow-step{text-align:center;padding:32px 20px}
+.flow-step .step-label{font-family:'Noto Serif JP',serif;font-size:.75rem;color:var(--vermilion);letter-spacing:.2em;margin-bottom:12px;display:block}
+.flow-step h3{font-family:'Noto Serif JP',serif;font-size:1.05rem;font-weight:700;margin-bottom:10px}
+.flow-step p{font-size:.85rem;color:var(--ink-light)}
+.flow-step+.flow-step{border-left:1px dotted var(--beige-dark)}
+
+/* Results */
+.results{padding:80px 0;background:var(--beige)}
+.result-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.result-card{padding:28px;background:var(--white);border-radius:4px;border-left:3px solid var(--vermilion);transition:box-shadow .2s}
+.result-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.result-card .type-name{font-family:'Noto Serif JP',serif;font-size:.8rem;color:var(--vermilion);letter-spacing:.15em;margin-bottom:8px;display:block}
+.result-card h3{font-family:'Noto Serif JP',serif;font-size:1rem;font-weight:700;margin-bottom:8px}
+.result-card p{font-size:.85rem;color:var(--ink-light)}
+
+/* GrowthPath */
+.growth{padding:80px 0;background:var(--white)}
+.growth-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.growth-card{padding:28px;text-align:center;border:1px dotted var(--beige-dark);border-radius:4px}
+.growth-card .icon{font-size:32px;color:var(--vermilion)}
+.growth-card h3{font-family:'Noto Serif JP',serif;font-size:1rem;font-weight:700;margin:12px 0 8px}
+.growth-card p{font-size:.85rem;color:var(--ink-light);margin-bottom:8px}
+.growth-card .outcome{font-size:.8rem;color:var(--vermilion);font-family:'Noto Serif JP',serif}
+
+/* Features */
+.features{padding:80px 0;background:var(--beige)}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feature-card{padding:24px;background:var(--white);border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.feature-card .icon{font-size:28px;color:var(--vermilion);flex-shrink:0}
+.feature-card h3{font-family:'Noto Serif JP',serif;font-size:.95rem;font-weight:700;margin-bottom:6px}
+.feature-card p{font-size:.85rem;color:var(--ink-light)}
+
+/* Testimonials */
+.testimonials{padding:80px 0;background:var(--white)}
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.testi-card{padding:28px;border:1px solid var(--beige-dark);border-radius:4px;position:relative}
+.testi-card::before{content:'\201C';position:absolute;top:12px;left:16px;font-family:'Noto Serif JP',serif;font-size:2.5rem;color:var(--beige-dark);line-height:1}
+.testi-card .quote{font-size:.9rem;margin-bottom:12px;padding-top:8px;line-height:1.8}
+.testi-card .person{font-size:.78rem;color:var(--ink-light);font-family:'Noto Serif JP',serif;letter-spacing:.04em}
+
+/* FAQ */
+.faq{padding:80px 0;background:var(--beige)}
+.faq-list{max-width:640px;margin:0 auto}
+.faq-item{padding:20px 0;border-bottom:1px dotted var(--beige-dark)}
+.faq-q{font-family:'Noto Serif JP',serif;font-weight:700;font-size:.95rem;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.faq-q::before{content:'問';font-size:.7rem;color:var(--white);background:var(--vermilion);padding:2px 8px;border-radius:2px;flex-shrink:0}
+.faq-a{font-size:.88rem;color:var(--ink-light);padding-left:40px;line-height:1.8}
+
+/* Final CTA */
+.final-cta{padding:100px 0;background:var(--ink);text-align:center;color:var(--white)}
+.final-cta h2{font-family:'Noto Serif JP',serif;font-size:1.8rem;font-weight:700;margin-bottom:1rem;letter-spacing:.08em}
+.final-cta p{max-width:440px;margin:0 auto 2.5rem;font-size:.9rem;opacity:.7;line-height:2}
+.final-cta .cta-btn{background:var(--vermilion);color:#fff}
+
+/* Footer */
+footer{padding:40px 0;background:var(--ink);color:var(--white);text-align:center;font-size:.78rem;border-top:1px solid rgba(255,255,255,.08)}
+footer .logo{color:var(--beige);margin-bottom:8px;font-size:1.1rem}
+footer p{opacity:.4}
+
+/* Mobile */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:1.6rem}
+  .hero{padding:130px 0 60px}
+  .flow-steps{grid-template-columns:1fr;gap:0}
+  .flow-step+.flow-step{border-left:none;border-top:1px dotted var(--beige-dark)}
+  .result-cards,.growth-steps,.feature-grid,.testi-grid{grid-template-columns:1fr}
+  .section-title{font-size:1.4rem}
+  .hero-stats{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <div class="logo">KAI<span>WAI</span></div>
+    <div class="nav-links">
+      <a href="#flow">流れ</a>
+      <a href="#results">四型</a>
+      <a href="#features">特徴</a>
+      <a href="#faq">質問</a>
+    </div>
+    <a href="#final-cta" class="nav-cta">診断する</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1><em>「やりたいことが見つからない」</em>を、<br>たった五問で解決。</h1>
+    <p>5つの質問に答えるだけで、あなたの志向を4タイプに分類。ガクチカ・留学・資格・サークル — それぞれに合った「最初の一歩」を無料で提案します。</p>
+    <a href="#" class="cta-btn">無料で診断する（3分で完了）</a>
+    <div class="hero-trust">
+      <span><span class="icon">check_circle</span>登録不要</span>
+      <span><span class="icon">check_circle</span>完全無料</span>
+      <span><span class="icon">check_circle</span>結果はすぐ表示</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">1,200</span>
+        <span class="stat-label">人が診断済み</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">87%</span>
+        <span class="stat-label">が行動開始</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4.6</span>
+        <span class="stat-label">満足度</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" alt="学生たちが真剣に学ぶ" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- Flow -->
+<section class="flow" id="flow">
+  <div class="container">
+    <div class="section-title">三つの歩み</div>
+    <p class="section-sub">静かに、確実に、あなたの道を照らします。</p>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="step-label">第一歩</span>
+        <h3>5つの質問に答える</h3>
+        <p>直感で選ぶだけ。所要時間約3分。</p>
+      </div>
+      <div class="flow-step">
+        <span class="step-label">第二歩</span>
+        <h3>あなたのタイプがわかる</h3>
+        <p>ガクチカ型・留学型・資格型・サークル型の4タイプに分類。</p>
+      </div>
+      <div class="flow-step">
+        <span class="step-label">第三歩</span>
+        <h3>行動プランを受け取る</h3>
+        <p>タイプに合った具体的なタスクリストをお届け。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- Results -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="section-title">四つの型</div>
+    <p class="section-sub">あなたの内なる志向が、行動の道筋を示します。</p>
+    <div class="result-cards">
+      <div class="result-card">
+        <span class="type-name">ガクチカ型</span>
+        <h3>経験を作る・発信する・運営する</h3>
+        <p>SNS運用、Web制作、イベント企画 — 「やった」を形にするタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-name">留学型</span>
+        <h3>世界を広げる・語学を磨く</h3>
+        <p>英語カフェ、留学準備、TOEIC対策 — グローバルに動くタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-name">資格型</span>
+        <h3>武器を手に入れる</h3>
+        <p>人気資格、学習計画、検定挑戦 — コツコツ力を蓄えるタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-name">サークル型</span>
+        <h3>仲間と動く・居場所を見つける</h3>
+        <p>コミュニティ参加、イベント運営、団体活動 — つながりで成長するタイプ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- GrowthPath -->
+<section class="growth">
+  <div class="container">
+    <div class="section-title">成長の道程</div>
+    <p class="section-sub">診断はただの入口。その先の成長まで伴走します。</p>
+    <div class="growth-steps">
+      <div class="growth-card">
+        <span class="icon">door_open</span>
+        <h3>入口 — まず知る・参加する</h3>
+        <p>タイプ診断、初回タスク、実績づくり</p>
+        <div class="outcome">→ チームへの参加感</div>
+      </div>
+      <div class="growth-card">
+        <span class="icon">edit_note</span>
+        <h3>実行 — やりたいことを形にする</h3>
+        <p>制作支援、発信支援</p>
+        <div class="outcome">→ ポートフォリオ、実績</div>
+      </div>
+      <div class="growth-card">
+        <span class="icon">trending_up</span>
+        <h3>挑戦 — 実案件で加速する</h3>
+        <p>伴走型支援、実案件参加</p>
+        <div class="outcome">→ 実務経験、企業との接点</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">四つの特徴</div>
+    <p class="section-sub">手軽で、無料で、すぐわかる。しかも診断で終わらない。</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="icon">timer</span>
+        <div>
+          <h3>3分で完了</h3>
+          <p>スキマ時間にサクッと診断できます。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="icon">money_off</span>
+        <div>
+          <h3>完全無料・登録不要</h3>
+          <p>メールアドレスも不要。気軽にどうぞ。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="icon">bolt</span>
+        <div>
+          <h3>結果はその場ですぐ</h3>
+          <p>待つ必要はありません。即座に結果が表示されます。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="icon">work</span>
+        <div>
+          <h3>実務に参加できる</h3>
+          <p>診断で終わらない。実際のプロジェクトに参加できます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-title">先人の声</div>
+    <p class="section-sub">KAIWAIで一歩を踏み出した仲間たちのリアルな体験。</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote">SNS運用を始めてフォロワー500人達成。自分にもできるんだって実感しました。</div>
+        <div class="person">大学2年・経済学部（ガクチカ型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">英会話カフェから始めて、今は短期留学を計画中。世界が広がりました。</div>
+        <div class="person">大学1年・文学部（留学型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">TOEIC 3ヶ月で150点アップ。学習計画があると全然違いました。</div>
+        <div class="person">大学3年・法学部（資格型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">イベント運営で自信がついた。人前で話すのが苦手だったのに。</div>
+        <div class="person">大学1年・工学部（サークル型）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="zen-divider">- - - - -</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-title">よくある質問</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">本当に無料ですか？</div>
+        <div class="faq-a">はい、すべて完全無料です。追加費用は一切かかりません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">どれくらい時間がかかりますか？</div>
+        <div class="faq-a">約3分で完了します。5問の質問に直感で答えるだけです。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">勧誘はありますか？</div>
+        <div class="faq-a">一切ありません。しつこい連絡も来ません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">1年生でも大丈夫ですか？</div>
+        <div class="faq-a">もちろんです。早く始めるほど選択肢が広がります。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">結果が自分に合わなかったら？</div>
+        <div class="faq-a">別タイプの結果も参照できます。気軽に再診断もできます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="final-cta">
+  <div class="container">
+    <h2>まだ悩んでいるあなたへ</h2>
+    <p>「何をすればいいかわからない」は普通の気持ち。3分後には最初の一歩が見えています。</p>
+    <a href="#" class="cta-btn">無料で診断する（3分で完了）</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="logo">KAI<span>WAI</span></div>
+    <p>&copy; 2026 KAIWAI. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

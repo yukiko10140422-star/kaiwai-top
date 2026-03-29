@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAIWAI — キャリア診断 | Bold Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans JP',sans-serif;color:#000;background:#fff;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+:root{
+  --black:#000;--white:#fff;--red:#dc2626;--gray:#666;--gray-light:#f5f5f5;--border:#e5e5e5;
+}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-title{font-family:'Noto Serif JP',serif;font-size:2.4rem;font-weight:900;margin-bottom:.6rem;line-height:1.2}
+.section-sub{color:var(--gray);max-width:500px;font-size:.9rem;margin-bottom:3rem}
+.icon{font-family:'Material Symbols Outlined';font-size:24px;vertical-align:middle}
+
+/* CTA */
+.cta-btn{
+  display:inline-block;padding:18px 48px;font-size:1rem;font-weight:700;
+  background:var(--red);color:#fff;
+  transition:background .2s;cursor:pointer;border:none;
+  letter-spacing:.06em;
+}
+.cta-btn:hover{background:#b91c1c}
+.cta-btn-outline{background:transparent;color:var(--black);border:2px solid var(--black)}
+.cta-btn-outline:hover{background:var(--black);color:var(--white)}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);z-index:100;padding:16px 0;border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Noto Serif JP',serif;font-size:1.6rem;font-weight:900;letter-spacing:.15em}
+.logo span{color:var(--red)}
+.nav-links{display:flex;gap:24px;font-size:.8rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.nav-links a:hover{color:var(--black)}
+.nav-cta{padding:8px 20px;background:var(--red);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.06em}
+
+/* Hero */
+.hero{padding:140px 0 60px;position:relative;min-height:100vh;display:flex;align-items:center}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-text h1{font-family:'Noto Serif JP',serif;font-size:4rem;font-weight:900;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.02em}
+.hero-text h1 em{font-style:normal;color:var(--red)}
+.hero-text p{font-size:1rem;color:var(--gray);max-width:440px;margin-bottom:2rem;line-height:1.9}
+.hero-trust{display:flex;gap:20px;margin-top:1.5rem;flex-wrap:wrap}
+.hero-trust span{font-size:.78rem;color:var(--gray);display:flex;align-items:center;gap:4px}
+.hero-trust .icon{font-size:16px;color:var(--red)}
+.hero-stats{display:flex;gap:32px;margin-top:2rem}
+.hero-stats .stat{border-left:2px solid var(--red);padding-left:12px}
+.hero-stats .stat-num{font-family:'Noto Serif JP',serif;font-size:1.8rem;font-weight:900;display:block;line-height:1.2}
+.hero-stats .stat-label{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em}
+.hero-image{position:relative}
+.hero-image img{width:100%;height:500px;object-fit:cover}
+.hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.05))}
+
+/* Flow */
+.flow{padding:100px 0;border-top:1px solid var(--border)}
+.flow-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:3rem}
+.flow-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.flow-step{padding:32px;border-left:1px solid var(--border)}
+.flow-step:first-child{border-left:none}
+.flow-num{font-family:'Noto Serif JP',serif;font-size:3rem;font-weight:900;color:var(--red);line-height:1;margin-bottom:16px;display:block}
+.flow-step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.flow-step p{font-size:.85rem;color:var(--gray)}
+
+/* Results */
+.results{padding:100px 0;background:var(--black);color:var(--white)}
+.results .section-title{color:var(--white)}
+.results .section-sub{color:rgba(255,255,255,.5)}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.result-card{padding:36px;border:1px solid rgba(255,255,255,.1);transition:background .2s}
+.result-card:hover{background:rgba(255,255,255,.04)}
+.result-card .type-label{font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px;display:block}
+.result-card h3{font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:900;margin-bottom:8px}
+.result-card p{font-size:.85rem;color:rgba(255,255,255,.5)}
+
+/* GrowthPath */
+.growth{padding:100px 0;border-top:1px solid var(--border)}
+.growth-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:3rem}
+.growth-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.growth-card{padding:32px;border-left:1px solid var(--border)}
+.growth-card:first-child{border-left:none}
+.growth-card .step-label{font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.15em;margin-bottom:12px;display:block}
+.growth-card h3{font-family:'Noto Serif JP',serif;font-size:1.1rem;font-weight:900;margin-bottom:8px}
+.growth-card p{font-size:.85rem;color:var(--gray);margin-bottom:8px}
+.growth-card .outcome{font-size:.8rem;font-weight:700}
+
+/* Features */
+.features{padding:100px 0;background:var(--gray-light);border-top:1px solid var(--border)}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.feature-card{padding:36px;border-bottom:1px solid var(--border);display:flex;gap:20px;align-items:flex-start}
+.feature-card:nth-child(odd){border-right:1px solid var(--border)}
+.feature-card .num{font-family:'Noto Serif JP',serif;font-size:2rem;font-weight:900;color:var(--red);line-height:1;flex-shrink:0}
+.feature-card h3{font-size:1rem;font-weight:700;margin-bottom:4px}
+.feature-card p{font-size:.85rem;color:var(--gray)}
+
+/* Testimonials */
+.testimonials{padding:100px 0;border-top:1px solid var(--border)}
+.testi-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:3rem}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.testi-card{padding:36px;border:1px solid var(--border);border-top:none;border-left:none}
+.testi-card:nth-child(odd){border-left:none}
+.testi-card:nth-child(1),.testi-card:nth-child(2){border-top:1px solid var(--border)}
+.testi-card .quote{font-family:'Noto Serif JP',serif;font-size:1.05rem;font-weight:700;margin-bottom:16px;line-height:1.7}
+.testi-card .person{font-size:.78rem;color:var(--gray);letter-spacing:.04em}
+
+/* FAQ */
+.faq{padding:100px 0;background:var(--gray-light);border-top:1px solid var(--border)}
+.faq-inner{display:grid;grid-template-columns:1fr 2fr;gap:60px}
+.faq-list{border-top:1px solid var(--border)}
+.faq-item{padding:24px 0;border-bottom:1px solid var(--border)}
+.faq-q{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1rem;margin-bottom:8px;display:flex;gap:12px}
+.faq-q .q-mark{color:var(--red);font-weight:900;flex-shrink:0}
+.faq-a{font-size:.88rem;color:var(--gray);padding-left:28px}
+
+/* Final CTA */
+.final-cta{padding:120px 0;background:var(--black);color:var(--white);text-align:center}
+.final-cta h2{font-family:'Noto Serif JP',serif;font-size:2.8rem;font-weight:900;margin-bottom:1rem;line-height:1.2}
+.final-cta h2 em{font-style:normal;color:var(--red)}
+.final-cta p{max-width:440px;margin:0 auto 2.5rem;font-size:.9rem;color:rgba(255,255,255,.5)}
+.final-cta .cta-btn{background:var(--red);color:#fff}
+
+/* Footer */
+footer{padding:40px 0;background:var(--black);color:var(--white);border-top:1px solid rgba(255,255,255,.1)}
+footer .container{display:flex;justify-content:space-between;align-items:center}
+footer .logo{font-size:1.1rem;color:var(--white)}
+footer .logo span{color:var(--red)}
+footer p{font-size:.72rem;color:rgba(255,255,255,.3)}
+
+/* Mobile */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero{padding:120px 0 60px;min-height:auto}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-text h1{font-size:2.2rem}
+  .hero-image{display:none}
+  .hero-stats{gap:16px;flex-wrap:wrap}
+  .flow-header,.growth-header,.testi-header{grid-template-columns:1fr}
+  .flow-steps,.growth-steps{grid-template-columns:1fr}
+  .flow-step,.growth-card{border-left:none;border-top:1px solid var(--border)}
+  .flow-step:first-child,.growth-card:first-child{border-top:none}
+  .result-grid,.feature-row,.testi-grid,.faq-inner{grid-template-columns:1fr}
+  .feature-card:nth-child(odd){border-right:none}
+  .section-title{font-size:1.6rem}
+  .final-cta h2{font-size:1.8rem}
+  footer .container{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <div class="logo">KAI<span>WAI</span></div>
+    <div class="nav-links">
+      <a href="#flow">Flow</a>
+      <a href="#results">Types</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#final-cta" class="nav-cta">診断する</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1><em>「やりたいことが<br>見つからない」</em>を、<br>たった5問で<br>解決。</h1>
+        <p>5つの質問に答えるだけで、あなたの志向を4タイプに分類。ガクチカ・留学・資格・サークル — それぞれに合った「最初の一歩」を無料で提案します。</p>
+        <a href="#" class="cta-btn">無料で診断する（3分で完了）</a>
+        <div class="hero-trust">
+          <span><span class="icon">check</span>登録不要</span>
+          <span><span class="icon">check</span>完全無料</span>
+          <span><span class="icon">check</span>結果はすぐ表示</span>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">1,200</span>
+            <span class="stat-label">診断済み</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">87%</span>
+            <span class="stat-label">行動開始</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4.6</span>
+            <span class="stat-label">満足度</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" alt="学生たちのディスカッション">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Flow -->
+<section class="flow" id="flow">
+  <div class="container">
+    <div class="flow-header">
+      <div class="section-title">カンタン<br>3ステップ</div>
+      <p class="section-sub">直感で答えるだけ。むずかしいことは何もありません。迷ったら直感に従ってください。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="flow-num">01</span>
+        <h3>5つの質問に答える</h3>
+        <p>直感で選ぶだけ。所要時間約3分。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-num">02</span>
+        <h3>あなたのタイプがわかる</h3>
+        <p>ガクチカ型・留学型・資格型・サークル型の4タイプに分類。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-num">03</span>
+        <h3>行動プランを受け取る</h3>
+        <p>タイプに合った具体的なタスクリストをお届け。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="section-title">4つのタイプ</div>
+    <p class="section-sub">あなたはどのタイプ？ それぞれに最適な行動がある。</p>
+    <div class="result-grid">
+      <div class="result-card">
+        <span class="type-label">ガクチカ型</span>
+        <h3>経験を作る・発信する・運営する</h3>
+        <p>SNS運用、Web制作、イベント企画 — 「やった」を形にするタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-label">留学型</span>
+        <h3>世界を広げる・語学を磨く</h3>
+        <p>英語カフェ、留学準備、TOEIC対策 — グローバルに動くタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-label">資格型</span>
+        <h3>武器を手に入れる</h3>
+        <p>人気資格、学習計画、検定挑戦 — コツコツ力を蓄えるタイプ。</p>
+      </div>
+      <div class="result-card">
+        <span class="type-label">サークル型</span>
+        <h3>仲間と動く・居場所を見つける</h3>
+        <p>コミュニティ参加、イベント運営、団体活動 — つながりで成長するタイプ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GrowthPath -->
+<section class="growth">
+  <div class="container">
+    <div class="growth-header">
+      <div class="section-title">成長の<br>3段階</div>
+      <p class="section-sub">診断はただの入口。その先の成長までを、一貫してサポートする。</p>
+    </div>
+    <div class="growth-steps">
+      <div class="growth-card">
+        <span class="step-label">Phase 01</span>
+        <h3>入口 — まず知る・参加する</h3>
+        <p>タイプ診断、初回タスク、実績づくり</p>
+        <div class="outcome">→ チームへの参加感</div>
+      </div>
+      <div class="growth-card">
+        <span class="step-label">Phase 02</span>
+        <h3>実行 — やりたいことを形にする</h3>
+        <p>制作支援、発信支援</p>
+        <div class="outcome">→ ポートフォリオ、実績</div>
+      </div>
+      <div class="growth-card">
+        <span class="step-label">Phase 03</span>
+        <h3>挑戦 — 実案件で加速する</h3>
+        <p>伴走型支援、実案件参加</p>
+        <div class="outcome">→ 実務経験、企業との接点</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">特徴</div>
+    <p class="section-sub">手軽で、無料で、すぐわかる。しかも診断で終わらない。</p>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="num">01</div>
+        <div>
+          <h3>3分で完了</h3>
+          <p>スキマ時間にサクッと診断できます。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="num">02</div>
+        <div>
+          <h3>完全無料・登録不要</h3>
+          <p>メールアドレスも不要。気軽にどうぞ。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="num">03</div>
+        <div>
+          <h3>結果はその場ですぐ</h3>
+          <p>待つ必要はありません。即座に結果が表示されます。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="num">04</div>
+        <div>
+          <h3>実務に参加できる</h3>
+          <p>診断で終わらない。実際のプロジェクトに参加できます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testi-header">
+      <div class="section-title">体験者の<br>声</div>
+      <p class="section-sub">KAIWAIで一歩を踏み出した仲間たちのリアルな体験。</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote">「SNS運用を始めてフォロワー500人達成。自分にもできるんだって実感しました。」</div>
+        <div class="person">大学2年・経済学部（ガクチカ型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">「英会話カフェから始めて、今は短期留学を計画中。世界が広がりました。」</div>
+        <div class="person">大学1年・文学部（留学型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">「TOEIC 3ヶ月で150点アップ。学習計画があると全然違いました。」</div>
+        <div class="person">大学3年・法学部（資格型）</div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">「イベント運営で自信がついた。人前で話すのが苦手だったのに。」</div>
+        <div class="person">大学1年・工学部（サークル型）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div>
+        <div class="section-title">よくある<br>質問</div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q.</span>本当に無料ですか？</div>
+          <div class="faq-a">はい、すべて完全無料です。追加費用は一切かかりません。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q.</span>どれくらい時間がかかりますか？</div>
+          <div class="faq-a">約3分で完了します。5問の質問に直感で答えるだけです。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q.</span>勧誘はありますか？</div>
+          <div class="faq-a">一切ありません。しつこい連絡も来ません。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q.</span>1年生でも大丈夫ですか？</div>
+          <div class="faq-a">もちろんです。早く始めるほど選択肢が広がります。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q.</span>結果が自分に合わなかったら？</div>
+          <div class="faq-a">別タイプの結果も参照できます。気軽に再診断もできます。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="final-cta">
+  <div class="container">
+    <h2>まだ悩んでいる<br><em>あなた</em>へ</h2>
+    <p>「何をすればいいかわからない」は普通の気持ち。3分後には最初の一歩が見えています。</p>
+    <a href="#" class="cta-btn">無料で診断する（3分で完了）</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="logo">KAI<span>WAI</span></div>
+    <p>&copy; 2026 KAIWAI. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAIWAI LP - 10 Design Patterns</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; background: #fafafa; color: #111; }
+.header { padding: 48px 24px 32px; text-align: center; background: #fff; border-bottom: 1px solid #eee; }
+.header h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.header p { font-size: 15px; color: #666; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1000px; margin: 40px auto; padding: 0 24px; }
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+.card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #eee; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: inherit; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.card-preview { height: 200px; overflow: hidden; position: relative; }
+.card-preview iframe { width: 390px; height: 844px; border: none; transform: scale(0.24); transform-origin: top left; pointer-events: none; }
+.card-body { padding: 20px; }
+.card-num { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: #fff; background: #111; padding: 2px 10px; border-radius: 100px; margin-bottom: 8px; }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.card-desc { font-size: 13px; color: #888; line-height: 1.6; }
+.color-dots { display: flex; gap: 4px; margin-top: 8px; }
+.color-dot { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>KAIWAI LP Design Patterns</h1>
+  <p>10 different design directions for the KAIWAI career diagnostic LP</p>
+</div>
+
+<div class="grid">
+  <a class="card" href="pattern-1-warm.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #fff5f0, #fffaf7);">
+      <iframe src="pattern-1-warm.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">01</span>
+      <div class="card-title">Warm Confidence</div>
+      <div class="card-desc">温かみのあるオレンジ基調。写真グリッド、信頼感のあるデザイン</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#ff6b35"></div>
+        <div class="color-dot" style="background:#e84430"></div>
+        <div class="color-dot" style="background:#fffaf7"></div>
+        <div class="color-dot" style="background:#0a0a0a"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-2-midnight.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #0f172a, #1e293b);">
+      <iframe src="pattern-2-midnight.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">02</span>
+      <div class="card-title">Midnight Tech</div>
+      <div class="card-desc">ダークネイビー基調。テック感のあるモダンデザイン</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#0f172a"></div>
+        <div class="color-dot" style="background:#3b82f6"></div>
+        <div class="color-dot" style="background:#1e293b"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-3-campus.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #d1fae5, #ecfdf5);">
+      <iframe src="pattern-3-campus.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">03</span>
+      <div class="card-title">Fresh Campus</div>
+      <div class="card-desc">エメラルドグリーン。全幅写真Hero、フレッシュなキャンパス感</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#10b981"></div>
+        <div class="color-dot" style="background:#059669"></div>
+        <div class="color-dot" style="background:#ecfdf5"></div>
+        <div class="color-dot" style="background:#111"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-4-minimal.html">
+    <div class="card-preview" style="background: #fff;">
+      <iframe src="pattern-4-minimal.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">04</span>
+      <div class="card-title">Minimal Mono</div>
+      <div class="card-desc">モノクロ + 1アクセント。極限の余白と大きなタイポグラフィ</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#111"></div>
+        <div class="color-dot" style="background:#ff6b35"></div>
+        <div class="color-dot" style="background:#fff"></div>
+        <div class="color-dot" style="background:#f5f5f5"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-5-gradient.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316);">
+      <iframe src="pattern-5-gradient.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">05</span>
+      <div class="card-title">Gradient Wave</div>
+      <div class="card-desc">パープル→ピンク→オレンジの大胆なグラデーション</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#7c3aed"></div>
+        <div class="color-dot" style="background:#ec4899"></div>
+        <div class="color-dot" style="background:#f97316"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-6-playful.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #fef3c7, #fce7f3);">
+      <iframe src="pattern-6-playful.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">06</span>
+      <div class="card-title">Playful Pop</div>
+      <div class="card-desc">カラフル、丸み、楽しい雰囲気。若者に親しみやすいポップデザイン</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#fbbf24"></div>
+        <div class="color-dot" style="background:#f472b6"></div>
+        <div class="color-dot" style="background:#38bdf8"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-7-zen.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #f5f0eb, #ede8e0);">
+      <iframe src="pattern-7-zen.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">07</span>
+      <div class="card-title">Japanese Zen</div>
+      <div class="card-desc">和モダン。ベージュ×墨色×朱色、Noto Serif、落ち着きのある佇まい</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#f5f0eb"></div>
+        <div class="color-dot" style="background:#333"></div>
+        <div class="color-dot" style="background:#c0392b"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-8-neon.html">
+    <div class="card-preview" style="background: #111827;">
+      <iframe src="pattern-8-neon.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">08</span>
+      <div class="card-title">Neon Glow</div>
+      <div class="card-desc">ダーク基調にネオンの光彩。サイバーパンク感のある攻めたデザイン</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#111827"></div>
+        <div class="color-dot" style="background:#22d3ee"></div>
+        <div class="color-dot" style="background:#f43f5e"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-9-pastel.html">
+    <div class="card-preview" style="background: linear-gradient(135deg, #e9d5ff, #d1fae5, #fce7f3);">
+      <iframe src="pattern-9-pastel.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">09</span>
+      <div class="card-title">Soft Pastel</div>
+      <div class="card-desc">ふんわりパステルカラー。優しく親しみやすい柔らかなデザイン</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#e9d5ff"></div>
+        <div class="color-dot" style="background:#d1fae5"></div>
+        <div class="color-dot" style="background:#fce7f3"></div>
+        <div class="color-dot" style="background:#fff"></div>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="pattern-10-editorial.html">
+    <div class="card-preview" style="background: #fff;">
+      <iframe src="pattern-10-editorial.html" loading="lazy"></iframe>
+    </div>
+    <div class="card-body">
+      <span class="card-num">10</span>
+      <div class="card-title">Bold Editorial</div>
+      <div class="card-desc">黒×白×赤。超大見出し、雑誌風レイアウト、コントラスト強め</div>
+      <div class="color-dots">
+        <div class="color-dot" style="background:#000"></div>
+        <div class="color-dot" style="background:#dc2626"></div>
+        <div class="color-dot" style="background:#fff"></div>
+        <div class="color-dot" style="background:#f5f5f5"></div>
+      </div>
+    </div>
+  </a>
+</div>
+
+<div style="text-align:center; padding: 40px 24px 60px; color: #999; font-size: 13px;">
+  KAIWAI LP Design Patterns &mdash; Click any card to view the full design
+</div>
+</body>
+</html>
