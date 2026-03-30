@@ -2,11 +2,6 @@
 
 import { useEffect } from "react";
 
-// data-reveal は削除済み。useScrollReveal は空関数として残す（互換性のため）
-export function useScrollReveal(): void {
-  // noop
-}
-
 export function useScrollProgress(): void {
   useEffect(() => {
     const progressBar = document.querySelector(

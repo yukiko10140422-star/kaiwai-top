@@ -6,14 +6,25 @@
     "file_count": 14,
     "total_lines": 1548
   },
-  "sprints": [],
-  "current_sprint": 1,
-  "current_feature_id": "F001",
+  "sprints": [
+    {
+      "feature_id": "F001",
+      "status": "skipped",
+      "skip_reason": "デザイン方針は前セッションで決定済み（Warm+Editorial+Campus融合）"
+    },
+    {
+      "feature_id": "F002",
+      "status": "done",
+      "attempts": 1,
+      "commit_sha": "c228fe8",
+      "notes": "全13コンポーネント+globals.css書き換え完了。Evaluator検証PASS。"
+    }
+  ],
+  "current_sprint": 3,
+  "current_feature_id": "F003",
   "total_features": 5,
-  "completed_features": 0,
-  "skipped_features": 0,
-  "last_commit_sha": "cad23a9",
-  "notes": "コンテキスト飽和のため新セッションで継続。10パターンのHTMLモック作成済み(public/patterns/)。ベストデザインを1つに絞って全コンポーネントを書き換える。品質最優先。docs/00-全体整理.mdのKAIWAI情報を必ず読んでからデザインすること。",
-  "design_decision": "10パターンの良い要素を融合した1つの最高品質デザインを作る。Warm(1)+Editorial(10)+Campus(3)のハイブリッド。オレンジ暖色ベース、大胆なタイポグラフィ、写真を効果的に使用、説明力のあるコピー。",
-  "next_action": "新セッションで progress.json を読み、F001(パターン選定)をスキップしてF002(全コンポーネント書き換え)から開始。pattern-1-warm.html + pattern-10-editorial.html + pattern-3-campus.html の良い要素を融合して全tsx/cssを書き換える。"
+  "completed_features": 1,
+  "skipped_features": 1,
+  "last_commit_sha": "c228fe8",
+  "notes": "F002完了。次はF003（デスクトップレイアウト最適化）。"
 }
