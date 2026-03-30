@@ -47,7 +47,7 @@ export default function Nav() {
         </a>
 
         {/* Desktop links */}
-        <div className="max-md:hidden" style={{ display: "flex", gap: 28, alignItems: "center" }}>
+        <div className="flex gap-7 items-center max-md:hidden">
           {[
             { href: "#flow", label: "診断の流れ" },
             { href: "#types", label: "4タイプ" },
@@ -82,8 +82,8 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <div
-          className="hidden max-md:flex"
-          style={{ flexDirection: "column", gap: 5, padding: 8, cursor: "pointer", zIndex: 101 }}
+          className="hidden max-md:!flex flex-col"
+          style={{ gap: 5, padding: 8, cursor: "pointer", zIndex: 101 }}
           onClick={toggleMenu}
         >
           <span style={{ display: "block", width: 20, height: 2, background: "var(--color-primary)", borderRadius: 1, transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(3px, 4px)" : "none" }} />

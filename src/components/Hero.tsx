@@ -39,7 +39,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Stats */}
-          <div className="max-md:hidden" style={{ display: "flex", flexDirection: "column", gap: 24, justifyContent: "center" }}>
+          <div className="flex flex-col gap-6 justify-center max-md:hidden">
             {[
               { num: "1,200+", label: "診断済み" },
               { num: "87%", label: "行動開始率" },
@@ -58,7 +58,7 @@ export default function Hero() {
         </div>
 
         {/* Mobile stats row */}
-        <div className="hidden max-md:flex" style={{ gap: 24, marginTop: 32, justifyContent: "center" }}>
+        <div className="hidden max-md:!flex gap-6 justify-center" style={{ marginTop: 32 }}>
           {[
             { num: "1,200+", label: "診断済み" },
             { num: "87%", label: "行動開始" },
