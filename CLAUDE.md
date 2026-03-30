@@ -4,9 +4,8 @@
 
 - **サイト**: 学生向けキャリア診断ランディングページ（LP）
 - **技術スタック**: Next.js 16.2.1 + Tailwind CSS v4 + TypeScript
-- **デプロイ**: GitHub Pages（静的エクスポート、`output: "export"`）
+- **デプロイ**: Vercel（https://kaiwai-black.vercel.app）
 - **リポジトリ**: `yukiko10140422-star/kaiwai-top`
-- **ベースパス**: `/kaiwai-top`
 
 ## チーム構成
 
@@ -67,7 +66,7 @@
 ### 作業完了時
 
 1. **ビルド確認を実行すること。**
-   - `npm run build` を実行し、`out/` ディレクトリが正常に生成されることを確認すること。
+   - `npm run build` を実行し、ビルドが正常に完了することを確認すること。
    - ビルドが失敗した場合はエラーを修正してから次に進むこと。
 
 2. **PR の作成を案内すること。**
@@ -119,11 +118,10 @@
 | コマンド | 用途 |
 |---------|------|
 | `npm run dev` | 開発サーバー起動 |
-| `npm run build` | 本番ビルド（`out/` に静的エクスポート） |
+| `npm run build` | 本番ビルド |
 | `npm run lint` | ESLint によるリント |
 
 ### 注意事項
 
-- `next.config.ts` の `basePath: "/kaiwai-top"` は変更しないこと（GitHub Pages 用）。
-- 画像は `public/` に配置し、パスは `/kaiwai-top/画像名` で参照すること。
-- `output: "export"` のため、サーバーサイド機能（API Routes, Server Actions 等）は使用できない。
+- 画像は `public/` に配置し、パスは `/画像名` で参照すること。
+- デプロイは Vercel（`vercel --prod`）で行う。GitHub Pages は使用しない。
