@@ -1,191 +1,83 @@
-interface TypeAction {
-  label: string;
-}
-
-interface DiagnosisType {
-  icon: string;
-  name: string;
-  color: string;
-  bg: string;
-  description: string;
-  actions: TypeAction[];
-}
-
-const diagnosisTypes: DiagnosisType[] = [
+const types = [
   {
-    icon: "stars",
-    name: "ガクチカ型",
-    color: "#ff6b35",
-    bg: "rgba(255,107,53,0.04)",
-    description: "経験を作る・発信する・運営する",
-    actions: [
-      { label: "SNS運用を始める" },
-      { label: "Web制作に挑戦" },
-      { label: "イベント企画に参加" },
-    ],
+    label: "ガクチカ型",
+    title: "経験を作る・発信する・運営する",
+    desc: "SNS運用、Web制作、イベント企画 — 「やった」を形にするタイプ。就活の自己PRで話せる実績を積み上げる。",
+    actions: ["SNS運用を始める", "Web制作に挑戦", "イベント企画に参加"],
   },
   {
-    icon: "public",
-    name: "留学型",
-    color: "#3b82f6",
-    bg: "rgba(59,130,246,0.04)",
-    description: "世界を広げる・語学を磨く",
-    actions: [
-      { label: "英語カフェに参加" },
-      { label: "留学準備を開始" },
-      { label: "TOEIC対策" },
-    ],
+    label: "留学型",
+    title: "世界を広げる・語学を磨く",
+    desc: "英語カフェ、留学準備、TOEIC対策 — グローバルに動くタイプ。海外経験で視野を広げる。",
+    actions: ["英語カフェに参加", "留学準備を開始", "TOEIC対策"],
   },
   {
-    icon: "history_edu",
-    name: "資格型",
-    color: "#22c55e",
-    bg: "rgba(34,197,94,0.04)",
-    description: "武器を手に入れる",
-    actions: [
-      { label: "人気資格を調べる" },
-      { label: "学習計画を立てる" },
-      { label: "検定に挑戦" },
-    ],
+    label: "資格型",
+    title: "武器を手に入れる",
+    desc: "人気資格、学習計画、検定挑戦 — コツコツ力を蓄えるタイプ。わかりやすいスキル証明を手に入れる。",
+    actions: ["人気資格を調べる", "学習計画を立てる", "検定に挑戦"],
   },
   {
-    icon: "groups",
-    name: "サークル型",
-    color: "#8b5cf6",
-    bg: "rgba(139,92,246,0.04)",
-    description: "仲間と動く・居場所を見つける",
-    actions: [
-      { label: "コミュニティに参加" },
-      { label: "イベント運営" },
-      { label: "団体を立ち上げる" },
-    ],
+    label: "サークル型",
+    title: "仲間と動く・居場所を見つける",
+    desc: "コミュニティ参加、イベント運営、団体活動 — つながりで成長するタイプ。人との関わりの中で力を発揮する。",
+    actions: ["コミュニティに参加", "イベント運営", "団体を立ち上げる"],
   },
 ];
 
 export default function ResultPreview() {
   return (
-    <section className="section-spacing">
+    <section
+      className="section-spacing"
+      id="types"
+      style={{ background: "var(--color-dark)", color: "#fff" }}
+    >
       <div className="container-inner">
-        <div className="section-label">診断結果イメージ</div>
-        <h2 className="section-heading">こんな結果が手に入ります</h2>
+        <h2 className="section-heading" style={{ color: "#fff" }}>4つのタイプ</h2>
+        <p className="section-sub" style={{ color: "rgba(255,255,255,0.45)" }}>
+          あなたはどのタイプ？ それぞれに最適な行動プランがある。
+        </p>
 
-        <div
-          className="grid grid-cols-2 max-md:grid-cols-1"
-          style={{ gap: 16, maxWidth: 680, margin: "0 auto" }}
-        >
-          {diagnosisTypes.map((type) => (
+        {/* Editorial 2x2 grid with borders */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }} className="max-md:!grid-cols-1">
+          {types.map((type) => (
             <div
-              key={type.name}
-              className="card-base"
-              style={{ padding: 24 }}
+              key={type.label}
+              style={{
+                padding: "36px 32px",
+                border: "1px solid rgba(255,255,255,0.08)",
+                transition: "background 0.2s",
+              }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  marginBottom: 8,
-                }}
-              >
-                <span
-                  className="material-symbols-outlined"
-                  style={{
-                    fontSize: 22,
-                    color: type.color,
-                    fontVariationSettings: "'FILL' 1",
-                  }}
-                >
-                  {type.icon}
-                </span>
-                <span
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 700,
-                    color: type.color,
-                  }}
-                >
-                  {type.name}
-                </span>
-              </div>
-
-              <p
-                style={{
-                  fontSize: 13,
-                  color: "#666",
-                  marginBottom: 12,
-                  lineHeight: 1.6,
-                }}
-              >
-                {type.description}
+              <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.15em", display: "block", marginBottom: 12 }}>
+                {type.label}
+              </span>
+              <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 18, fontWeight: 900, marginBottom: 10 }}>
+                {type.title}
+              </h3>
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, marginBottom: 16 }}>
+                {type.desc}
               </p>
-
-              <div
-                style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: "#999",
-                  marginBottom: 8,
-                }}
-              >
-                おすすめアクション:
-              </div>
-
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {type.actions.map((action) => (
-                  <li
-                    key={action.label}
+                  <span
+                    key={action}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      fontSize: 14,
-                      lineHeight: 1.8,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      padding: "5px 14px",
+                      borderRadius: 100,
+                      background: "rgba(255,107,53,0.1)",
+                      color: "var(--color-accent)",
+                      border: "1px solid rgba(255,107,53,0.15)",
                     }}
                   >
-                    <span
-                      className="material-symbols-outlined"
-                      style={{
-                        fontSize: 16,
-                        color: type.color,
-                        fontVariationSettings: "'FILL' 1",
-                      }}
-                    >
-                      check_circle
-                    </span>
-                    {action.label}
-                  </li>
+                    {action}
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: 40 }}>
-          <a
-            href="#"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "14px 32px",
-              borderRadius: 12,
-              border: "2px solid var(--color-accent)",
-              color: "var(--color-accent)",
-              background: "var(--color-surface)",
-              fontSize: 16,
-              fontWeight: 700,
-              textDecoration: "none",
-              transition: "all 0.3s ease",
-            }}
-          >
-            自分のタイプを知る
-            <span
-              className="material-symbols-outlined"
-              style={{ fontSize: 20 }}
-            >
-              arrow_forward
-            </span>
-          </a>
         </div>
       </div>
     </section>

@@ -7,9 +7,7 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -27,136 +25,89 @@ export default function Nav() {
     document.body.style.overflow = "";
   }, []);
 
-  const handleMagneticMove = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const btn = e.currentTarget;
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
-    },
-    []
-  );
-
-  const handleMagneticLeave = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.currentTarget.style.transform = "";
-    },
-    []
-  );
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-100 px-[var(--gutter)] border-b border-border transition-all duration-500 ${
-        scrolled
-          ? "bg-white/95 shadow-[0_1px_20px_rgba(0,0,0,0.04)]"
-          : "bg-white/92"
-      } backdrop-blur-[40px] backdrop-saturate-[180%] max-md:bg-white/85 max-md:backdrop-blur-[24px] max-md:backdrop-saturate-200`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        background: scrolled ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.92)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(0,0,0,0.05)",
+        transition: "all 0.3s ease",
+        boxShadow: scrolled ? "0 1px 20px rgba(0,0,0,0.04)" : "none",
+      }}
     >
-      <div className="flex items-center justify-between h-[60px] max-md:h-[52px] w-[min(100%,var(--inner))] mx-auto">
-        <a href="#" className="flex items-center gap-2.5 no-underline group">
-          <div className="flex gap-0.5">
-            <div className="w-4 h-4 bg-gradient-to-br from-[#999] to-[#d0d0d0] rounded-[50%_0_50%_50%] transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-115" />
-            <div className="w-4 h-4 bg-gradient-to-br from-accent to-accent-dark rounded-[50%_50%_0_50%] transition-transform duration-500 group-hover:rotate-12 group-hover:scale-115" />
-          </div>
-          <div className="font-display font-bold text-[15px] tracking-[3px] text-primary transition-colors duration-500">
-            KAIWAI
-          </div>
+      <div className="container-inner" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <a href="#" style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 900, letterSpacing: "0.1em", textDecoration: "none" }}>
+          <span style={{ color: "var(--color-primary)" }}>KAI</span>
+          <span style={{ color: "var(--color-accent)" }}>WAI</span>
         </a>
 
-        <div
-          className={`flex gap-7 items-center max-md:hidden ${
-            menuOpen
-              ? "!flex flex-col fixed top-[52px] left-0 right-0 bottom-0 bg-[rgba(248,248,248,0.98)] backdrop-blur-[20px] p-8 px-[var(--gutter)] gap-6 z-99"
-              : ""
-          }`}
-        >
+        {/* Desktop links */}
+        <div className="max-md:hidden" style={{ display: "flex", gap: 28, alignItems: "center" }}>
+          {[
+            { href: "#flow", label: "診断の流れ" },
+            { href: "#types", label: "4タイプ" },
+            { href: "#features", label: "特徴" },
+            { href: "#faq", label: "FAQ" },
+          ].map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              style={{ fontSize: 13, fontWeight: 600, color: "#666", textDecoration: "none", transition: "color 0.2s" }}
+            >
+              {link.label}
+            </a>
+          ))}
           <a
-            href="#flow"
-            onClick={closeMenu}
-            className="text-[13px] font-medium text-[#666] no-underline relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-primary after:transition-[width] after:duration-400 hover:after:w-full"
+            href="#cta"
+            style={{
+              padding: "10px 24px",
+              background: "var(--color-accent)",
+              color: "#fff",
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: "0.04em",
+              textDecoration: "none",
+              borderRadius: 8,
+              transition: "background 0.2s",
+            }}
           >
-            サービス
-          </a>
-          <a
-            href="#faq"
-            onClick={closeMenu}
-            className="text-[13px] font-medium text-[#666] no-underline relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-primary after:transition-[width] after:duration-400 hover:after:w-full"
-          >
-            診断について
-          </a>
-          <a
-            href="#testimonials"
-            onClick={closeMenu}
-            className="text-[13px] font-medium text-[#666] no-underline relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-primary after:transition-[width] after:duration-400 hover:after:w-full"
-          >
-            活動事例
-          </a>
-          <a
-            href="#"
-            onClick={closeMenu}
-            onMouseMove={handleMagneticMove}
-            onMouseLeave={handleMagneticLeave}
-            className="text-[13px] font-semibold text-white bg-gradient-to-br from-accent to-accent-dark py-2.5 px-6 rounded-[10px] no-underline inline-block transition-all duration-400 will-change-transform hover:shadow-[0_8px_30px_rgba(var(--accent-rgb),0.3)]"
-          >
-            無料で診断する
+            無料で診断
           </a>
         </div>
 
-        {/* Mobile menu - shown via CSS media query */}
+        {/* Mobile hamburger */}
         <div
-          className={`hidden max-md:flex flex-col gap-[5px] p-2 cursor-pointer z-101`}
+          className="hidden max-md:flex"
+          style={{ flexDirection: "column", gap: 5, padding: 8, cursor: "pointer", zIndex: 101 }}
           onClick={toggleMenu}
         >
-          <span
-            className={`block w-5 h-0.5 bg-primary rounded-sm transition-all duration-300 ${
-              menuOpen
-                ? "rotate-45 translate-x-[3px] translate-y-[4px]"
-                : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-primary rounded-sm transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-primary rounded-sm transition-all duration-300 ${
-              menuOpen
-                ? "-rotate-45 translate-x-[3px] -translate-y-[4px]"
-                : ""
-            }`}
-          />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--color-primary)", borderRadius: 1, transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(3px, 4px)" : "none" }} />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--color-primary)", borderRadius: 1, transition: "all 0.3s", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--color-primary)", borderRadius: 1, transition: "all 0.3s", transform: menuOpen ? "rotate(-45deg) translate(3px, -4px)" : "none" }} />
         </div>
 
         {/* Mobile menu overlay */}
         {menuOpen && (
-          <div className="md:hidden fixed top-[52px] left-0 right-0 bottom-0 bg-[rgba(248,248,248,0.98)] backdrop-blur-[20px] p-8 px-[var(--gutter)] z-99 flex flex-col gap-6">
+          <div style={{ position: "fixed", top: 64, left: 0, right: 0, bottom: 0, background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", padding: "32px var(--gutter)", zIndex: 99, display: "flex", flexDirection: "column", gap: 24 }}>
+            {[
+              { href: "#flow", label: "診断の流れ" },
+              { href: "#types", label: "4タイプ" },
+              { href: "#features", label: "特徴" },
+              { href: "#faq", label: "FAQ" },
+            ].map((link) => (
+              <a key={link.href} href={link.href} onClick={closeMenu} style={{ fontSize: 18, color: "#333", textDecoration: "none" }}>
+                {link.label}
+              </a>
+            ))}
             <a
-              href="#flow"
+              href="#cta"
               onClick={closeMenu}
-              className="text-lg text-[#333] no-underline"
-            >
-              サービス
-            </a>
-            <a
-              href="#faq"
-              onClick={closeMenu}
-              className="text-lg text-[#333] no-underline"
-            >
-              診断について
-            </a>
-            <a
-              href="#testimonials"
-              onClick={closeMenu}
-              className="text-lg text-[#333] no-underline"
-            >
-              活動事例
-            </a>
-            <a
-              href="#"
-              onClick={closeMenu}
-              className="text-center py-3.5 px-6 text-white bg-gradient-to-br from-accent to-accent-dark rounded-[10px] no-underline font-semibold"
+              style={{ textAlign: "center", padding: "14px 24px", background: "var(--color-accent)", color: "#fff", borderRadius: 8, fontWeight: 700, textDecoration: "none" }}
             >
               無料で診断する
             </a>
