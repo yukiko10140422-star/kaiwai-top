@@ -6,6 +6,15 @@ const stages = [
     desc: "診断であなたのタイプを知り、小さなタスクから実績を積み始めるフェーズ。認証制タスクで品質を担保しながら、チームの一員として活動できます。",
     chips: ["タイプ診断", "初回タスク", "小さな実績づくり", "コミュニティ参加"],
     outcome: "チームへの参加感、ガクチカのタネ、小さな成功体験",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" style={{ width: 36, height: 36 }}>
+        <rect x="8" y="10" width="20" height="28" rx="2" stroke="var(--color-accent)" strokeWidth="2" fill="rgba(255,107,53,0.1)" />
+        <path d="M28 18h12v20a2 2 0 01-2 2H28" stroke="var(--color-accent)" strokeWidth="2" />
+        <path d="M18 6v8" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="18" cy="26" r="4" stroke="var(--color-accent)" strokeWidth="1.5" fill="rgba(255,107,53,0.15)" />
+      </svg>
+    ),
+    color: "rgba(255,107,53,0.06)",
   },
   {
     phase: "ステージ 02",
@@ -14,6 +23,14 @@ const stages = [
     desc: "制作・発信・目標設計のサポートを受けて、「やりたい」を具体的な成果にするフェーズ。Web制作、SNS運用、コンテンツ制作など実務スキルを身につけます。",
     chips: ["制作支援", "発信支援", "目標設計", "継続サポート"],
     outcome: "ポートフォリオ、実績、就活で話せる経験",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" style={{ width: 36, height: 36 }}>
+        <path d="M24 4l-4 12h-12l10 7-4 12 10-7 10 7-4-12 10-7h-12z" stroke="var(--color-accent)" strokeWidth="2" fill="rgba(255,107,53,0.1)" strokeLinejoin="round" />
+        <path d="M16 42h16" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M20 46h8" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    color: "rgba(255,107,53,0.08)",
   },
   {
     phase: "ステージ 03",
@@ -22,6 +39,16 @@ const stages = [
     desc: "実際の案件に参加し、企業との接点を持ちながら成長を加速。挑戦フェーズの実案件は入口フェーズの学生にもタスクとして開放され、循環が生まれます。",
     chips: ["伴走型支援", "実案件参加", "外部発信", "事業共創"],
     outcome: "実務経験、企業との接点、起業の種",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" style={{ width: 36, height: 36 }}>
+        <path d="M8 40l16-24 16 24z" stroke="var(--color-accent)" strokeWidth="2" fill="rgba(255,107,53,0.1)" strokeLinejoin="round" />
+        <path d="M24 16V8" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M20 8h8" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M24 28v6" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+        <circle cx="24" cy="38" r="2" fill="var(--color-accent)" opacity="0.3" />
+      </svg>
+    ),
+    color: "rgba(255,107,53,0.1)",
   },
 ];
 
@@ -37,6 +64,37 @@ export default function GrowthPath() {
           <p className="editorial-sub">
             診断はただの入口。その先の成長までを一貫してサポートする。支援を受ける側が、やがて支援する側にもなれる循環構造。
           </p>
+        </div>
+
+        {/* Visual progress bar */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }} className="max-md:!flex-col max-md:!gap-4">
+            {stages.map((stage, i) => (
+              <div key={stage.phase} style={{ display: "flex", alignItems: "center" }} className="max-md:!flex-col">
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="max-md:!flex-col max-md:!text-center">
+                  <div style={{
+                    width: 56, height: 56, borderRadius: "50%",
+                    background: stage.color,
+                    border: "2px solid rgba(255,107,53,0.2)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    {stage.icon}
+                  </div>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--color-accent)", whiteSpace: "nowrap" }}>
+                    {stage.phase.replace("ステージ ", "")}
+                  </span>
+                </div>
+                {i < 2 && (
+                  <div className="max-md:!hidden" style={{ width: 80, height: 2, background: "linear-gradient(90deg, rgba(255,107,53,0.15), rgba(255,107,53,0.3))", margin: "0 12px", position: "relative" }}>
+                    <div style={{ position: "absolute", right: -4, top: -3, width: 8, height: 8, borderTop: "2px solid rgba(255,107,53,0.3)", borderRight: "2px solid rgba(255,107,53,0.3)", transform: "rotate(45deg)" }} />
+                  </div>
+                )}
+                {i < 2 && (
+                  <div className="hidden max-md:!block" style={{ width: 2, height: 24, background: "linear-gradient(180deg, rgba(255,107,53,0.15), rgba(255,107,53,0.3))", margin: "4px auto" }} />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Stages — editorial border-divided columns */}
