@@ -57,11 +57,11 @@ kaiwai/
 ### 構成
 
 1. **プロジェクト概要** — サービス説明（学生向けキャリア診断LP）、サイトURL
-2. **技術スタック** — Next.js 16 / React 19 / TypeScript / Tailwind CSS v4、GitHub Pagesデプロイ
+2. **技術スタック** — Next.js 16 / React 19 / TypeScript / Tailwind CSS v4、Vercelデプロイ
 3. **セットアップ手順** — 必要なもの（Node.js 20以上, npm, Claude Code）、クローン→インストール→起動の3ステップ、コマンドはコピペ可能な形式
-4. **プロジェクト構成** — ディレクトリツリー図、各コンポーネントの役割一覧表（13コンポーネント: Nav, Hero, Flow, Categories, GrowthPath, Features, Testimonials, FAQ, CTA, Footer, MobileFixedCTA, ScrollEffects, Divider）
+4. **プロジェクト構成** — ディレクトリツリー図、各コンポーネントの役割一覧表（12コンポーネント: Nav, Hero, Flow, ResultPreview, MidCTA, GrowthPath, Features, Testimonials, FAQ, CTA, Footer, ScrollEffects）
 5. **開発の進め方** — CONTRIBUTING.mdへのリンク、「Claude Codeを開いて作業開始、Claudeがガイドします」
-6. **デプロイ** — main マージ → GitHub Actions → GitHub Pages の流れ図
+6. **デプロイ** — main マージ → Vercel 自動デプロイ（https://kaiwai-black.vercel.app）
 7. **ライセンス** — 必要に応じて追記
 
 ### 設計方針
@@ -196,15 +196,10 @@ closes #
 | `ドキュメント` | `#0075CA`（青） | README等の文書 |
 | `対応中` | `#B0B0B0`（グレー） | 誰かが作業中 |
 
-## 8. CIワークフロー（新規作成）
+## 8. CI/CDワークフロー
 
-現在の `.github/workflows/pages.yml` はデプロイ専用（`on: push` のみ）のため、PR時のビルドチェック用に別途CIワークフロー `.github/workflows/ci.yml` を作成する。
-
-```yaml
-# ci.yml の概要
-on: pull_request (branches: main)
-steps: checkout → Node.js 20 setup → npm ci → npm run build
-```
+- **デプロイ**: Vercel が main ブランチへのプッシュを自動検知してデプロイ（GitHub Pages から移行済み）
+- **ビルドチェック**: Vercel がPRごとにプレビューデプロイを自動実行し、ビルドチェックを兼ねる
 
 ## 9. ブランチ保護ルール
 
