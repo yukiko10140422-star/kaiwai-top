@@ -66,35 +66,60 @@ export default function GrowthPath() {
           </p>
         </div>
 
-        {/* Visual progress bar */}
-        <div style={{ marginBottom: 48 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }} className="max-md:!flex-col max-md:!gap-4">
-            {stages.map((stage, i) => (
-              <div key={stage.phase} style={{ display: "flex", alignItems: "center" }} className="max-md:!flex-col">
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="max-md:!flex-col max-md:!text-center">
-                  <div style={{
-                    width: 56, height: 56, borderRadius: "50%",
-                    background: stage.color,
-                    border: "2px solid rgba(255,107,53,0.2)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    {stage.icon}
-                  </div>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--color-accent)", whiteSpace: "nowrap" }}>
-                    {stage.phase.replace("ステージ ", "")}
-                  </span>
-                </div>
-                {i < 2 && (
-                  <div className="max-md:!hidden" style={{ width: 80, height: 2, background: "linear-gradient(90deg, rgba(255,107,53,0.15), rgba(255,107,53,0.3))", margin: "0 12px", position: "relative" }}>
-                    <div style={{ position: "absolute", right: -4, top: -3, width: 8, height: 8, borderTop: "2px solid rgba(255,107,53,0.3)", borderRight: "2px solid rgba(255,107,53,0.3)", transform: "rotate(45deg)" }} />
-                  </div>
-                )}
-                {i < 2 && (
-                  <div className="hidden max-md:!block" style={{ width: 2, height: 24, background: "linear-gradient(180deg, rgba(255,107,53,0.15), rgba(255,107,53,0.3))", margin: "4px auto" }} />
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Circular growth diagram */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
+          <svg viewBox="0 0 360 360" style={{ width: "100%", maxWidth: 340, height: "auto" }}>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(255,107,53,0.4)" />
+              </marker>
+              <marker id="arrow-return" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-accent)" />
+              </marker>
+            </defs>
+
+            {/* Background circle */}
+            <circle cx="180" cy="180" r="120" fill="none" stroke="rgba(255,107,53,0.08)" strokeWidth="1.5" strokeDasharray="6 4" />
+
+            {/* Arc: 01 → 02 (clockwise, top → bottom-right) */}
+            <path d="M 208 63 A 120 120 0 0 1 295 214" fill="none" stroke="rgba(255,107,53,0.25)" strokeWidth="2" markerEnd="url(#arrow)" />
+            {/* Arc: 02 → 03 (clockwise, bottom-right → bottom-left) */}
+            <path d="M 267 263 A 120 120 0 0 1 93 263" fill="none" stroke="rgba(255,107,53,0.25)" strokeWidth="2" markerEnd="url(#arrow)" />
+            {/* Arc: 03 → 01 RETURN (clockwise, bottom-left → top) — highlighted */}
+            <path d="M 65 214 A 120 120 0 0 1 152 63" fill="none" stroke="var(--color-accent)" strokeWidth="2.5" markerEnd="url(#arrow-return)" />
+
+            {/* Return label along 03→01 arc */}
+            <g transform="translate(68, 130)">
+              <rect x="-4" y="-12" width="72" height="30" rx="6" fill="rgba(255,107,53,0.08)" stroke="rgba(255,107,53,0.15)" strokeWidth="1" />
+              <text x="32" y="6" textAnchor="middle" fill="var(--color-accent)" fontSize="11" fontWeight="700" fontFamily="sans-serif">タスク開放</text>
+            </g>
+
+            {/* Center label */}
+            <text x="180" y="172" textAnchor="middle" fill="var(--color-primary)" fontSize="14" fontWeight="900" fontFamily="serif" opacity="0.8">循環する</text>
+            <text x="180" y="194" textAnchor="middle" fill="var(--color-primary)" fontSize="14" fontWeight="900" fontFamily="serif" opacity="0.8">成長構造</text>
+
+            {/* Node 01 — 入口 (top) */}
+            <circle cx="180" cy="60" r="30" fill="#f5f0eb" stroke="rgba(255,107,53,0.25)" strokeWidth="2" />
+            <text x="180" y="56" textAnchor="middle" fill="var(--color-accent)" fontSize="9" fontWeight="700" letterSpacing="0.1em">STEP</text>
+            <text x="180" y="72" textAnchor="middle" fill="var(--color-accent)" fontSize="16" fontWeight="900" fontFamily="serif">01</text>
+            <text x="180" y="18" textAnchor="middle" fill="var(--color-primary)" fontSize="12" fontWeight="700" opacity="0.7">入口</text>
+
+            {/* Node 02 — 実行 (bottom-right) */}
+            <circle cx="284" cy="240" r="30" fill="#f5f0eb" stroke="rgba(255,107,53,0.25)" strokeWidth="2" />
+            <text x="284" y="236" textAnchor="middle" fill="var(--color-accent)" fontSize="9" fontWeight="700" letterSpacing="0.1em">STEP</text>
+            <text x="284" y="252" textAnchor="middle" fill="var(--color-accent)" fontSize="16" fontWeight="900" fontFamily="serif">02</text>
+            <text x="324" y="280" textAnchor="middle" fill="var(--color-primary)" fontSize="12" fontWeight="700" opacity="0.7">実行</text>
+
+            {/* Node 03 — 挑戦 (bottom-left) */}
+            <circle cx="76" cy="240" r="30" fill="#f5f0eb" stroke="rgba(255,107,53,0.25)" strokeWidth="2" />
+            <text x="76" y="236" textAnchor="middle" fill="var(--color-accent)" fontSize="9" fontWeight="700" letterSpacing="0.1em">STEP</text>
+            <text x="76" y="252" textAnchor="middle" fill="var(--color-accent)" fontSize="16" fontWeight="900" fontFamily="serif">03</text>
+            <text x="36" y="280" textAnchor="middle" fill="var(--color-primary)" fontSize="12" fontWeight="700" opacity="0.7">挑戦</text>
+
+            {/* Arc labels */}
+            <text x="260" y="135" textAnchor="middle" fill="rgba(0,0,0,0.35)" fontSize="10" fontWeight="600" transform="rotate(30, 260, 135)">成長</text>
+            <text x="180" y="310" textAnchor="middle" fill="rgba(0,0,0,0.35)" fontSize="10" fontWeight="600">スキルアップ</text>
+          </svg>
         </div>
 
         {/* Stages — editorial border-divided columns */}
