@@ -1,6 +1,9 @@
+import Link from "next/link";
+
 const branches = [
   {
     id: "popular",
+    href: "/shikaku/popular",
     label: "人気資格一覧",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" style={{ width: 28, height: 28 }}>
@@ -13,6 +16,7 @@ const branches = [
   },
   {
     id: "interest",
+    href: "/shikaku/interest",
     label: "興味別分類",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" style={{ width: 28, height: 28 }}>
@@ -25,6 +29,7 @@ const branches = [
   },
   {
     id: "plan",
+    href: "/shikaku/plan",
     label: "学習計画テンプレ",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" style={{ width: 28, height: 28 }}>
@@ -116,8 +121,12 @@ export default function QualificationTree() {
             className="max-md:!grid-cols-1"
           >
             {branches.map((branch) => (
-              <div
+              <Link
                 key={branch.id}
+                href={branch.href}
+                style={{ textDecoration: "none" }}
+              >
+              <div
                 style={{
                   background: "var(--color-surface)",
                   border: "1px solid var(--color-border)",
@@ -126,7 +135,9 @@ export default function QualificationTree() {
                   display: "flex",
                   flexDirection: "column",
                   gap: 12,
+                  cursor: "pointer",
                   transition: "box-shadow 0.2s",
+                  height: "100%",
                 }}
               >
                 {/* Icon + label */}
@@ -168,6 +179,7 @@ export default function QualificationTree() {
                   ))}
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </div>
