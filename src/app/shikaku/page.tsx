@@ -98,7 +98,7 @@ export default function ShikakuPage() {
                   まだ決まっていない
                 </div>
                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>
-                  5問の診断で向いている資格を見つけよう
+                  6問の診断で向いている資格を見つけよう
                 </div>
               </div>
               <svg viewBox="0 0 24 24" fill="none" style={{ width: 22, height: 22, flexShrink: 0 }}>
