@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, ReactElement } from "react";
 import Link from "next/link";
 
 const questions = [
@@ -68,10 +68,26 @@ const questions = [
 
 type QualificationKey = "toeic" | "mos" | "boki" | "fp" | "it" | "takken" | "eiken" | "kihon" | "hisho" | "ai" | "kiken" | "sharoushi" | "gyosei" | "chusho";
 
-const results: Record<QualificationKey, { name: string; desc: string; period: string; merit: string; emoji: string; level: "普通" | "やや難" | "難関" }> = {
+const icons: Record<QualificationKey, ReactElement> = {
+  toeic: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><circle cx="20" cy="20" r="14" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><ellipse cx="20" cy="20" rx="6" ry="14" stroke="var(--color-accent)" strokeWidth="1.4"/><path d="M6 20h28M8 13h24M8 27h24" stroke="var(--color-accent)" strokeWidth="1.2"/></svg>,
+  mos: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="5" y="8" width="30" height="20" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><path d="M13 32h14" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round"/><path d="M12 16l4 4 4-4 4 4" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  boki: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="6" y="24" width="6" height="10" rx="1" fill="rgba(255,107,53,0.15)" stroke="var(--color-accent)" strokeWidth="1.5"/><rect x="17" y="16" width="6" height="18" rx="1" fill="rgba(255,107,53,0.15)" stroke="var(--color-accent)" strokeWidth="1.5"/><rect x="28" y="8" width="6" height="26" rx="1" fill="rgba(255,107,53,0.15)" stroke="var(--color-accent)" strokeWidth="1.5"/><path d="M5 36h30" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+  fp: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><circle cx="20" cy="20" r="14" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><text x="20" y="26" textAnchor="middle" fill="var(--color-accent)" fontSize="16" fontWeight="700" fontFamily="serif">¥</text></svg>,
+  it: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="5" y="8" width="30" height="22" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><path d="M13 34h14" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round"/><path d="M14 18h4M22 14v10M17 22l-3 3 3 3" stroke="var(--color-accent)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  takken: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><path d="M20 6L6 18h4v16h20V18h4L20 6z" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)" strokeLinejoin="round"/><rect x="16" y="24" width="8" height="10" rx="1" stroke="var(--color-accent)" strokeWidth="1.4" fill="rgba(255,107,53,0.12)"/></svg>,
+  eiken: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="5" y="8" width="26" height="18" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><path d="M10 32l5-6h16" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 15h14M12 20h9" stroke="var(--color-accent)" strokeWidth="1.4" strokeLinecap="round"/></svg>,
+  kihon: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="10" y="10" width="20" height="20" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><rect x="16" y="16" width="8" height="8" rx="1" stroke="var(--color-accent)" strokeWidth="1.4" fill="rgba(255,107,53,0.15)"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+  hisho: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="8" y="6" width="24" height="30" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><rect x="14" y="4" width="12" height="6" rx="2" stroke="var(--color-accent)" strokeWidth="1.4" fill="rgba(255,107,53,0.15)"/><path d="M14 18h12M14 23h9M14 28h6" stroke="var(--color-accent)" strokeWidth="1.4" strokeLinecap="round"/></svg>,
+  ai: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="8" y="12" width="24" height="18" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><circle cx="15" cy="21" r="2.5" fill="rgba(255,107,53,0.3)" stroke="var(--color-accent)" strokeWidth="1.2"/><circle cx="25" cy="21" r="2.5" fill="rgba(255,107,53,0.3)" stroke="var(--color-accent)" strokeWidth="1.2"/><path d="M15 21h10M8 17H5M8 25H5M32 17h3M32 25h3M15 12V8M25 12V8" stroke="var(--color-accent)" strokeWidth="1.4" strokeLinecap="round"/></svg>,
+  kiken: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><path d="M20 6c-2 4-8 8-8 16a8 8 0 0016 0c0-8-6-12-8-16z" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.1)" strokeLinejoin="round"/><path d="M16 28c0-4 2-6 4-8 2 2 4 4 4 8" stroke="var(--color-accent)" strokeWidth="1.4" fill="rgba(255,107,53,0.2)" strokeLinejoin="round"/></svg>,
+  sharoushi: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><path d="M20 8v4" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round"/><path d="M8 12h24" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round"/><path d="M10 12l-4 14h8l2-8 4 8 4-8 2 8h8l-4-14" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(255,107,53,0.08)"/><path d="M6 32h28" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round"/></svg>,
+  gyosei: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><rect x="7" y="5" width="22" height="30" rx="3" stroke="var(--color-accent)" strokeWidth="1.8" fill="rgba(255,107,53,0.08)"/><path d="M12 13h12M12 18h12M12 23h8" stroke="var(--color-accent)" strokeWidth="1.4" strokeLinecap="round"/><path d="M27 28l6-6-2-2-6 6v2h2z" stroke="var(--color-accent)" strokeWidth="1.3" fill="rgba(255,107,53,0.15)" strokeLinejoin="round"/></svg>,
+  chusho: <svg viewBox="0 0 40 40" fill="none" style={{width:40,height:40}}><path d="M6 30l8-10 8 4 12-16" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M28 8h6v6" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="6" cy="30" r="2" fill="var(--color-accent)"/><circle cx="14" cy="20" r="2" fill="var(--color-accent)"/><circle cx="22" cy="24" r="2" fill="var(--color-accent)"/><circle cx="34" cy="8" r="2" fill="var(--color-accent)"/></svg>,
+};
+
+const results: Record<QualificationKey, { name: string; desc: string; period: string; merit: string; level: "普通" | "やや難" | "難関" }> = {
   toeic: {
     name: "TOEIC",
-    emoji: "🌍",
     desc: "英語力をスコアで証明できる世界標準のテスト。700点以上でグローバル企業への就職に強くなります。",
     period: "3〜6ヶ月",
     merit: "外資系・グローバル企業への就職で大きくアピールできる",
@@ -79,7 +95,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   mos: {
     name: "MOS（Microsoft Office Specialist）",
-    emoji: "💻",
     desc: "Word・Excel・PowerPointのスキルを証明。事務・営業など幅広い職種で評価される定番資格。",
     period: "1〜3ヶ月",
     merit: "短期間で取りやすく、どの業界でも使える",
@@ -87,7 +102,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   boki: {
     name: "日商簿記3級",
-    emoji: "📊",
     desc: "お金の流れを読む力を証明する資格。経理・会計・金融など数字を扱う仕事に直結します。",
     period: "2〜4ヶ月",
     merit: "文系学生でも取りやすく、就活での評価が高い",
@@ -95,7 +109,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   fp: {
     name: "FP技能士3級",
-    emoji: "💰",
     desc: "税金・保険・年金など「お金全般」の知識を証明。金融・保険業界はもちろん、生活にも役立つ。",
     period: "3〜4ヶ月",
     merit: "実生活にも直結する知識で一石二鳥",
@@ -103,7 +116,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   it: {
     name: "ITパスポート",
-    emoji: "🖥️",
     desc: "ITの基礎知識を証明する国家資格。文系・理系問わず全業界でデジタル人材として評価されます。",
     period: "1〜2ヶ月",
     merit: "短期間・低コストで取れてコスパ最高",
@@ -111,7 +123,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   takken: {
     name: "宅地建物取引士（宅建）",
-    emoji: "🏠",
     desc: "不動産取引の専門資格。取得難易度が高い分、就活での差別化効果は抜群です。",
     period: "6ヶ月〜1年",
     merit: "難関資格だからこそ、取れれば就活で強力なアピールになる",
@@ -119,7 +130,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   eiken: {
     name: "英検2級",
-    emoji: "🗣️",
     desc: "高校卒業〜大学在学レベルの英語力を証明。TOEICと並んで就活での語学アピールに使えます。",
     period: "2〜4ヶ月",
     merit: "スコアではなく合否で判定されるためわかりやすい",
@@ -127,7 +137,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   kihon: {
     name: "基本情報技術者",
-    emoji: "⚙️",
     desc: "ITパスポートの上位資格。エンジニア・SE志望なら持っておきたい国家資格です。",
     period: "3〜6ヶ月",
     merit: "IT系就職・転職で高く評価される",
@@ -135,7 +144,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   hisho: {
     name: "秘書検定2級",
-    emoji: "📋",
     desc: "ビジネスマナー・コミュニケーション力を証明。事務・サービス業・接客業への就職に有効。",
     period: "1〜2ヶ月",
     merit: "女性に人気で事務系就職に幅広く使える",
@@ -143,7 +151,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   ai: {
     name: "AIパスポート・G検定",
-    emoji: "🤖",
     desc: "AI・データサイエンスの基礎知識を証明。2026年急上昇中のトレンド資格です。",
     period: "2〜3ヶ月",
     merit: "DX・AI時代に求められる人材としてアピールできる",
@@ -151,7 +158,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   kiken: {
     name: "危険物取扱者（乙種4類）",
-    emoji: "🔥",
     desc: "ガソリン・灯油など危険物の取り扱いを認める国家資格。製造・物流・エネルギー業界で重宝されます。",
     period: "1〜2ヶ月",
     merit: "工場・物流系就職で即戦力としてアピールできる",
@@ -159,7 +165,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   sharoushi: {
     name: "社会保険労務士（社労士）",
-    emoji: "⚖️",
     desc: "労働・社会保険に関する唯一の国家資格。人事・労務・コンサルへの就職・独立に強い。",
     period: "1年〜1年半",
     merit: "難関だからこそ取れれば圧倒的な差別化になる",
@@ -167,7 +172,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   gyosei: {
     name: "行政書士",
-    emoji: "📝",
     desc: "官公署への書類作成・申請を行う国家資格。法律系資格の登竜門として知名度が高い。",
     period: "6ヶ月〜1年",
     merit: "法律知識の証明として幅広い業界でアピールできる",
@@ -175,7 +179,6 @@ const results: Record<QualificationKey, { name: string; desc: string; period: st
   },
   chusho: {
     name: "中小企業診断士",
-    emoji: "📈",
     desc: "経営コンサルタントの唯一の国家資格。経営・財務・マーケティングを幅広く学べる。",
     period: "1年〜2年",
     merit: "経営・コンサル志望の学生に圧倒的な差別化になる",
@@ -226,8 +229,8 @@ export default function QuizPage() {
   const topResults = Object.entries(scores)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
-    .map(([key]) => results[key as QualificationKey])
-    .filter(Boolean);
+    .map(([key]) => ({ ...results[key as QualificationKey], key: key as QualificationKey }))
+    .filter((r) => r.name);
 
   if (finished) {
     return (
@@ -270,11 +273,13 @@ export default function QuizPage() {
                     fontSize: 11, fontWeight: 700, padding: "3px 12px",
                     borderRadius: 100, letterSpacing: "0.05em",
                   }}>
-                    ⭐ 最もおすすめ
+                    ★ 最もおすすめ
                   </div>
                 )}
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-                  <span style={{ fontSize: 32 }}>{result.emoji}</span>
+                  <div style={{ flexShrink: 0, width: 48, height: 48, borderRadius: 12, background: "rgba(var(--accent-rgb),0.06)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {icons[result.key]}
+                  </div>
                   <div>
                     <div style={{ fontFamily: "var(--font-serif)", fontWeight: 900, fontSize: 16, color: "var(--color-primary)", lineHeight: 1.3 }}>
                       {result.name}

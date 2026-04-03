@@ -55,9 +55,11 @@ export default function ShikakuPage() {
                 width: 56, height: 56, borderRadius: "50%", flexShrink: 0,
                 background: "rgba(var(--accent-rgb), 0.1)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 28,
               }}>
-                ✅
+                <svg viewBox="0 0 32 32" fill="none" style={{ width: 28, height: 28 }}>
+                  <circle cx="16" cy="16" r="12" stroke="var(--color-accent)" strokeWidth="2" fill="rgba(255,107,53,0.1)"/>
+                  <path d="M10 16l4 4 8-8" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "var(--font-serif)", fontWeight: 900, fontSize: 18, color: "var(--color-primary)", marginBottom: 6 }}>
@@ -89,9 +91,12 @@ export default function ShikakuPage() {
                 width: 56, height: 56, borderRadius: "50%", flexShrink: 0,
                 background: "rgba(255,255,255,0.2)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 28,
               }}>
-                🤔
+                <svg viewBox="0 0 32 32" fill="none" style={{ width: 28, height: 28 }}>
+                  <circle cx="16" cy="16" r="12" stroke="rgba(255,255,255,0.8)" strokeWidth="2"/>
+                  <path d="M12 13a4 4 0 118 0c0 2-2 3-2 5" stroke="rgba(255,255,255,0.9)" strokeWidth="2.2" strokeLinecap="round"/>
+                  <circle cx="16" cy="22" r="1.5" fill="rgba(255,255,255,0.9)"/>
+                </svg>
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "var(--font-serif)", fontWeight: 900, fontSize: 18, color: "#fff", marginBottom: 6 }}>
