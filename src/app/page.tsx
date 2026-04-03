@@ -4,6 +4,7 @@ import Flow from "@/components/Flow";
 import ResultPreview from "@/components/ResultPreview";
 import MidCTA from "@/components/MidCTA";
 import GrowthPath from "@/components/GrowthPath";
+import QualificationTree from "@/components/QualificationTree";
 import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -24,6 +25,7 @@ export default function Home() {
         <ResultPreview />
         <MidCTA />
         <GrowthPath />
+        <QualificationTree />
         <Features />
         <Testimonials />
         <FAQ />
