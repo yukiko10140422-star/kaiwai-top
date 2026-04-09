@@ -41,10 +41,9 @@ const steps = [
 
 export default function Flow() {
   return (
-    <section className="section-spacing" style={{ borderTop: "1px solid var(--color-border)" }} id="flow">
+    <section className="section-spacing section-warm" id="flow">
       <div className="container-inner">
-        {/* Editorial split header */}
-        <div className="editorial-header">
+        <div className="editorial-header reveal">
           <h2 className="editorial-title">
             カンタン<br />3ステップ
           </h2>
@@ -53,27 +52,24 @@ export default function Flow() {
           </p>
         </div>
 
-        {/* Steps with icons and connecting arrows */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, position: "relative" }} className="max-md:!grid-cols-1">
           {steps.map((step, i) => (
             <div
               key={step.num}
+              className={`reveal reveal-delay-${i + 1}${i > 0 ? " max-md:!border-l-0 max-md:!border-t max-md:!border-t-[var(--color-border)]" : ""}`}
               style={{
                 padding: "32px 28px",
                 borderLeft: i > 0 ? "1px solid var(--color-border)" : "none",
                 textAlign: "center",
                 position: "relative",
               }}
-              className={i > 0 ? "max-md:!border-l-0 max-md:!border-t max-md:!border-t-[var(--color-border)]" : ""}
             >
-              {/* Icon */}
               <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-                <div style={{ width: 80, height: 80, borderRadius: "50%", background: "rgba(255,107,53,0.05)", border: "2px solid rgba(255,107,53,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className="icon-circle" style={{ width: 80, height: 80, border: "2px solid rgba(255,107,53,0.12)" }}>
                   {step.icon}
                 </div>
               </div>
 
-              {/* Connecting arrow (desktop only) */}
               {i < 2 && (
                 <div className="max-md:!hidden" style={{ position: "absolute", right: -14, top: "50%", transform: "translateY(-50%)", zIndex: 2 }}>
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -87,7 +83,7 @@ export default function Flow() {
                 {step.num}
               </span>
               <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{step.title}</h3>
-              <p style={{ fontSize: 14, color: "#666", lineHeight: 1.8 }}>{step.desc}</p>
+              <p style={{ fontSize: 14, color: "var(--color-body-light)", lineHeight: 1.8 }}>{step.desc}</p>
             </div>
           ))}
         </div>

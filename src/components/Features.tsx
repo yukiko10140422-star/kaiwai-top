@@ -52,16 +52,18 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="section-spacing" style={{ background: "var(--color-bg-alt)", borderTop: "1px solid var(--color-border)" }} id="features">
+    <section className="section-spacing section-alt" id="features">
       <div className="container-inner">
-        <h2 className="section-heading">KAIWAIの特徴</h2>
-        <p className="section-sub">手軽で、無料で、すぐわかる。しかも診断で終わらない。</p>
+        <div className="reveal">
+          <h2 className="section-heading">KAIWAIの特徴</h2>
+          <p className="section-sub">手軽で、無料で、すぐわかる。しかも診断で終わらない。</p>
+        </div>
 
-        {/* Feature grid with icons */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }} className="max-md:!grid-cols-1">
           {features.map((f, i) => (
             <div
               key={f.num}
+              className={`reveal reveal-delay-${(i % 2) + 1}${i % 2 === 0 ? " max-md:!border-r-0" : ""}`}
               style={{
                 padding: "36px 32px",
                 borderBottom: "1px solid var(--color-border)",
@@ -70,17 +72,16 @@ export default function Features() {
                 alignItems: "flex-start",
                 borderRight: i % 2 === 0 ? "1px solid var(--color-border)" : "none",
               }}
-              className={i % 2 === 0 ? "max-md:!border-r-0" : ""}
             >
-              <div style={{ flexShrink: 0, width: 56, height: 56, borderRadius: 12, background: "rgba(255,107,53,0.04)", border: "1px solid rgba(255,107,53,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div className="icon-box">
                 {f.icon}
               </div>
               <div>
-                <div style={{ fontFamily: "var(--font-serif)", fontSize: "0.75rem", fontWeight: 900, color: "var(--color-accent)", lineHeight: 1, marginBottom: 4, letterSpacing: "0.1em" }}>
+                <div className="badge" style={{ marginBottom: 4, fontSize: 11, padding: "2px 8px" }}>
                   {f.num}
                 </div>
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>{f.title}</h3>
-                <p style={{ fontSize: 14, color: "#666", lineHeight: 1.75 }}>{f.desc}</p>
+                <p style={{ fontSize: 14, color: "var(--color-body-light)", lineHeight: 1.75 }}>{f.desc}</p>
               </div>
             </div>
           ))}
