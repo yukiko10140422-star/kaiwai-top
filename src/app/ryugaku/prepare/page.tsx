@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const plans = [
   {
@@ -24,14 +25,10 @@ const plans = [
 export default function RyugakuPreparePage() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", fontFamily: "var(--font-sans)" }}>
-      <div style={{ background: "var(--color-surface)", borderBottom: "1px solid var(--color-border)", padding: "16px 24px" }}>
-        <Link href="/ryugaku" style={{ display: "flex", alignItems: "center", color: "var(--color-muted)", fontSize: 14 }}>
-          <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20, marginRight: 4 }}>
-            <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          留学サポートに戻る
-        </Link>
-      </div>
+      <Breadcrumb items={[
+        { label: "留学", href: "/ryugaku" },
+        { label: "英語学習プラン" },
+      ]} />
 
       <div style={{ maxWidth: 560, margin: "0 auto", padding: "40px 20px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>

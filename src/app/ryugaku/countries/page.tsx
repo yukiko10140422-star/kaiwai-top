@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const countries = [
   { name: "オーストラリア", period: "1ヶ月〜1年", cost: "月15〜30万円", lang: "英語", features: ["ワーホリ対応", "治安が良い", "多文化環境"], popularity: "人気No.1" },
@@ -18,14 +19,10 @@ const steps = [
 export default function RyugakuCountriesPage() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", fontFamily: "var(--font-sans)" }}>
-      <div style={{ background: "var(--color-surface)", borderBottom: "1px solid var(--color-border)", padding: "16px 24px" }}>
-        <Link href="/ryugaku" style={{ display: "flex", alignItems: "center", color: "var(--color-muted)", fontSize: 14 }}>
-          <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20, marginRight: 4 }}>
-            <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          留学サポートに戻る
-        </Link>
-      </div>
+      <Breadcrumb items={[
+        { label: "留学", href: "/ryugaku" },
+        { label: "留学先を選ぶ" },
+      ]} />
 
       <div style={{ maxWidth: 600, margin: "0 auto", padding: "40px 20px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>

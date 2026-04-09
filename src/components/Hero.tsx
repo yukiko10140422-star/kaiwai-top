@@ -24,8 +24,8 @@ export default function Hero() {
               5つの質問に答えるだけで、あなたの志向を4タイプに分類。ガクチカ・留学・資格・サークル — それぞれに合った「最初の一歩」を無料で提案します。
             </p>
 
-            <a href="#" className="cta-button" style={{ marginBottom: 24 }}>
-              無料で診断する（3分で完了）
+            <a href="/sonota" className="cta-button" style={{ marginBottom: 24 }}>
+              3分で自分のタイプを知る（無料）
             </a>
 
             <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 20 }}>
@@ -41,15 +41,15 @@ export default function Hero() {
           {/* Right: Stats */}
           <div className="flex flex-col gap-6 justify-center max-md:hidden">
             {[
-              { num: "1,200+", label: "診断済み" },
-              { num: "87%", label: "行動開始率" },
-              { num: "4.6", label: "満足度（5.0中）" },
+              { num: "5問", label: "カンタン診断" },
+              { num: "4タイプ", label: "に分類" },
+              { num: "無料", label: "登録不要" },
             ].map((stat) => (
               <div key={stat.label} style={{ borderLeft: "3px solid var(--color-accent)", paddingLeft: 20 }}>
                 <div style={{ fontFamily: "var(--font-serif)", fontSize: "2.4rem", fontWeight: 900, color: "#fff", lineHeight: 1.2 }}>
                   {stat.num}
                 </div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", letterSpacing: "0.06em" }}>
                   {stat.label}
                 </div>
               </div>
@@ -60,9 +60,9 @@ export default function Hero() {
         {/* Mobile stats row */}
         <div className="hidden max-md:!flex gap-6 justify-center" style={{ marginTop: 32 }}>
           {[
-            { num: "1,200+", label: "診断済み" },
-            { num: "87%", label: "行動開始" },
-            { num: "4.6", label: "満足度" },
+            { num: "5問", label: "診断" },
+            { num: "4タイプ", label: "分類" },
+            { num: "無料", label: "登録不要" },
           ].map((stat) => (
             <div key={stat.label} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.6rem", fontWeight: 900, color: "#fff" }}>{stat.num}</div>

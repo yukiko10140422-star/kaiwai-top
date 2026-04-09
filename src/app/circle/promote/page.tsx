@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const supports = [
   { title: "SNS運用テンプレート", desc: "投稿カレンダー・キャプション例文・ハッシュタグリストを無料提供。", icon: "📱" },
@@ -16,14 +17,10 @@ const steps = [
 export default function CirclePromotePage() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", fontFamily: "var(--font-sans)" }}>
-      <div style={{ background: "var(--color-surface)", borderBottom: "1px solid var(--color-border)", padding: "16px 24px" }}>
-        <Link href="/circle" style={{ display: "flex", alignItems: "center", color: "var(--color-muted)", fontSize: 14 }}>
-          <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20, marginRight: 4 }}>
-            <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          サークルに戻る
-        </Link>
-      </div>
+      <Breadcrumb items={[
+        { label: "サークル", href: "/circle" },
+        { label: "集客サポート" },
+      ]} />
 
       <div style={{ maxWidth: 520, margin: "0 auto", padding: "40px 20px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
