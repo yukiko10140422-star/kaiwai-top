@@ -1,7 +1,8 @@
+import Link from "next/link";
+
 export default function CTA() {
   return (
-    <section id="cta" style={{ position: "relative", overflow: "hidden" }}>
-      {/* Photo background with dark overlay */}
+    <section id="cta" className="reveal" style={{ position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0 }}>
         <img
           src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&h=600&fit=crop"
@@ -18,20 +19,24 @@ export default function CTA() {
         </h2>
 
         <p style={{ fontSize: 15, lineHeight: 1.85, color: "rgba(255,255,255,0.55)", maxWidth: 460, margin: "0 auto 40px" }}>
-          「何をすればいいかわからない」は、多くの学生が感じている、ごく普通の気持ちです。3分後には最初の一歩が見えています。
+          「何をすればいいかわからない」は、多くの学生が感じている、ごく普通の気持ちです。<br />
+          3分後には、あなたに合った最初の一歩が見えています。
         </p>
 
-        <a href="#" className="cta-button" style={{ padding: "20px 52px", fontSize: 17 }}>
-          無料で診断する（3分で完了）
-        </a>
+        <Link href="/sonota" className="cta-button" style={{ padding: "20px 52px", fontSize: 17 }}>
+          3分で自分のタイプを知る（無料）
+        </Link>
 
         <div style={{ display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap", marginTop: 32 }}>
           {[
-            "1,200人が診断済み",
-            "87%が行動を開始",
-            "登録不要・勧誘なし",
+            "登録不要",
+            "完全無料",
+            "勧誘なし",
           ].map((text) => (
-            <span key={text} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
+            <span key={text} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
+              <svg viewBox="0 0 16 16" fill="none" style={{ width: 14, height: 14 }}>
+                <path d="M4 8l3 3 5-5" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               {text}
             </span>
           ))}
